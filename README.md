@@ -12,12 +12,6 @@ https://github.com/badtuxx/DescomplicandoKubernetes
 
 # **Anotações**
 
-## Kubernetes
-
-## Instalação
-
-
-
 cat > /etc/docker/daemon.json <<EOF
 {
   "exec-opts": ["native.cgroupdriver=systemd"],
@@ -47,8 +41,6 @@ modprobe br_netfilter ip_vs_rr ip_vs_wrr ip_vs_sh nf_conntrack_ipv4 ip_vs
 kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
 
 
-## Exibindo novamente token para entrar no cluster
-Para visualizar novamente o token para inserção de novos nós, execute o seguinte comando.
 # 
 
 

@@ -12,6 +12,9 @@ https://github.com/badtuxx/DescomplicandoKubernetes
 
 # **Anotações**
 
+
+
+```yaml
 cat > /etc/docker/daemon.json <<EOF
 {
   "exec-opts": ["native.cgroupdriver=systemd"],
@@ -24,28 +27,17 @@ cat > /etc/docker/daemon.json <<EOF
 EOF
 
 
-sudo mkdir -p /etc/systemd/system/docker.service.d
-systemctl daemon-reload
-systemctl restart docker
-
-docker info | grep -i cgroup
+# sudo mkdir -p /etc/systemd/system/docker.service.d
+# systemctl daemon-reload
+# systemctl restart docker
+# docker info | grep -i cgroup
+```
 
 Se a saída foi Cgroup Driver: systemd, tudo certo!
 
-## inicializa cluster
-kubeadm init --apiserver-advertise-address $(hostname -i)
-
-Instalação do pod network
-para ter a comunicação entre pods de diferentes nodes
-modprobe br_netfilter ip_vs_rr ip_vs_wrr ip_vs_sh nf_conntrack_ipv4 ip_vs
-kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
 
 
-# 
-
-
-
-
+## 
 
 # **Comandos Kubernetes**
 
@@ -53,37 +45,37 @@ kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl versio
 
 
 
-|                           Comando                            | Descrição                                |
-| :----------------------------------------------------------: | :--------------------------------------- |
-| kubeadm init --control-plane-endpoint "k8s-elb-01:6443" --upload-certs | subir o cluster com elb                  |
-|          kubeadm token create --print-join-command           | Restaurar o token do join p/ worker node |
-|                                                              |                                          |
-|                                                              |                                          |
-|                                                              |                                          |
-|                                                              |                                          |
-|                                                              |                                          |
-|                                                              |                                          |
-|                                                              |                                          |
-|                                                              |                                          |
-|                                                              |                                          |
-|                                                              |                                          |
-|                                                              |                                          |
-|                                                              |                                          |
-|                                                              |                                          |
-|                                                              |                                          |
-|                                                              |                                          |
-|                                                              |                                          |
-|                                                              |                                          |
-|                                                              |                                          |
-|                                                              |                                          |
-|                                                              |                                          |
-|                                                              |                                          |
-|                                                              |                                          |
-|                                                              |                                          |
-|                                                              | kend                                     |
-|                                                              |                                          |
-|                                                              |                                          |
-|                                                              |                                          |
+|                           Comando                            | Descrição                                                    |
+| :----------------------------------------------------------: | :----------------------------------------------------------- |
+| kubeadm init --control-plane-endpoint "k8s-elb-01:6443" --upload-certs | subir o cluster com elb                                      |
+|          kubeadm token create --print-join-command           | Restaurar o token do join p/ worker node                     |
+| kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version \|base64 \|tr -d '\n')" | Instalação do pod network para ter a comunicação entre pods de diferentes nodes |
+|  kubeadm init --apiserver-advertise-address $(hostname -i)   | Inicializa cluster                                           |
+|                                                              |                                                              |
+|                                                              |                                                              |
+|                                                              |                                                              |
+|                                                              |                                                              |
+|                                                              |                                                              |
+|                                                              |                                                              |
+|                                                              |                                                              |
+|                                                              |                                                              |
+|                                                              |                                                              |
+|                                                              |                                                              |
+|                                                              |                                                              |
+|                                                              |                                                              |
+|                                                              |                                                              |
+|                                                              |                                                              |
+|                                                              |                                                              |
+|                                                              |                                                              |
+|                                                              |                                                              |
+|                                                              |                                                              |
+|                                                              |                                                              |
+|                                                              |                                                              |
+|                                                              |                                                              |
+|                                                              | kend                                                         |
+|                                                              |                                                              |
+|                                                              |                                                              |
+|                                                              |                                                              |
 
 # **Best Practices**
 

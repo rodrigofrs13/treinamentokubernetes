@@ -59,11 +59,11 @@ Se a saída foi Cgroup Driver: systemd, tudo certo!
 |  kubeadm init --apiserver-advertise-address $(hostname -i)   | Inicializa cluster                                           |
 |  echo "source <(kubectl completion bash)" >> /root/.bashrc   | auto complete                                                |
 |               kubectl run nginx --image=nginx                | Cria um POD                                                  |
-|                kubectl get pods nginx -o yaml                | mostra o manifesto do pod                                    |
-|                                                              |                                                              |
-|                                                              |                                                              |
-|                                                              |                                                              |
-|                                                              |                                                              |
+|              kubectl get pods nginx **-o yaml**              | mostra o manifesto do pod                                    |
+| kubectl run meu-nginx --image nginx **--dry-run=client** -o yaml > pod-template.yaml | Opção DryRun não Cria o POD                                  |
+| kubectl create deployment meu-nginx --image=nginx **--dry-run=client** -o yaml > deployment-template.yaml | Opção DryRun não Cria o Deployment                           |
+|                  kubectl explain "recurso"                   | Explica o recurso "main page"                                |
+|                        kubectl expose                        | Cria Services                                                |
 |                                                              |                                                              |
 |                                                              |                                                              |
 |                                                              |                                                              |

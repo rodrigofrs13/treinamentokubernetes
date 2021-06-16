@@ -18,6 +18,133 @@ https://github.com/badtuxx/DescomplicandoKubernetes
 
 
 
+
+
+primeiro-service-clusterip.yaml:
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: nginx
+  name: nginx-clusterip
+  namespace: default
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    run: nginx
+  sessionAffinity: None
+  type: ClusterIP
+```
+
+primeiro-service-nodeip.yaml
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: nginx
+  name: nginx-nodeport
+  namespace: default
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - nodePort: 32548
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    run: nginx
+  sessionAffinity: ClientIP
+  type: NodePort
+```
+
+
+
+primeiro-service-loadbalancer.yaml
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: nginx
+  name: nginx-loadbalancer
+  namespace: default
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - nodePort: 32548
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    run: nginx
+  sessionAffinity: None
+  type: LoadBalancer
+```
+
+
+
+deployment-limitado.yaml 
+
+```yaml
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    run: nginx
+  name: nginx-limitado
+  namespace: default
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      run: nginx
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: nginx
+    spec:
+      containers:
+      - image: nginx
+        imagePullPolicy: Always
+        name: nginx
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        resources:
+          limits:
+            memory: 128Mi
+            cpu: 1
+          requests:
+            memory: 96Mi
+            cpu: 1
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+```
+
+
+
 # **Anotações**
 
 
@@ -64,9 +191,9 @@ Se a saída foi Cgroup Driver: systemd, tudo certo!
 | kubectl create deployment meu-nginx --image=nginx **--dry-run=client** -o yaml > deployment-template.yaml | Opção DryRun não Cria o Deployment                           |
 |                  kubectl explain "recurso"                   | Explica o recurso "main page"                                |
 |                        kubectl expose                        | Cria Services                                                |
-|                                                              |                                                              |
-|                                                              |                                                              |
-|                                                              |                                                              |
+|                    kubectl logs -f nginx                     | Analise de Logs                                              |
+|        kubectl create deployment nginx --image=nginx         |                                                              |
+|         kubectl scale deployment nginx --replicas=3          |                                                              |
 |                                                              |                                                              |
 |                                                              |                                                              |
 |                                                              |                                                              |

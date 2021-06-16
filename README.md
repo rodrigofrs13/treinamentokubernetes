@@ -18,9 +18,9 @@ https://github.com/badtuxx/DescomplicandoKubernetes
 
 
 
+**Anotações**
 
-
-primeiro-service-clusterip.yaml:
+**service-clusterip.yaml**
 
 ```yaml
 apiVersion: v1
@@ -42,7 +42,7 @@ spec:
   type: ClusterIP
 ```
 
-primeiro-service-nodeip.yaml
+**service-nodeip.yaml**
 
 ```yaml
 apiVersion: v1
@@ -67,7 +67,7 @@ spec:
 
 
 
-primeiro-service-loadbalancer.yaml
+**service-loadbalancer.yaml**
 
 ```yaml
 apiVersion: v1
@@ -92,7 +92,7 @@ spec:
 
 
 
-deployment-limitado.yaml 
+**deployment-limitado.yaml** 
 
 ```yaml
 apiVersion: extensions/v1beta1
@@ -144,8 +144,6 @@ spec:
 ```
 
 
-
-# **Anotações**
 
 
 

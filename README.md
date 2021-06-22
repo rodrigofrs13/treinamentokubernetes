@@ -219,7 +219,7 @@ Se a saída foi Cgroup Driver: systemd, tudo certo!
 |                        kubectl expose                        | Cria Services                                                |
 |                    kubectl logs -f nginx                     | Analise de Logs                                              |
 |        kubectl create deployment nginx --image=nginx         |                                                              |
-|         kubectl scale deployment nginx --replicas=3          |                                                              |
+|    kubectl scale deployment "*nomedeploy*" --replicas=40     |                                                              |
 |                                                              |                                                              |
 |                                                              |                                                              |
 |                                                              |                                                              |

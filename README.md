@@ -198,6 +198,10 @@ Se a saída foi Cgroup Driver: systemd, tudo certo!
 
 ## 
 
+
+
+
+
 # **Comandos Kubernetes**
 
 

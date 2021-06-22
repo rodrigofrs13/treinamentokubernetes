@@ -18,7 +18,29 @@ https://github.com/badtuxx/DescomplicandoKubernetes
 
 
 
-**Anotações**
+# **Anotações**
+
+## Kubectl taint
+
+O **Taint** nada mais é do que adicionar propriedades ao nó do cluster para impedir que os pods sejam alocados em nós inapropriados.
+
+Por exemplo, todo nó `master` do cluster é marcado para não receber pods que não sejam de gerenciamento do cluster.
+
+O nó `master` está marcado com o taint `NoSchedule`, assim o scheduler do Kubernetes não aloca pods no nó master, e procurar outros nós no cluster sem essa marca.
+
+```yaml
+## NoSchedule - Novos containers não são executados no node
+**Habilitado** - kubectl taint node k8s-worker-01 key1=value1:NoSchedule
+**Desabilitado** - kubectl taint node k8s-worker-01 key1=value1:NoSchedule-
+
+## NoExecute - Não executa containers no node, ele mata e migra para outro node
+**Habilitado** - kubectl taint node elliot-03 key1=value1:NoExecute
+**Desabilitado** - kubectl taint node elliot-03 key1=value1:NoExecute-
+```
+
+
+
+## **Deployments**
 
 **service-clusterip.yaml**
 
@@ -128,10 +150,10 @@ spec:
         - containerPort: 80
           protocol: TCP
         resources:
-          limits:
+          limits:  ## Quando o K8S vai liberar para esse deployment
             memory: 128Mi
             cpu: 1
-          requests:
+          requests: ## Minimo garantido que o K8S vai liberar para esse deployment
             memory: 96Mi
             cpu: 1
         terminationMessagePath: /dev/termination-log
@@ -142,6 +164,12 @@ spec:
       securityContext: {}
       terminationGracePeriodSeconds: 30
 ```
+
+```yaml
+Atenção! 1 core de CPU corresponde a 1000m (1000 milicore). Ao especificar 200m, estamos querendo reservar 20% de 1 core da CPU. Se fosse informado o valor 0.2 teria o mesmo efeito, ou seja, seria reservado 20% de 1 core da CPU.
+```
+
+
 
 
 

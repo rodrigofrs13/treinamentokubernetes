@@ -109,6 +109,19 @@ O nó `master` está marcado com o taint `NoSchedule`, assim o scheduler do Kube
 
 
 
+## **Label**
+
+O **Node Selector** é uma forma de classificar nossos nodes como por exemplo nosso node `elliot-02` que possui disco **SSD** e está localizado no DataCenter `UK`, e o node `elliot-03` que possui disco **HDD** e está localizado no DataCenter `Netherlands`.
+
+Para criar pods em nodes com o Label "disk""HDD", adiciona no deployment  no spec do pod a opção abaixo.
+
+```yaml
+ nodeSelector:
+              disk: HDD
+```
+
+
+
 ## **Deployments**
 
 **service-clusterip.yaml**
@@ -293,8 +306,8 @@ Se a saída foi Cgroup Driver: systemd, tudo certo!
 |                    kubectl logs -f nginx                     | Analise de Logs                                              |
 |        kubectl create deployment nginx --image=nginx         |                                                              |
 |    kubectl scale deployment "*nomedeploy*" --replicas=40     |                                                              |
-|                                                              |                                                              |
-|                                                              |                                                              |
+|              kubectl get pods -l dc="**label**"              | Lista os pods com o Label                                    |
+|               kubectl get pods **-L** "label"                | Lista os pods com o label "DC"                               |
 |                                                              |                                                              |
 |                                                              |                                                              |
 |                                                              |                                                              |

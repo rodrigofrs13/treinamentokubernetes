@@ -10,6 +10,12 @@ Colocar ✔ quando concluído.
 
 https://github.com/badtuxx/DescomplicandoKubernetes
 
+**Linux Tips - Canary Deploy**
+
+https://www.youtube.com/watch?v=CTvsdWZrAW0
+
+https://github.com/badtuxx/k8s-canary-deploy-example
+
 **AcloudGuru**
 
 **AWS**
@@ -88,6 +94,42 @@ Todos os IPs dos pods e nodes são roteados sem a utilização de [NAT](https://
 - [Contiv](http://contiv.github.io/)
 
 Mais informações em: https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+## Volumes
+
+**EmptyDir** 
+
+Um volume do tipo **EmptyDir** é criado sempre que um Pod é atribuído a um nó existente. Esse volume é criado inicialmente vazio, e todos os contêineres do Pod podem ler e gravar arquivos no volume.
+
+Esse volume não é um volume com persistência de dados. Sempre que o Pod é removido de um nó, os dados no `EmptyDir` são excluídos permanentemente. É importante ressaltar que os dados não são excluídos em casos de falhas nos contêineres.
+
+Disco disponível somente enquando o pod estiver rodando.
+
+Recomendado para logs por exemplo.
+
+Disco no Node em /var/lib/kubelet/pods , find . -iname "*nomedodisco*"
+
+
+
+**Persistent Volume**
+
+O subsistema **PersistentVolume** fornece uma API para usuários e administradores que resume detalhes de como o armazenamento é fornecido e consumido pelos Pods. Para o melhor controle desse sistema foi introduzido dois recursos de API: `PersistentVolume` e `PersistentVolumeClaim`.
+
+Um **PersistentVolume** (PV) é um recurso no cluster, assim como um nó. Mas nesse caso é um recurso de armazenamento. O PV é uma parte do armazenamento no cluster que foi provisionado por um administrador. Os PVs tem um ciclo de vida independente de qualquer pod associado a ele. Essa API permite armazenamentos do tipo: NFS, ISCSI ou armazenamento de um provedor de nuvem específico.
+
+Um **PersistentVolumeClaim** (PVC) é semelhante a um Pod. Os Pods consomem recursos de um nó e os PVCs consomem recursos dos PVs.
+
+Mas o que é um PVC? Nada mais é do que uma solicitação de armazenamento criada por um usuário.
+
+Vamos criar um `PersistentVolume` do tipo `NFS`, para isso vamos instalar os pacotes necessários para criar um NFS Server no GNU/Linux.
+
+Sequencia: Cria o **PV** depois o **PVC**.
+
+
+
+
+
+
 
 ## Kubectl Taint
 

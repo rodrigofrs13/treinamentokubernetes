@@ -20,7 +20,9 @@ https://github.com/badtuxx/k8s-canary-deploy-example
 
 **AWS**
 
-**EDX**
+**Linux Foundation**
+https://learning.edx.org/course/course-v1:LinuxFoundationX+LFS158x+3T2020/home
+
 
 
 

@@ -23,7 +23,11 @@ https://github.com/badtuxx/k8s-canary-deploy-example
 **Linux Foundation**
 https://learning.edx.org/course/course-v1:LinuxFoundationX+LFS158x+3T2020/home
 
+**Monitoramento**
+https://kubedev.io/bonus-monitoramento/
 
+
+![image](https://user-images.githubusercontent.com/31936133/125138813-ba243600-e0e5-11eb-9b86-531dc4c54311.png)
 
 
 # **Anotações**

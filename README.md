@@ -8,13 +8,13 @@ Colocar ✔ quando concluído.
 
 
 
-✔ **Linux Foundation**
+## ✔ **Linux Foundation**
 
 https://learning.edx.org/course/course-v1:LinuxFoundationX+LFS158x+3T2020/home
 
 
 
-**Apresentação - Curso de Introdução ao Kubernetes**
+## **Apresentação - Curso de Introdução ao Kubernetes**
 
 https://docs.google.com/presentation/d/1weqpBWa9FNjKc1ugCUIpwYYquvoIOFbUvEcZ9ZYapAg/edit#slide=id.g23786ddafa_0_68
 
@@ -34,30 +34,40 @@ Apresentação https://www.youtube.com/watch?v=RuNTvYejG90&feature=youtu.be
 
 
 
-**LinuxTips - Descomplicando o Kubernetes** 
+## **LinuxTips - Descomplicando o Kubernetes** 
 
 https://github.com/badtuxx/DescomplicandoKubernetes
 
-**Linux Tips - Canary Deploy**
+
+
+## **Linux Tips - Canary Deploy**
+
+
 
 https://www.youtube.com/watch?v=CTvsdWZrAW0
 
 https://github.com/badtuxx/k8s-canary-deploy-example
 
-**AcloudGuru**
+## **AcloudGuru**
 
-**AWS**
+## **AWS**
 
 
 
-**Monitoramento**
+## **Monitoramento**
+
 https://kubedev.io/bonus-monitoramento/
 
 
 ![image](https://user-images.githubusercontent.com/31936133/125138813-ba243600-e0e5-11eb-9b86-531dc4c54311.png)
 
-
 # **Anotações**
+
+## Laboratório K8S
+
+https://labs.play-with-k8s.com/
+
+
 
 ## Componentes do K8s
 

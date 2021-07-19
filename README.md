@@ -1,20 +1,20 @@
 # **Treinamentos  Kubernetes**
 
+# Sumário
 
+
+
+# **1 - Treinamentos**
 
 Colocar ✔ quando concluído. 
 
-# **Treinamentos**
-
-
-
-## ✔ **Linux Foundation**
+## **1.1 - Linux Foundation** ✔ 
 
 https://learning.edx.org/course/course-v1:LinuxFoundationX+LFS158x+3T2020/home
 
 
 
-## **Curso de Introdução ao Kubernetes**
+## **1.2 - Curso de Introdução ao Kubernetes**
 
 https://docs.google.com/presentation/d/1weqpBWa9FNjKc1ugCUIpwYYquvoIOFbUvEcZ9ZYapAg/edit#slide=id.g23786ddafa_0_68
 
@@ -32,13 +32,13 @@ https://docs.google.com/presentation/d/1weqpBWa9FNjKc1ugCUIpwYYquvoIOFbUvEcZ9ZYa
 
 
 
-## **LinuxTips - Descomplicando o Kubernetes** 
+## **1.3 - LinuxTips - Descomplicando o Kubernetes** 
 
 https://github.com/badtuxx/DescomplicandoKubernetes
 
 
 
-## **Linux Tips - Canary Deploy**
+## **1.4 - Linux Tips - Canary Deploy**
 
 
 
@@ -46,17 +46,17 @@ https://www.youtube.com/watch?v=CTvsdWZrAW0
 
 https://github.com/badtuxx/k8s-canary-deploy-example
 
-## **AcloudGuru**
+## **1.5 - AcloudGuru**
 
-## **AWS**
+## **1.6 - AWS**
 
 
 
-## **Monitoramento**
+## **1.7 - Monitoramento**
 
 https://kubedev.io/bonus-monitoramento/
 
-# **Anotações**
+# **2 - Anotações**
 
 ## Documentação oficial
 

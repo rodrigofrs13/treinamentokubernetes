@@ -89,6 +89,9 @@ https://labs.play-with-k8s.com/
 - **Namespaces e quotas**
 - **Network e policies**
 - **Storage**
+- **Deployment**
+- **ReplicaSet**
+- **Service**
 
 
 
@@ -106,13 +109,19 @@ https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/
 
 
 
-## kubeadm
+### kubeadm
 
 https://kubernetes.io/docs/reference/setup-tools/kubeadm/
 
 O kubeadm executa as ações necessárias para obter um cluster mínimo viável instalado e funcionando. Por design, ele se preocupa apenas com a inicialização, não com o provisionamento de máquinas. 
 
 
+
+**[Supervisord](http://supervisord.org/)** é o responsável por monitorar e restabelecer, se necessário, o `kubelet` e o Docker. Por esse motivo, quando existe algum problema em relação ao kubelet, como por exemplo o uso do driver `cgroup` diferente do que está rodando no Docker, você perceberá que ele ficará tentando subir o kubelet frequentemente.
+
+
+
+**[Services](https://kubernetes.io/docs/concepts/services-networking/service/)** é uma forma de você expor a comunicação através de um **NodePort** ou **LoadBalancer** para distribuir as requisições entre diversos Pods daquele Deployment. Funciona como um balanceador de carga.
 
 ## **Componentes do Control Plane**
 
@@ -190,11 +199,17 @@ https://kubernetes.io/docs/reference/kubectl/overview/
 
 
 
-**[Supervisord](http://supervisord.org/)** é o responsável por monitorar e restabelecer, se necessário, o `kubelet` e o Docker. Por esse motivo, quando existe algum problema em relação ao kubelet, como por exemplo o uso do driver `cgroup` diferente do que está rodando no Docker, você perceberá que ele ficará tentando subir o kubelet frequentemente.
 
-**[Services](https://kubernetes.io/docs/concepts/services-networking/service/)** é uma forma de você expor a comunicação através de um **NodePort** ou **LoadBalancer** para distribuir as requisições entre diversos Pods daquele Deployment. Funciona como um balanceador de carga.
 
-## 
+## Redes
+
+https://kubernetes.io/pt-br/docs/concepts/cluster-administration/networking/
+
+
+
+![Cluster Networking](./imagens/kubernetes-Networking-Model-1.png)
+
+
 
 ## Container Network Interface
 
@@ -224,7 +239,9 @@ Todos os IPs dos pods e nodes são roteados sem a utilização de [NAT](https://
 
 Mais informações em: https://kubernetes.io/docs/concepts/cluster-administration/addons/
 
-## Volumes
+
+
+## **Volumes**
 
 **EmptyDir** 
 

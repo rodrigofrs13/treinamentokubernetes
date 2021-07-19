@@ -58,7 +58,7 @@ https://kubedev.io/bonus-monitoramento/
 
 # **2 - Anotações**
 
-## Documentação oficial
+## **2.1 - Documentação oficial**
 
 https://kubernetes.io/pt-br/docs/home/
 
@@ -67,13 +67,13 @@ https://kubernetes.io/pt-br/docs/home/
 
 # 
 
-## Laboratório K8S
+## **2.2 - Laboratório K8S**
 
 https://labs.play-with-k8s.com/
 
 
 
-## Componentes do K8s
+## **2.3 - Componentes do K8s**
 
 ![image-20210719201310997](./imagens/image-20210719201310997.png)
 
@@ -123,7 +123,7 @@ O kubeadm executa as ações necessárias para obter um cluster mínimo viável 
 
 **[Services](https://kubernetes.io/docs/concepts/services-networking/service/)** é uma forma de você expor a comunicação através de um **NodePort** ou **LoadBalancer** para distribuir as requisições entre diversos Pods daquele Deployment. Funciona como um balanceador de carga.
 
-## **Componentes do Control Plane**
+## **2.4 - Componentes do Control Plane**
 
 Os componentes da camada de gerenciamento tomam decisões globais sobre o cluster (por exemplo, agendamento de *pods*), bem como detectam e respondem aos eventos do cluster (por exemplo, iniciando um novo *[pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/)* quando o campo `replicas` de um *Deployment* não está atendido).
 
@@ -131,7 +131,7 @@ https://kubernetes.io/docs/concepts/overview/components/
 
 **Sempre no node MASTER**
 
-### **ETCD**
+### **2.4.1 - ETCD**
 
 No **[ETCD](https://kubernetes.io/docs/concepts/overview/components/#etcd)** são armazenados o estado do cluster, rede e outras informações persistentes.
 
@@ -141,7 +141,7 @@ Se seu cluster Kubernetes usa etcd como armazenamento de apoio, certifique-se de
 
 
 
-### **[kube-apiserver](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver)** 
+### **2.4.2 - [kube-apiserver](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver)** 
 
 https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver
 
@@ -151,19 +151,19 @@ Kubectl transforma de JSON e envia para o kube-apiserver
 
 
 
-### **[kube-scheduller](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver)** 
+### **2.4.3 - [kube-scheduller](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver)** 
 
 **[kube-scheduller](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver)** usa um algoritmo para verificar em qual node o pod deverá ser hospedado. Ele verifica os recursos disponíveis do node para verificar qual o melhor node para receber aquele pod.
 
 
 
-### **[kube-controller-manager](https://kubernetes.io/docs/concepts/overview/components/#cloud-controller-manager)** 
+### **2.4.4 - [kube-controller-manager](https://kubernetes.io/docs/concepts/overview/components/#cloud-controller-manager)** 
 
 **[kube-controller-manager](https://kubernetes.io/docs/concepts/overview/components/#cloud-controller-manager)** é o controle principal que interage com o `kube-apiserver` para determinar o seu estado. Se o estado não bate, o manager irá contactar o controller necessário para checar seu estado desejado. Tem diversos controllers em uso como: os endpoints, namespace e replication.
 
 
 
-### **[kube-proxy](https://kubernetes.io/docs/concepts/overview/components/#kube-proxy)**
+### **2.4.5 - [kube-proxy](https://kubernetes.io/docs/concepts/overview/components/#kube-proxy)**
 
 O **[kube-proxy](https://kubernetes.io/docs/concepts/overview/components/#kube-proxy)** é o responsável por gerenciar a rede para os contêineres, é o responsável por expor portas dos mesmos.
 
@@ -171,17 +171,17 @@ Trata da comunicação entre os Nodes.
 
 
 
-### cloud-controller-manager
+### **2.4.6 - cloud-controller-manager**
 
 Um componente da [camada de gerenciamento](https://kubernetes.io/pt-br/docs/reference/glossary/?all=true#term-control-plane) do Kubernetes que incorpora a lógica de controle específica da nuvem. O gerenciador de controle de nuvem permite que você vincule seu *cluster* na API do seu provedor de nuvem, e separar os componentes que interagem com essa plataforma de nuvem a partir de componentes que apenas interagem com seu cluster.
 
 
 
-## **Node Components**
+## **2.5 - Node Components**
 
 Os componentes de nó são executados em todos os nós, mantendo os *pods* em execução e fornecendo o ambiente de execução do Kubernetes.	
 
-## kubelet
+kubelet
 
 https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/
 

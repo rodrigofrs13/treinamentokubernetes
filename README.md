@@ -9,6 +9,7 @@ Colocar ✔ quando concluído.
 
 
 ✔ **Linux Foundation**
+
 https://learning.edx.org/course/course-v1:LinuxFoundationX+LFS158x+3T2020/home
 
 

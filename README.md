@@ -18,8 +18,7 @@ https://learning.edx.org/course/course-v1:LinuxFoundationX+LFS158x+3T2020/home
 
 https://docs.google.com/presentation/d/1weqpBWa9FNjKc1ugCUIpwYYquvoIOFbUvEcZ9ZYapAg/edit#slide=id.g23786ddafa_0_68
 
-Apresentação https://www.youtube.com/watch?v=RuNTvYejG90&feature=youtu.be
-
+- Apresentação https://www.youtube.com/watch?v=RuNTvYejG90&feature=youtu.be
 - 01 - Revisão docker - https://www.youtube.com/watch?v=bcRArpK00OU&feature=youtu.be
 - 02 - O que é Kubernetes?https://www.youtube.com/watch?v=X2r09kPi8aA&feature=youtu.be
 - 03 - Arquitetura do K8s - https://www.youtube.com/watch?v=bPFxwwSfSmk&feature=youtu.be

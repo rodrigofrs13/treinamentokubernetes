@@ -14,11 +14,9 @@ https://learning.edx.org/course/course-v1:LinuxFoundationX+LFS158x+3T2020/home
 
 
 
-## **Apresentação - Curso de Introdução ao Kubernetes**
+## **Curso de Introdução ao Kubernetes**
 
 https://docs.google.com/presentation/d/1weqpBWa9FNjKc1ugCUIpwYYquvoIOFbUvEcZ9ZYapAg/edit#slide=id.g23786ddafa_0_68
-
-**Curso Introdução ao Kubernetes**
 
 Apresentação https://www.youtube.com/watch?v=RuNTvYejG90&feature=youtu.be
 

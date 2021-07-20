@@ -69,7 +69,15 @@ https://kubernetes.io/pt-br/docs/home/
 
 ## **2.2 - Laboratório K8S**
 
+**Play with K8s**
+
 https://labs.play-with-k8s.com/
+
+**Katacoda**
+
+https://www.katacoda.com/courses/kubernetes
+
+
 
 
 
@@ -103,7 +111,7 @@ https://kubernetes.io/docs/concepts/workloads/pods/
 
 O Pod, por poder possuir diversos contêineres, muitas das vezes se assemelha a uma VM, onde você poderia ter diversos serviços rodando compartilhando o mesmo IP e demais recursos.
 
-**LifeCycle **
+**LifeCycle**
 
 https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/
 
@@ -119,7 +127,57 @@ https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 
 Os namespaces fornecem um escopo para nomes. Os nomes dos recursos precisam ser exclusivos em um namespace, mas não entre os namespaces.
 
+Específica com "**-n**", se não especificar nenhuma ele lista da namespace "*default*". 
 
+#### **2.3.3.1 - Comandos**
+
+**Lista**
+
+```shell
+kubectl get namespace
+```
+
+**Create**
+
+Create a new YAML file called `my-namespace.yaml` with the contents:
+
+```yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: <insert-namespace-name-here>
+```
+
+Then run:
+
+```
+kubectl create -f ./my-namespace.yaml
+```
+
+Alternatively, you can create namespace using below command:
+
+```
+kubectl create namespace <insert-namespace-name-here>
+```
+
+**Delete**
+
+```shell
+kubectl delete namespaces <insert-some-namespace-name>
+```
+
+
+
+### **Setting the namespace for a request**
+
+To set the namespace for a current request, use the `--namespace` flag.
+
+For example:
+
+```shell
+kubectl run nginx --image=nginx --namespace=<insert-namespace-name-here>
+kubectl get pods --namespace=<insert-namespace-name-here>
+```
 
 
 
@@ -146,6 +204,28 @@ Pode-se usar até 3.
 **Labels recomentados**
 
 https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/
+
+**2.3.5.1 - Comandos**
+
+Listas todos os pods com Label
+
+```
+kubectl get pods --show-labels
+```
+
+Listar os pods com o Label especificado
+
+```
+kubectl get pods -l dc="label"
+```
+
+Lista os pods com o label "DC"
+
+```
+kubectl get pods -L "label"
+```
+
+
 
 
 
@@ -536,11 +616,11 @@ A figura a seguir mostra a estrutura dos principais comandos do `kubectl`.
 |                    kubectl logs -f nginx                     | Analise de Logs                                              |
 |        kubectl create deployment nginx --image=nginx         |                                                              |
 |    kubectl scale deployment "*nomedeploy*" --replicas=40     |                                                              |
-|              kubectl get pods -l dc="**label**"              | Lista os pods com o Label                                    |
-|               kubectl get pods **-L** "label"                | Lista os pods com o label "DC"                               |
+|                                                              |                                                              |
+|                                                              |                                                              |
 |      kubectl get pods "nomedopod" -o yaml > meupod.yaml      | Cria um arquivo yaml com as infos do pod                     |
 | kubectl get pods "nomedopod" -o yaml --export > meupod.yaml  | Cria um arquivo yaml com as infos do pod, mas sem infos especificas |
-|                                                              |                                                              |
+|                      kubeadm token list                      | Lista Tokens                                                 |
 |                                                              |                                                              |
 |                                                              |                                                              |
 |                                                              |                                                              |

@@ -91,11 +91,11 @@ https://labs.play-with-k8s.com/
 - **Storage**
 - **Deployment**
 - **ReplicaSet**
-- **Service**
+- **Services**
 
 
 
-### **POD´s**
+### **2.3.1 - POD´s**
 
 https://kubernetes.io/docs/concepts/workloads/pods/
 
@@ -107,7 +107,9 @@ O Pod, por poder possuir diversos contêineres, muitas das vezes se assemelha a 
 
 https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/
 
+**2.3.2 - [Services](https://kubernetes.io/docs/concepts/services-networking/service/)** 
 
+É uma forma de você expor a comunicação através de um **NodePort** ou **LoadBalancer** para distribuir as requisições entre diversos Pods daquele Deployment. Funciona como um balanceador de carga.
 
 ### kubeadm
 
@@ -121,7 +123,7 @@ O kubeadm executa as ações necessárias para obter um cluster mínimo viável 
 
 
 
-**[Services](https://kubernetes.io/docs/concepts/services-networking/service/)** é uma forma de você expor a comunicação através de um **NodePort** ou **LoadBalancer** para distribuir as requisições entre diversos Pods daquele Deployment. Funciona como um balanceador de carga.
+
 
 ## **2.4 - Componentes do Control Plane**
 
@@ -181,7 +183,7 @@ Um componente da [camada de gerenciamento](https://kubernetes.io/pt-br/docs/refe
 
 Os componentes de nó são executados em todos os nós, mantendo os *pods* em execução e fornecendo o ambiente de execução do Kubernetes.	
 
-kubelet
+### **2.5.1 - kubelet**
 
 https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/
 
@@ -193,7 +195,7 @@ instalado em todos os nodes - master e worker
 
 
 
-## kubectl 
+### **2.5.2 kubectl**
 
 https://kubernetes.io/docs/reference/kubectl/overview/
 
@@ -201,7 +203,7 @@ https://kubernetes.io/docs/reference/kubectl/overview/
 
 
 
-## Redes
+## **3 - Redes**
 
 https://kubernetes.io/pt-br/docs/concepts/cluster-administration/networking/
 

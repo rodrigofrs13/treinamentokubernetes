@@ -107,15 +107,51 @@ O Pod, por poder possuir diversos contêineres, muitas das vezes se assemelha a 
 
 https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/
 
-**2.3.2 - [Services](https://kubernetes.io/docs/concepts/services-networking/service/)** 
+
+
+### **2.3.2 - [Services](https://kubernetes.io/docs/concepts/services-networking/service/)** 
 
 É uma forma de você expor a comunicação através de um **NodePort** ou **LoadBalancer** para distribuir as requisições entre diversos Pods daquele Deployment. Funciona como um balanceador de carga.
 
-### kubeadm
+### **2.3.3 - Namespaces**
+
+https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+
+Os namespaces fornecem um escopo para nomes. Os nomes dos recursos precisam ser exclusivos em um namespace, mas não entre os namespaces.
+
+
+
+
+
+### **2.3.4 - kubeadm**
 
 https://kubernetes.io/docs/reference/setup-tools/kubeadm/
 
 O kubeadm executa as ações necessárias para obter um cluster mínimo viável instalado e funcionando. Por design, ele se preocupa apenas com a inicialização, não com o provisionamento de máquinas. 
+
+
+
+**2.3.5 - Labels**
+
+https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+
+Labels permitem que os usuários mapeiem suas próprias estruturas organizacionais em objetos do sistema de maneira fracamente acoplada, sem exigir que os clientes armazenem esses mapeamentos.
+
+Uso para filtros 
+
+É um par chave-valor
+
+Pode-se usar até 3.
+
+**Labels recomentados**
+
+https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/
+
+
+
+
+
+
 
 
 
@@ -502,8 +538,8 @@ A figura a seguir mostra a estrutura dos principais comandos do `kubectl`.
 |    kubectl scale deployment "*nomedeploy*" --replicas=40     |                                                              |
 |              kubectl get pods -l dc="**label**"              | Lista os pods com o Label                                    |
 |               kubectl get pods **-L** "label"                | Lista os pods com o label "DC"                               |
-|                                                              |                                                              |
-|                                                              |                                                              |
+|      kubectl get pods "nomedopod" -o yaml > meupod.yaml      | Cria um arquivo yaml com as infos do pod                     |
+| kubectl get pods "nomedopod" -o yaml --export > meupod.yaml  | Cria um arquivo yaml com as infos do pod, mas sem infos especificas |
 |                                                              |                                                              |
 |                                                              |                                                              |
 |                                                              |                                                              |

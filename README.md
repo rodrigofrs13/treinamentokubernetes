@@ -32,13 +32,15 @@ https://docs.google.com/presentation/d/1weqpBWa9FNjKc1ugCUIpwYYquvoIOFbUvEcZ9ZYa
 
 
 
-## **1.3 - LinuxTips - Descomplicando o Kubernetes** 
+## **1.3 - LinuxTips**
+
+### **1.3.1 - Descomplicando o Kubernetes** 
 
 https://github.com/badtuxx/DescomplicandoKubernetes
 
 
 
-## **1.4 - Linux Tips - Canary Deploy**
+### **1.3.2 - Canary Deploy**
 
 
 
@@ -47,6 +49,32 @@ https://www.youtube.com/watch?v=CTvsdWZrAW0
 https://github.com/badtuxx/k8s-canary-deploy-example
 
 ## **1.5 - AcloudGuru**
+
+### **1.5.1 - Kubernetes Quick Start**
+
+### **1.5.2 - Kubernetes Essentials**
+
+### **1.5.3 - Introduction to Kubernetes**
+
+### **1.5.4 - Kubernetes Deep Dive**
+
+# **1.5.4 - Helm Deep Dive V3**
+
+# **1.5.5 - Monitoring Kubernetes With Prometheus**
+
+# **1.5.6 - AIOps Essentials (Autoscaling Kubernetes with Prometheus **Metrics)
+
+# **1.5.7 - Kubernetes the Hard Way**
+
+# **1.5.8 - Kubernetes Security**
+
+# **1.5.9 - Kubernetes Security (Advanced Concepts)**
+
+# **1.5.10 - Advanced Networking with Kubernetes on AWS**
+
+# Backing up and Restoring Kubernetes Data in etcd
+
+# Certified Kubernetes Administrator (CKA)
 
 ## **1.6 - AWS**
 
@@ -115,11 +143,23 @@ O Pod, por poder possuir diversos contêineres, muitas das vezes se assemelha a 
 
 https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/
 
+#### **2.3.1.1- Comandos**
+
+Editar pod 
+
+```
+kubect edit pod "nomedopod"
+```
+
 
 
 ### **2.3.2 - [Services](https://kubernetes.io/docs/concepts/services-networking/service/)** 
 
 É uma forma de você expor a comunicação através de um **NodePort** ou **LoadBalancer** para distribuir as requisições entre diversos Pods daquele Deployment. Funciona como um balanceador de carga.
+
+#### **2.3.2.1 - Comandos**
+
+
 
 ### **2.3.3 - Namespaces**
 
@@ -436,6 +476,53 @@ Para criar pods em nodes com o Label "disk""HDD", adiciona no deployment  no spe
 
 
 
+## **Setup do K8S**
+
+1 - Inicia o Master Node
+
+```
+kubeadm init --apiserver-advertise-address $(hostname -i)
+```
+
+2 - Seta saída do kubeadm
+
+```
+sudo cp /etc/kubernetes/admin.conf $HOME/
+sudo chown $(id -u):$(id -g) $HOME/admin.conf
+export KUBECONFIG=$HOME/admin.conf
+```
+
+3 - Configura plugin rede
+
+```yaml
+cat > /etc/docker/daemon.json <<EOF
+{
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "100m"
+  },
+  "storage-driver": "overlay2"
+}
+EOF
+
+
+# sudo mkdir -p /etc/systemd/system/docker.service.d
+# systemctl daemon-reload
+# systemctl restart docker
+# docker info | grep -i cgroup
+```
+
+Se a saída foi Cgroup Driver: systemd, tudo certo!
+
+4 - Join dos nodes
+
+```
+kubeadm join --discovery-token-unsafe-skip-ca-verification --token=102952.1a7dd4cc8d1f4cc5 172.17.0.69:6443
+```
+
+
+
 ## **Deployments**
 
 **service-clusterip.yaml**
@@ -570,27 +657,6 @@ Atenção! 1 core de CPU corresponde a 1000m (1000 milicore). Ao especificar 200
 
 
 
-
-```yaml
-cat > /etc/docker/daemon.json <<EOF
-{
-  "exec-opts": ["native.cgroupdriver=systemd"],
-  "log-driver": "json-file",
-  "log-opts": {
-    "max-size": "100m"
-  },
-  "storage-driver": "overlay2"
-}
-EOF
-
-
-# sudo mkdir -p /etc/systemd/system/docker.service.d
-# systemctl daemon-reload
-# systemctl restart docker
-# docker info | grep -i cgroup
-```
-
-Se a saída foi Cgroup Driver: systemd, tudo certo!
 
 ## 
 

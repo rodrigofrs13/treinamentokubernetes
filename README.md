@@ -74,21 +74,39 @@ https://github.com/badtuxx/k8s-canary-deploy-example
 
 
 
-# **1.5.5 - Monitoring Kubernetes With Prometheus**
+### **1.5.5 - Monitoring Kubernetes With Prometheus**
 
-# **1.5.6 - AIOps Essentials (Autoscaling Kubernetes with Prometheus Metrics)**
 
-# **1.5.7 - Kubernetes the Hard Way**
 
-# **1.5.8 - Kubernetes Security**
+### **1.5.6 - AIOps Essentials (Autoscaling Kubernetes with Prometheus Metrics)**
 
-# **1.5.9 - Kubernetes Security (Advanced Concepts)**
 
-# **1.5.10 - Advanced Networking with Kubernetes on AWS**
 
-# Backing up and Restoring Kubernetes Data in etcd
+### **1.5.7 - Kubernetes the Hard Way**
 
-# Certified Kubernetes Administrator (CKA)
+
+
+### **1.5.8 - Kubernetes Security**
+
+
+
+### **1.5.9 - Kubernetes Security (Advanced Concepts)**
+
+
+
+### **1.5.10 - Advanced Networking with Kubernetes on AWS**
+
+
+
+### **1.5.11 - Backing up and Restoring Kubernetes Data in etcd**
+
+
+
+### **1.5.12 - Certified Kubernetes Administrator (CKA)**
+
+
+
+
 
 ## **1.6 - AWS**
 

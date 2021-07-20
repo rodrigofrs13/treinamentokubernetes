@@ -48,21 +48,35 @@ https://www.youtube.com/watch?v=CTvsdWZrAW0
 
 https://github.com/badtuxx/k8s-canary-deploy-example
 
+
+
 ## **1.5 - AcloudGuru**
+
+
 
 ### **1.5.1 - Kubernetes Quick Start**
 
+
+
 ### **1.5.2 - Kubernetes Essentials**
+
+
 
 ### **1.5.3 - Introduction to Kubernetes**
 
+
+
 ### **1.5.4 - Kubernetes Deep Dive**
 
-# **1.5.4 - Helm Deep Dive V3**
+
+
+### **1.5.4 - Helm Deep Dive V3**
+
+
 
 # **1.5.5 - Monitoring Kubernetes With Prometheus**
 
-# **1.5.6 - AIOps Essentials (Autoscaling Kubernetes with Prometheus **Metrics)
+# **1.5.6 - AIOps Essentials (Autoscaling Kubernetes with Prometheus Metrics)**
 
 # **1.5.7 - Kubernetes the Hard Way**
 
@@ -115,7 +129,93 @@ https://www.katacoda.com/courses/kubernetes
 
 
 
-**O k8s tem os seguintes componentes principais:**
+## **2.4 - Componentes do Control Plane**
+
+Os componentes da camada de gerenciamento tomam decisões globais sobre o cluster (por exemplo, agendamento de *pods*), bem como detectam e respondem aos eventos do cluster (por exemplo, iniciando um novo *[pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/)* quando o campo `replicas` de um *Deployment* não está atendido).
+
+https://kubernetes.io/docs/concepts/overview/components/
+
+**Sempre no node MASTER**
+
+### **2.4.1 - ETCD**
+
+No **[ETCD](https://kubernetes.io/docs/concepts/overview/components/#etcd)** são armazenados o estado do cluster, rede e outras informações persistentes.
+
+Armazenamento de valor de chave consistente e altamente disponível usado como armazenamento de apoio do Kubernetes para todos os dados do cluster.
+
+Se seu cluster Kubernetes usa etcd como armazenamento de apoio, certifique-se de ter um plano de [backup](https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/#backing-up-an-etcd-cluster) para esses dado
+
+
+
+### **2.4.2 - [kube-apiserver](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver)** 
+
+https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver
+
+**[kube-apiserver](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver)** é a central de operações do cluster k8s. Todas as chamadas, internas ou externas são tratadas por ele. Ele é o único que conecta no ETCD.
+
+Kubectl transforma de JSON e envia para o kube-apiserver
+
+
+
+### **2.4.3 - [kube-scheduller](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver)** 
+
+**[kube-scheduller](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver)** usa um algoritmo para verificar em qual node o pod deverá ser hospedado. Ele verifica os recursos disponíveis do node para verificar qual o melhor node para receber aquele pod.
+
+
+
+### **2.4.4 - [kube-controller-manager](https://kubernetes.io/docs/concepts/overview/components/#cloud-controller-manager)** 
+
+**[kube-controller-manager](https://kubernetes.io/docs/concepts/overview/components/#cloud-controller-manager)** é o controle principal que interage com o `kube-apiserver` para determinar o seu estado. Se o estado não bate, o manager irá contactar o controller necessário para checar seu estado desejado. Tem diversos controllers em uso como: os endpoints, namespace e replication.
+
+
+
+### **2.4.5 - [kube-proxy](https://kubernetes.io/docs/concepts/overview/components/#kube-proxy)**
+
+O **[kube-proxy](https://kubernetes.io/docs/concepts/overview/components/#kube-proxy)** é o responsável por gerenciar a rede para os contêineres, é o responsável por expor portas dos mesmos.
+
+Trata da comunicação entre os Nodes. 
+
+
+
+### **2.4.6 - cloud-controller-manager**
+
+Um componente da [camada de gerenciamento](https://kubernetes.io/pt-br/docs/reference/glossary/?all=true#term-control-plane) do Kubernetes que incorpora a lógica de controle específica da nuvem. O gerenciador de controle de nuvem permite que você vincule seu *cluster* na API do seu provedor de nuvem, e separar os componentes que interagem com essa plataforma de nuvem a partir de componentes que apenas interagem com seu cluster.
+
+
+
+## **2.5 - Node Components**
+
+Os componentes de nó são executados em todos os nós, mantendo os *pods* em execução e fornecendo o ambiente de execução do Kubernetes.	
+
+### **2.5.1 - kubelet**
+
+https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/
+
+O **[kubelet](https://kubernetes.io/docs/concepts/overview/components/#kubelet)** interage com o Docker instalado no node e garante que os contêineres que precisavam estar em execução realmente estão.
+
+node agent
+
+instalado em todos os nodes - master e worker
+
+
+
+### **2.5.2 kubectl**
+
+https://kubernetes.io/docs/reference/kubectl/overview/
+
+A figura a seguir mostra a estrutura dos principais comandos do `kubectl`.
+
+| [![Principais Comandos](https://github.com/badtuxx/DescomplicandoKubernetes/raw/main/images/kubernetes_commands.png)](https://github.com/badtuxx/DescomplicandoKubernetes/blob/main/images/kubernetes_commands.png) |
+| ------------------------------------------------------------ |
+| *Principais comandos [Ref: uploaddeimagens.com.br](https://uploaddeimagens.com.br/images/002/667/919/full/Kubernetes-Comandos.png)* |
+
+
+
+
+
+
+
+## **2.6 - Demais componentes**
 
 - **Master node**
 - **Worker node**
@@ -289,82 +389,6 @@ kubectl delete pod -l "label"="valor" -n "namespace"
 
 
 
-## **2.4 - Componentes do Control Plane**
-
-Os componentes da camada de gerenciamento tomam decisões globais sobre o cluster (por exemplo, agendamento de *pods*), bem como detectam e respondem aos eventos do cluster (por exemplo, iniciando um novo *[pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/)* quando o campo `replicas` de um *Deployment* não está atendido).
-
-https://kubernetes.io/docs/concepts/overview/components/
-
-**Sempre no node MASTER**
-
-### **2.4.1 - ETCD**
-
-No **[ETCD](https://kubernetes.io/docs/concepts/overview/components/#etcd)** são armazenados o estado do cluster, rede e outras informações persistentes.
-
-Armazenamento de valor de chave consistente e altamente disponível usado como armazenamento de apoio do Kubernetes para todos os dados do cluster.
-
-Se seu cluster Kubernetes usa etcd como armazenamento de apoio, certifique-se de ter um plano de [backup](https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/#backing-up-an-etcd-cluster) para esses dado
-
-
-
-### **2.4.2 - [kube-apiserver](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver)** 
-
-https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver
-
-**[kube-apiserver](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver)** é a central de operações do cluster k8s. Todas as chamadas, internas ou externas são tratadas por ele. Ele é o único que conecta no ETCD.
-
-Kubectl transforma de JSON e envia para o kube-apiserver
-
-
-
-### **2.4.3 - [kube-scheduller](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver)** 
-
-**[kube-scheduller](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver)** usa um algoritmo para verificar em qual node o pod deverá ser hospedado. Ele verifica os recursos disponíveis do node para verificar qual o melhor node para receber aquele pod.
-
-
-
-### **2.4.4 - [kube-controller-manager](https://kubernetes.io/docs/concepts/overview/components/#cloud-controller-manager)** 
-
-**[kube-controller-manager](https://kubernetes.io/docs/concepts/overview/components/#cloud-controller-manager)** é o controle principal que interage com o `kube-apiserver` para determinar o seu estado. Se o estado não bate, o manager irá contactar o controller necessário para checar seu estado desejado. Tem diversos controllers em uso como: os endpoints, namespace e replication.
-
-
-
-### **2.4.5 - [kube-proxy](https://kubernetes.io/docs/concepts/overview/components/#kube-proxy)**
-
-O **[kube-proxy](https://kubernetes.io/docs/concepts/overview/components/#kube-proxy)** é o responsável por gerenciar a rede para os contêineres, é o responsável por expor portas dos mesmos.
-
-Trata da comunicação entre os Nodes. 
-
-
-
-### **2.4.6 - cloud-controller-manager**
-
-Um componente da [camada de gerenciamento](https://kubernetes.io/pt-br/docs/reference/glossary/?all=true#term-control-plane) do Kubernetes que incorpora a lógica de controle específica da nuvem. O gerenciador de controle de nuvem permite que você vincule seu *cluster* na API do seu provedor de nuvem, e separar os componentes que interagem com essa plataforma de nuvem a partir de componentes que apenas interagem com seu cluster.
-
-
-
-## **2.5 - Node Components**
-
-Os componentes de nó são executados em todos os nós, mantendo os *pods* em execução e fornecendo o ambiente de execução do Kubernetes.	
-
-### **2.5.1 - kubelet**
-
-https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/
-
-O **[kubelet](https://kubernetes.io/docs/concepts/overview/components/#kubelet)** interage com o Docker instalado no node e garante que os contêineres que precisavam estar em execução realmente estão.
-
-node agent
-
-instalado em todos os nodes - master e worker
-
-
-
-### **2.5.2 kubectl**
-
-https://kubernetes.io/docs/reference/kubectl/overview/
-
-
-
 
 
 ## **3 - Redes**
@@ -494,26 +518,9 @@ export KUBECONFIG=$HOME/admin.conf
 
 3 - Configura plugin rede
 
-```yaml
-cat > /etc/docker/daemon.json <<EOF
-{
-  "exec-opts": ["native.cgroupdriver=systemd"],
-  "log-driver": "json-file",
-  "log-opts": {
-    "max-size": "100m"
-  },
-  "storage-driver": "overlay2"
-}
-EOF
-
-
-# sudo mkdir -p /etc/systemd/system/docker.service.d
-# systemctl daemon-reload
-# systemctl restart docker
-# docker info | grep -i cgroup
 ```
-
-Se a saída foi Cgroup Driver: systemd, tudo certo!
+kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version \|base64 \|tr -d '\n')"
+```
 
 4 - Join dos nodes
 
@@ -666,11 +673,11 @@ Atenção! 1 core de CPU corresponde a 1000m (1000 milicore). Ao especificar 200
 
 # **Comandos Kubernetes**
 
-A figura a seguir mostra a estrutura dos principais comandos do `kubectl`.
 
-| [![Principais Comandos](https://github.com/badtuxx/DescomplicandoKubernetes/raw/main/images/kubernetes_commands.png)](https://github.com/badtuxx/DescomplicandoKubernetes/blob/main/images/kubernetes_commands.png) |
-| ------------------------------------------------------------ |
-| *Principais comandos [Ref: uploaddeimagens.com.br](https://uploaddeimagens.com.br/images/002/667/919/full/Kubernetes-Comandos.png)* |
+
+|      |
+| ---- |
+|      |
 
 
 
@@ -678,9 +685,9 @@ A figura a seguir mostra a estrutura dos principais comandos do `kubectl`.
 | :----------------------------------------------------------: | :----------------------------------------------------------- |
 | kubeadm init --control-plane-endpoint "k8s-elb-01:6443" --upload-certs | subir o cluster com elb                                      |
 |          kubeadm token create --print-join-command           | Restaurar o token do join p/ worker node                     |
-| kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version \|base64 \|tr -d '\n')" | Instalação do pod network para ter a comunicação entre pods de diferentes nodes |
-|  kubeadm init --apiserver-advertise-address $(hostname -i)   | Inicializa cluster                                           |
-|  echo "source <(kubectl completion bash)" >> /root/.bashrc   | auto complete                                                |
+|                 kubectl get componentstatus                  | Status dos componentes                                       |
+|                     kubectl cluster-info                     | Informações do cluster                                       |
+|                  kubectl cluster-info dump                   | Gerar Dump das infos do cluster                              |
 |               kubectl run nginx --image=nginx                | Cria um POD                                                  |
 |              kubectl get pods nginx **-o yaml**              | mostra o manifesto do pod                                    |
 | kubectl run meu-nginx --image nginx **--dry-run=client** -o yaml > pod-template.yaml | Opção DryRun não Cria o POD                                  |
@@ -690,7 +697,7 @@ A figura a seguir mostra a estrutura dos principais comandos do `kubectl`.
 |                    kubectl logs -f nginx                     | Analise de Logs                                              |
 |        kubectl create deployment nginx --image=nginx         |                                                              |
 |    kubectl scale deployment "*nomedeploy*" --replicas=40     |                                                              |
-|                                                              |                                                              |
+|  echo "source <(kubectl completion bash)" >> /root/.bashrc   | auto complete                                                |
 |                                                              |                                                              |
 |      kubectl get pods "nomedopod" -o yaml > meupod.yaml      | Cria um arquivo yaml com as infos do pod                     |
 | kubectl get pods "nomedopod" -o yaml --export > meupod.yaml  | Cria um arquivo yaml com as infos do pod, mas sem infos especificas |

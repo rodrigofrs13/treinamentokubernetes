@@ -225,9 +225,17 @@ Lista os pods com o label "DC"
 kubectl get pods -L "label"
 ```
 
+Setar Label no pod
 
+```
+kubectl label pod "nomedopod" "label"="valor" -n "namespace"
+```
 
+Deletar pod com Label especifico
 
+```
+kubectl delete pod -l "label"="valor" -n "namespace"
+```
 
 
 

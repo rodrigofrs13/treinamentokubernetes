@@ -8,9 +8,9 @@
 
 Colocar ✔ quando concluído. 
 
-## **1.1 - Linux Foundation** ✔ 
+## **1.1 - Linux Foundation** 
 
-https://learning.edx.org/course/course-v1:LinuxFoundationX+LFS158x+3T2020/home
+https://learning.edx.org/course/course-v1:LinuxFoundationX+LFS158x+3T2020/home✔
 
 
 
@@ -24,29 +24,11 @@ https://docs.google.com/presentation/d/1weqpBWa9FNjKc1ugCUIpwYYquvoIOFbUvEcZ9ZYa
 - 03 - Arquitetura do K8s - https://www.youtube.com/watch?v=bPFxwwSfSmk&feature=youtu.be ✔ 
 - 04 Conceitos importantes do K8s - https://www.youtube.com/watch?v=Y0kHzwifFEA&feature=youtu.be ✔ 
 - 05 Instalação dos componentes do K8s - https://www.youtube.com/watch?v=7H61VJV0YI8&feature=youtu.be ✔ 
-- 06 Configuração do K8s (53:48) - https://www.youtube.com/watch?v=V1g0alYqI1w&feature=youtu.be
-- 07 ReplicaSet (7:14) - https://www.youtube.com/watch?v=qfiQyTqzUqU&feature=youtu.be
-- 08 Deployment (18:52) - https://www.youtube.com/watch?v=2JbQkTF6TzU&feature=youtu.be
-- 09 Service (27:30) - https://www.youtube.com/watch?v=zGqMvzbWAJc&feature=youtu.be
-- 10 Microservices (7:48) - https://www.youtube.com/watch?v=SS748X6xvdk&feature=youtu.be
-
-
-
-## **1.3 - LinuxTips**
-
-### **1.3.1 - Descomplicando o Kubernetes** 
-
-https://github.com/badtuxx/DescomplicandoKubernetes
-
-
-
-### **1.3.2 - Canary Deploy**
-
-
-
-https://www.youtube.com/watch?v=CTvsdWZrAW0
-
-https://github.com/badtuxx/k8s-canary-deploy-example
+- 06 Configuração do K8s (53:48) - https://www.youtube.com/watch?v=V1g0alYqI1w&feature=youtu.be ✔ 
+- 07 ReplicaSet (7:14) - https://www.youtube.com/watch?v=qfiQyTqzUqU&feature=youtu.be ✔ 
+- 08 Deployment (18:52) - https://www.youtube.com/watch?v=2JbQkTF6TzU&feature=youtu.be ✔ 
+- 09 Service (27:30) - https://www.youtube.com/watch?v=zGqMvzbWAJc&feature=youtu.be ✔ 
+- 10 Microservices (7:48) - https://www.youtube.com/watch?v=SS748X6xvdk&feature=youtu.be ✔ 
 
 
 
@@ -56,7 +38,7 @@ https://github.com/badtuxx/k8s-canary-deploy-example
 
 ### **1.5.1 - Kubernetes Quick Start**
 
-
+Falta: Creating a Kubernetes Cluster
 
 ### **1.5.2 - Kubernetes Essentials**
 
@@ -108,6 +90,28 @@ https://github.com/badtuxx/k8s-canary-deploy-example
 
 
 
+
+
+## **1.3 - LinuxTips**
+
+### **1.3.1 - Descomplicando o Kubernetes** 
+
+https://github.com/badtuxx/DescomplicandoKubernetes
+
+
+
+### **1.3.2 - Canary Deploy**
+
+
+
+https://www.youtube.com/watch?v=CTvsdWZrAW0
+
+https://github.com/badtuxx/k8s-canary-deploy-example
+
+
+
+
+
 ## **1.6 - AWS**
 
 
@@ -116,16 +120,7 @@ https://github.com/badtuxx/k8s-canary-deploy-example
 
 https://kubedev.io/bonus-monitoramento/
 
-# **2 - Anotações**
 
-## **2.1 - Documentação oficial**
-
-https://kubernetes.io/pt-br/docs/home/
-
-
-![image](./imagens/125138813-ba243600-e0e5-11eb-9b86-531dc4c54311.png)
-
-# 
 
 ## **2.2 - Laboratório K8S**
 
@@ -139,15 +134,28 @@ https://www.katacoda.com/courses/kubernetes
 
 
 
+https://lucid.app/lucidchart/fc864348-11e5-47fd-a64d-82ba93d32bb3/view?page=c9hx29xGf93-#
+
+# **2 - Anotações**
+
+## **2.1 - Documentação oficial**
+
+https://kubernetes.io/pt-br/docs/home/
 
 
-## **2.3 - Componentes do K8s**
+![image](./imagens/125138813-ba243600-e0e5-11eb-9b86-531dc4c54311.png)
+
+
+
+
+
+## **2.2 - Componentes do K8s**
 
 ![image-20210719201310997](./imagens/image-20210719201310997.png)
 
 
 
-## **2.4 - Componentes do Control Plane**
+## **2.3 - Componentes do Control Plane** (Master)
 
 Os componentes da camada de gerenciamento tomam decisões globais sobre o cluster (por exemplo, agendamento de *pods*), bem como detectam e respondem aos eventos do cluster (por exemplo, iniciando um novo *[pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/)* quando o campo `replicas` de um *Deployment* não está atendido).
 
@@ -157,25 +165,31 @@ https://kubernetes.io/docs/concepts/overview/components/
 
 ### **2.4.1 - ETCD**
 
+https://kubernetes.io/pt-br/docs/concepts/overview/components/
+
 No **[ETCD](https://kubernetes.io/docs/concepts/overview/components/#etcd)** são armazenados o estado do cluster, rede e outras informações persistentes.
 
 Armazenamento de valor de chave consistente e altamente disponível usado como armazenamento de apoio do Kubernetes para todos os dados do cluster.
 
-Se seu cluster Kubernetes usa etcd como armazenamento de apoio, certifique-se de ter um plano de [backup](https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/#backing-up-an-etcd-cluster) para esses dado
+Se seu cluster Kubernetes usa etcd como armazenamento de apoio, certifique-se de ter um plano de [backup](https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/#backing-up-an-etcd-cluster) para esses dado.
 
 
 
-### **2.4.2 - [kube-apiserver](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver)** 
+### **2.4.2 - kube-apiserver**
 
 https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver
 
 **[kube-apiserver](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver)** é a central de operações do cluster k8s. Todas as chamadas, internas ou externas são tratadas por ele. Ele é o único que conecta no ETCD.
 
-Kubectl transforma de JSON e envia para o kube-apiserver
+O servidor de API é um componente da [Camada de gerenciamento](https://kubernetes.io/pt-br/docs/reference/glossary/?all=true#term-control-plane) do Kubernetes que expõe a API do Kubernetes. O servidor de API é o *front end* para a camada de gerenciamento do Kubernetes.
+
+O kube-apiserver foi projetado para ser escalonado horizontalmente — ou seja, ele pode ser escalado com a implantação de mais instâncias. Você pode executar várias instâncias do kube-apiserver e balancear (balanceamento de carga, etc) o tráfego entre essas instâncias.
 
 
 
 ### **2.4.3 - [kube-scheduller](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver)** 
+
+https://kubernetes.io/pt-br/docs/concepts/overview/components/
 
 **[kube-scheduller](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver)** usa um algoritmo para verificar em qual node o pod deverá ser hospedado. Ele verifica os recursos disponíveis do node para verificar qual o melhor node para receber aquele pod.
 
@@ -183,17 +197,25 @@ Kubectl transforma de JSON e envia para o kube-apiserver
 
 ### **2.4.4 - [kube-controller-manager](https://kubernetes.io/docs/concepts/overview/components/#cloud-controller-manager)** 
 
+https://kubernetes.io/pt-br/docs/concepts/overview/components/
+
 **[kube-controller-manager](https://kubernetes.io/docs/concepts/overview/components/#cloud-controller-manager)** é o controle principal que interage com o `kube-apiserver` para determinar o seu estado. Se o estado não bate, o manager irá contactar o controller necessário para checar seu estado desejado. Tem diversos controllers em uso como: os endpoints, namespace e replication.
 
+Componente da camada de gerenciamento que executa os processos de [controlador](https://kubernetes.io/docs/concepts/architecture/controller/).
 
+Logicamente, cada *[controlador](https://kubernetes.io/docs/concepts/architecture/controller/)* está em um processo separado, mas para reduzir a complexidade, eles todos são compilados num único binário e executam em um processo único.
 
-### **2.4.5 - [kube-proxy](https://kubernetes.io/docs/concepts/overview/components/#kube-proxy)**
+Alguns tipos desses controladores são:
 
-O **[kube-proxy](https://kubernetes.io/docs/concepts/overview/components/#kube-proxy)** é o responsável por gerenciar a rede para os contêineres, é o responsável por expor portas dos mesmos.
+- Controlador de nó: responsável por perceber e responder quando os nós caem.
 
-Trata da comunicação entre os Nodes. 
+- Controlador de *Job*: Observa os objetos *Job* que representam tarefas únicas e, em seguida, cria *pods* para executar essas tarefas até a conclusão.
 
+- Controlador de *endpoints*: preenche o objeto *Endpoints* (ou seja, junta os Serviços e os *pods*).
 
+- Controladores de conta de serviço e de *token*: crie contas padrão e *tokens* de acesso de API para novos *namespaces*.
+
+  
 
 ### **2.4.6 - cloud-controller-manager**
 
@@ -201,11 +223,37 @@ Um componente da [camada de gerenciamento](https://kubernetes.io/pt-br/docs/refe
 
 
 
+### **2.3.4 - kubeadm**
+
+https://kubernetes.io/docs/reference/setup-tools/kubeadm/
+
+O kubeadm executa as ações necessárias para obter um cluster mínimo viável instalado e funcionando. Por design, ele se preocupa apenas com a inicialização, não com o provisionamento de máquinas. 
+
+
+
 ## **2.5 - Node Components**
+
+https://kubernetes.io/pt-br/docs/concepts/overview/components/
 
 Os componentes de nó são executados em todos os nós, mantendo os *pods* em execução e fornecendo o ambiente de execução do Kubernetes.	
 
-### **2.5.1 - kubelet**
+
+
+### **2.5.1 - [kube-proxy](https://kubernetes.io/docs/concepts/overview/components/#kube-proxy)**
+
+O **[kube-proxy](https://kubernetes.io/docs/concepts/overview/components/#kube-proxy)** é o responsável por gerenciar a rede para os contêineres, é o responsável por expor portas dos mesmos.
+
+Trata da comunicação entre os Nodes.
+
+
+
+### **2.5.2 - Container runtime**
+
+O agente de execução (*runtime*) de contêiner é o software responsável por executar os contêineres.
+
+
+
+### **2.5.3 - kubelet**
 
 https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/
 
@@ -217,8 +265,6 @@ instalado em todos os nodes - master e worker
 
 
 
-### **2.5.2 kubectl**
-
 https://kubernetes.io/docs/reference/kubectl/overview/
 
 A figura a seguir mostra a estrutura dos principais comandos do `kubectl`.
@@ -229,27 +275,40 @@ A figura a seguir mostra a estrutura dos principais comandos do `kubectl`.
 
 
 
-
-
-
+ 
 
 ## **2.6 - Demais componentes**
 
-- **Master node**
-- **Worker node**
+- **2.61 - Pods**
+
+- **Namespaces**
+
+- **Network**
+
+- **DNS**
+
+- **Replicas e ReplicaSet**
+
 - **Services**
-- **Controllers**
-- **Pods**
-- **Namespaces e quotas**
-- **Network e policies**
-- **Storage**
+
 - **Deployment**
-- **ReplicaSet**
-- **Services**
+
+  
 
 
 
-### **2.3.1 - POD´s**
+- **Labels**
+- **Controllers**
+- **Storage**
+- 
+
+
+
+##############################################################################################
+
+### **2.6.1 - POD´s**
+
+![image-20210726205830178](./imagens/image-20210726205830178.png)
 
 https://kubernetes.io/docs/concepts/workloads/pods/
 
@@ -257,27 +316,64 @@ https://kubernetes.io/docs/concepts/workloads/pods/
 
 O Pod, por poder possuir diversos contêineres, muitas das vezes se assemelha a uma VM, onde você poderia ter diversos serviços rodando compartilhando o mesmo IP e demais recursos.
 
+Os Pods podem se comunicar sem **NAT**.
+
 **LifeCycle**
 
 https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/
 
+
+
+Anatomia de um pod em yaml. 
+
+```yaml
+apiVersion: v1									-----> Versão da API
+kind: Pod									    ----> O que quer criar 
+metadata:
+  name: examplepod								----> nome do pod
+  namespace: pod-example						----> nome da namespace
+spec:											---->  espeficicações do container
+  volumes:										---->  volumes
+  - name: html
+    emptyDir: {}
+  containers:
+  - name: webcontainer							---->  nome do container
+    image: nginx								---->  imagem do container
+    volumeMounts:
+    - name: html
+      mountPath: /usr/share/nginx/html
+  - name: filecontainer
+    image: debian
+    volumeMounts:
+    - name: html
+      mountPath: /html
+    command: ["/bin/sh", "-c"]
+    args:
+      - while true; do
+         date >> /html/index.html;
+         sleep 1;
+        done
+```
+
+
+
 #### **2.3.1.1- Comandos**
 
-Editar pod 
-
-```
-kubect edit pod "nomedopod"
-```
-
-
-
-### **2.3.2 - [Services](https://kubernetes.io/docs/concepts/services-networking/service/)** 
-
-É uma forma de você expor a comunicação através de um **NodePort** ou **LoadBalancer** para distribuir as requisições entre diversos Pods daquele Deployment. Funciona como um balanceador de carga.
-
-#### **2.3.2.1 - Comandos**
+| Descrição                                                    | Comando                                     |
+| :----------------------------------------------------------- | ------------------------------------------- |
+| Editar pod                                                   | kubect edit pod "nomedopod"                 |
+| Lista todos os pods de todos as namespaces                   | kubectl get pods --all-namespaces           |
+| Lista todos os pods de todos as namespaces  dentro dos worker nodes | kubectl get pods --all-namespaces -o wide   |
+| Deleta Pod                                                   | kubectl delete pod "nomepod" -n "namespace" |
+| Create Pod                                                   | kubectl create -f pod-exmeple.yaml          |
+|                                                              |                                             |
+|                                                              |                                             |
+|                                                              |                                             |
+|                                                              |                                             |
 
 
+
+##############################################################################################
 
 ### **2.3.3 - Namespaces**
 
@@ -289,13 +385,19 @@ Específica com "**-n**", se não especificar nenhuma ele lista da namespace "*d
 
 #### **2.3.3.1 - Comandos**
 
-**Lista**
+| Descrição         | Comandos                                               |
+| ----------------- | ------------------------------------------------------ |
+| Lista namespaces  | kubectl get namespace / kubectl get ns                 |
+| Cria namespaces   | kubectl create namespace "nomedanamespace"             |
+| Deleta namespaces | kubectl delete namespaces <insert-some-namespace-name> |
+|                   |                                                        |
+|                   |                                                        |
+|                   |                                                        |
+|                   |                                                        |
+|                   |                                                        |
+|                   |                                                        |
 
-```shell
-kubectl get namespace
-```
 
-**Create**
 
 Create a new YAML file called `my-namespace.yaml` with the contents:
 
@@ -310,18 +412,6 @@ Then run:
 
 ```
 kubectl create -f ./my-namespace.yaml
-```
-
-Alternatively, you can create namespace using below command:
-
-```
-kubectl create namespace <insert-namespace-name-here>
-```
-
-**Delete**
-
-```shell
-kubectl delete namespaces <insert-some-namespace-name>
 ```
 
 
@@ -339,77 +429,35 @@ kubectl get pods --namespace=<insert-namespace-name-here>
 
 
 
-### **2.3.4 - kubeadm**
+No POD a namespace é declarada no metadata. 
 
-https://kubernetes.io/docs/reference/setup-tools/kubeadm/
-
-O kubeadm executa as ações necessárias para obter um cluster mínimo viável instalado e funcionando. Por design, ele se preocupa apenas com a inicialização, não com o provisionamento de máquinas. 
+![image-20210726205550668](./imagens/image-20210726205550668.png)
 
 
 
-**2.3.5 - Labels**
+##############################################################################################
 
-https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+### **2.3.5 - DNS**
 
-Labels permitem que os usuários mapeiem suas próprias estruturas organizacionais em objetos do sistema de maneira fracamente acoplada, sem exigir que os clientes armazenem esses mapeamentos.
+https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/
 
-Uso para filtros 
+![image-20210726212636211](./imagens/image-20210726212636211.png)
 
-É um par chave-valor
+ Kubelet define esse arquivo para cada pod.
 
-Pode-se usar até 3.
-
-**Labels recomentados**
-
-https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/
-
-**2.3.5.1 - Comandos**
-
-Listas todos os pods com Label
+```yaml
+root@examplepod:/# cat /etc/resolv.conf
+nameserver 10.96.0.10
+search pod-example.svc.cluster.local svc.cluster.local cluster.local ec2.internal
+options ndots:5
 
 ```
-kubectl get pods --show-labels
-```
-
-Listar os pods com o Label especificado
-
-```
-kubectl get pods -l dc="label"
-```
-
-Lista os pods com o label "DC"
-
-```
-kubectl get pods -L "label"
-```
-
-Setar Label no pod
-
-```
-kubectl label pod "nomedopod" "label"="valor" -n "namespace"
-```
-
-Deletar pod com Label especifico
-
-```
-kubectl delete pod -l "label"="valor" -n "namespace"
-```
 
 
 
+##############################################################################################
 
-
-
-
-**[Supervisord](http://supervisord.org/)** é o responsável por monitorar e restabelecer, se necessário, o `kubelet` e o Docker. Por esse motivo, quando existe algum problema em relação ao kubelet, como por exemplo o uso do driver `cgroup` diferente do que está rodando no Docker, você perceberá que ele ficará tentando subir o kubelet frequentemente.
-
-
-
-
-
-
-
-## **3 - Redes**
+### **2.5.6 - Redes**
 
 https://kubernetes.io/pt-br/docs/concepts/cluster-administration/networking/
 
@@ -433,9 +481,11 @@ As características básicas da rede do k8s são:
 
 - Todos os pods conseguem se comunicar entre eles em diferentes nodes;
 - Todos os nodes pode se comunicar com todos os pods;
-- Não utilizar NAT.
+- **Não utilizar NAT.**
 
-Todos os IPs dos pods e nodes são roteados sem a utilização de [NAT](https://en.wikipedia.org/wiki/Network_address_translation). Isso é solucionado com a utilização de algum software que te ajudará na criação de uma rede Overlay. Seguem alguns:
+**Todos os IPs dos pods e nodes são roteados sem a utilização de [NAT](https://en.wikipedia.org/wiki/Network_address_translation). **
+
+Isso é solucionado com a utilização de algum software que te ajudará na criação de uma rede Overlay. Seguem alguns:
 
 - [Weave](https://www.weave.works/docs/net/latest/kube-addon/)
 - [Flannel](https://github.com/coreos/flannel/blob/master/Documentation/kubernetes.md)
@@ -445,7 +495,243 @@ Todos os IPs dos pods e nodes são roteados sem a utilização de [NAT](https://
 - [Nuage](https://github.com/nuagenetworks/nuage-kubernetes/blob/v5.1.1-1/docs/kubernetes-1-installation.rst)
 - [Contiv](http://contiv.github.io/)
 
+**Mais utilizados Waeve ou Flannel. **
+
 Mais informações em: https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+##############################################################################################
+
+**2.3.5 - Replicas e Replicas Set**
+
+O objetivo de um ReplicaSet é manter um conjunto estável de pods de réplica em execução a qualquer momento. Como tal, costuma ser usado para garantir a disponibilidade de um número especificado de pods idênticos
+
+https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
+
+
+
+Anatomia de um replica set. 
+
+![image-20210726214240452](./imagens/image-20210726214240452.png)
+
+
+
+Detalhamento do arquivo yaml
+
+```yaml
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: frontend
+  labels:
+    app: nginx
+    tier: frontend
+spec:
+  replicas: 2  											--->> Numero de replicas
+  selector:
+    matchLabels: 
+      tier: frontend
+    matchExpressions:
+      - {key: tier, operator: In, values: [frontend]}
+  template:
+    metadata:
+      labels:
+        app: nginx
+        tier: frontend
+    spec:
+      containers:
+      - name: nginx
+        image: darealmc/nginx-k8s:v1
+        ports:
+        - containerPort: 80
+```
+
+Para verificar se uma replica set controla o pod:
+
+descbribe no pod
+
+verifique a saida: Controlled By
+
+![image-20210726213935171](./imagens/image-20210726213935171.png)
+
+**2.3.5.1 - Comandos**
+
+
+
+| Descrição               | Comando                                                      |
+| ----------------------- | ------------------------------------------------------------ |
+| Describe na replica set | kubectl describe rs/"nomedareplica"                          |
+| Escala replicas         | kubectl scale rs/"nomedareplica"--replicas="numero de replicas" |
+| Deleta replica set      | kubectl delete rs/"nomedareplica"                            |
+|                         | kubectl get rs/"nomedareplica"                               |
+|                         |                                                              |
+|                         |                                                              |
+|                         |                                                              |
+|                         |                                                              |
+|                         |                                                              |
+
+
+
+##############################################################################################
+
+### **2.3.2 - Services**
+
+https://kubernetes.io/docs/concepts/services-networking/service/
+
+Uma maneira abstrata de expor um aplicativo em execução em um conjunto de [Pods](https://kubernetes.io/docs/concepts/workloads/pods/) como um serviço de rede.
+
+Com o Kubernetes, você não precisa modificar seu aplicativo para usar um mecanismo de descoberta de serviço desconhecido. O Kubernetes fornece aos pods seus próprios endereços IP e um único nome DNS para um conjunto de pods e pode fazer o balanceamento de carga entre eles
+
+
+
+É uma forma de você expor a comunicação através de um **NodePort** ou **LoadBalancer** para distribuir as requisições entre diversos Pods daquele Deployment. Funciona como um balanceador de carga.
+
+O vinculo entre o Service e o Pod é feito pelo label informado no Selector conforme abaixo:
+
+![image-20210726215532711](./imagens/image-20210726215532711.png)
+
+Ele cria um IP virtual para os pods, mas o endpoint continua sendo o ip dos pods. 
+
+![image-20210726215644723](./imagens/image-20210726215644723.png)
+
+Anatomia do Service
+
+![image-20210726215128527](./imagens/image-20210726215128527.png)
+
+```yaml
+kind: Service
+apiVersion: v1
+metadata:
+  name: my-awesome-service
+spec:
+  selector:
+    app: nginx
+  ports:
+  - protocol: TCP
+    port: 32768
+    targetPort: 80
+```
+
+
+
+#### **2.3.2.1 - Comandos**
+
+| Descrição         | Comandos                                |
+| ----------------- | --------------------------------------- |
+| Lista Services    | kubectl get services                    |
+| Describe Services | kubectl describe svc my-awesome-service |
+|                   |                                         |
+|                   |                                         |
+|                   |                                         |
+|                   |                                         |
+|                   |                                         |
+|                   |                                         |
+|                   |                                         |
+
+##############################################################################################
+
+**2.3.5 - Deployment**
+
+https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+
+![image-20210726220653723](./imagens/image-20210726220653723.png)
+
+
+
+![image-20210726220716616](./imagens/image-20210726220716616.png)
+
+
+
+![image-20210726220728016](./imagens/image-20210726220728016.png)
+
+
+
+![image-20210726220739374](./imagens/image-20210726220739374.png)
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-deployment 
+  labels: 
+    app: nginx
+spec:
+  replicas: 2							----> ReplicaSet
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx 
+    spec: 
+      containers:
+      - name: nginx
+        image: darealmc/nginx-k8s:v1
+        ports:
+        - containerPort: 80
+```
+
+**2.3.5.1 - Comandos**
+
+
+
+| Descrição                       | Comando                                                      |
+| ------------------------------- | ------------------------------------------------------------ |
+| Altera imagem no deploy         | kubectl set image deployment.v1.apps/example-deployment nginx=darealmc/nginx-k8s:v2 |
+| Para acompanhar as atualizações | kubectl describe deploy example-deployment                   |
+|                                 |                                                              |
+|                                 |                                                              |
+|                                 |                                                              |
+|                                 |                                                              |
+|                                 |                                                              |
+|                                 |                                                              |
+|                                 |                                                              |
+|                                 |                                                              |
+|                                 |                                                              |
+
+##############################################################################################
+
+**2.3.5 - Labels**
+
+https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+
+Labels permitem que os usuários mapeiem suas próprias estruturas organizacionais em objetos do sistema de maneira fracamente acoplada, sem exigir que os clientes armazenem esses mapeamentos.
+
+Uso para filtros 
+
+É um par chave-valor
+
+Pode-se usar até 3.
+
+**Labels recomentados**
+
+https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/
+
+**2.3.5.1 - Comandos**
+
+
+
+| Descrição                               | Comando                                                      |
+| --------------------------------------- | ------------------------------------------------------------ |
+| Listas todos os pods com Label          | kubectl get pods --show-labels                               |
+| Listar os pods com o Label especificado | kubectl get pods -l dc="label"                               |
+| Lista os pods com o label "DC"          | kubectl get pods -L "label"                                  |
+| Setar Label no pod                      | kubectl label pod "nomedopod" "label"="valor" -n "namespace" |
+| Deletar pod com Label especifico        | kubectl delete pod -l "label"="valor" -n "namespace"         |
+|                                         |                                                              |
+|                                         |                                                              |
+|                                         |                                                              |
+|                                         |                                                              |
+
+
+
+
+
+**[Supervisord](http://supervisord.org/)** é o responsável por monitorar e restabelecer, se necessário, o `kubelet` e o Docker. Por esse motivo, quando existe algum problema em relação ao kubelet, como por exemplo o uso do driver `cgroup` diferente do que está rodando no Docker, você perceberá que ele ficará tentando subir o kubelet frequentemente.
+
+
+
+
 
 
 
@@ -548,7 +834,9 @@ kubeadm join --discovery-token-unsafe-skip-ca-verification --token=102952.1a7dd4
 
 
 
-## **Deployments**
+
+
+## **Exemplos**
 
 **service-clusterip.yaml**
 
@@ -679,23 +967,7 @@ Atenção! 1 core de CPU corresponde a 1000m (1000 milicore). Ao especificar 200
 
 
 
-
-
-
-
-## 
-
-
-
-
-
 # **Comandos Kubernetes**
-
-
-
-|      |
-| ---- |
-|      |
 
 
 

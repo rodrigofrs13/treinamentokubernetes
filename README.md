@@ -36,15 +36,17 @@ https://docs.google.com/presentation/d/1weqpBWa9FNjKc1ugCUIpwYYquvoIOFbUvEcZ9ZYa
 
 
 
-### **1.5.1 - Kubernetes Quick Start**
+### **1.5.1 - Kubernetes Quick Start** ✔
 
-Falta: Creating a Kubernetes Cluster
+https://lucid.app/lucidchart/fc864348-11e5-47fd-a64d-82ba93d32bb3/view?page=c9hx29xGf93-#
 
-### **1.5.2 - Kubernetes Essentials**
+### **1.5.2 - Kubernetes Essentials ✔**
 
+https://lucid.app/lucidchart/6d5625be-9ef9-411d-8bea-888de55db5cf/view?page=I_Too4-SqdGV#
 
+https://github.com/linuxacademy/robot-shop.
 
-### **1.5.3 - Introduction to Kubernetes**
+### **1.5.3 - Introduction to Kubernetes ✔**
 
 
 
@@ -98,7 +100,7 @@ Falta: Creating a Kubernetes Cluster
 
 https://github.com/badtuxx/DescomplicandoKubernetes
 
-
+multi etcd
 
 ### **1.3.2 - Canary Deploy**
 
@@ -114,7 +116,11 @@ https://github.com/badtuxx/k8s-canary-deploy-example
 
 ## **1.6 - AWS**
 
+1.6.1 - worksops aws
 
+https://workshops.aws/
+
+https://awsworkshop.io/
 
 ## **1.7 - Monitoramento**
 
@@ -134,7 +140,7 @@ https://www.katacoda.com/courses/kubernetes
 
 
 
-https://lucid.app/lucidchart/fc864348-11e5-47fd-a64d-82ba93d32bb3/view?page=c9hx29xGf93-#
+
 
 # **2 - Anotações**
 
@@ -163,7 +169,7 @@ https://kubernetes.io/docs/concepts/overview/components/
 
 **Sempre no node MASTER**
 
-### **2.4.1 - ETCD**
+### **2.3.1 - ETCD**
 
 https://kubernetes.io/pt-br/docs/concepts/overview/components/
 
@@ -173,9 +179,19 @@ Armazenamento de valor de chave consistente e altamente disponível usado como a
 
 Se seu cluster Kubernetes usa etcd como armazenamento de apoio, certifique-se de ter um plano de [backup](https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/#backing-up-an-etcd-cluster) para esses dado.
 
+**2.3.1.1 - Comandos**
+
+| Descrição          | Comando                         |
+| ------------------ | ------------------------------- |
+| Lista pods do etcd | kubectl get pods -n kube-system |
+|                    |                                 |
+|                    |                                 |
 
 
-### **2.4.2 - kube-apiserver**
+
+
+
+### **2.3.2 - kube-apiserver**
 
 https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver
 
@@ -185,7 +201,13 @@ O servidor de API é um componente da [Camada de gerenciamento](https://kubernet
 
 O kube-apiserver foi projetado para ser escalonado horizontalmente — ou seja, ele pode ser escalado com a implantação de mais instâncias. Você pode executar várias instâncias do kube-apiserver e balancear (balanceamento de carga, etc) o tráfego entre essas instâncias.
 
+**2.3.2.1 - Comandos**
 
+| Descrição          | Comando                         |
+| ------------------ | ------------------------------- |
+| Lista pods do etcd | kubectl get pods -n kube-system |
+|                    |                                 |
+|                    |                                 |
 
 ### **2.4.3 - [kube-scheduller](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver)** 
 
@@ -193,7 +215,13 @@ https://kubernetes.io/pt-br/docs/concepts/overview/components/
 
 **[kube-scheduller](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver)** usa um algoritmo para verificar em qual node o pod deverá ser hospedado. Ele verifica os recursos disponíveis do node para verificar qual o melhor node para receber aquele pod.
 
+**2.3.1.1 - Comandos**
 
+| Descrição          | Comando                         |
+| ------------------ | ------------------------------- |
+| Lista pods do etcd | kubectl get pods -n kube-system |
+|                    |                                 |
+|                    |                                 |
 
 ### **2.4.4 - [kube-controller-manager](https://kubernetes.io/docs/concepts/overview/components/#cloud-controller-manager)** 
 
@@ -215,7 +243,16 @@ Alguns tipos desses controladores são:
 
 - Controladores de conta de serviço e de *token*: crie contas padrão e *tokens* de acesso de API para novos *namespaces*.
 
-  
+
+
+
+**2.3.1.1 - Comandos**
+
+| Descrição          | Comando                         |
+| ------------------ | ------------------------------- |
+| Lista pods do etcd | kubectl get pods -n kube-system |
+|                    |                                 |
+|                    |                                 |
 
 ### **2.4.6 - cloud-controller-manager**
 
@@ -228,6 +265,20 @@ Um componente da [camada de gerenciamento](https://kubernetes.io/pt-br/docs/refe
 https://kubernetes.io/docs/reference/setup-tools/kubeadm/
 
 O kubeadm executa as ações necessárias para obter um cluster mínimo viável instalado e funcionando. Por design, ele se preocupa apenas com a inicialização, não com o provisionamento de máquinas. 
+
+**2.4.4.4 - Comandos**
+
+| Descrição                                                    | Comando                                                |
+| ------------------------------------------------------------ | ------------------------------------------------------ |
+| kubeadm init --pod-network-cidr=10.24.4.0.0/16               | Inicia o cluster setanto o ip do pod-netowork -Flannel |
+| kubeadm init --apiserver-advertise-address $(hostname -i)    |                                                        |
+|                                                              |                                                        |
+|                                                              |                                                        |
+| kubeadm init --control-plane-endpoint "k8s-elb-01:6443" --upload-certs | Subir o cluster com elb                                |
+| kubeadm token create --print-join-command                    | Restaurar o token do join p/ worker node               |
+|                                                              |                                                        |
+|                                                              |                                                        |
+|                                                              |                                                        |
 
 
 
@@ -265,33 +316,25 @@ instalado em todos os nodes - master e worker
 
 
 
-https://kubernetes.io/docs/reference/kubectl/overview/
-
-A figura a seguir mostra a estrutura dos principais comandos do `kubectl`.
-
-| [![Principais Comandos](https://github.com/badtuxx/DescomplicandoKubernetes/raw/main/images/kubernetes_commands.png)](https://github.com/badtuxx/DescomplicandoKubernetes/blob/main/images/kubernetes_commands.png) |
-| ------------------------------------------------------------ |
-| *Principais comandos [Ref: uploaddeimagens.com.br](https://uploaddeimagens.com.br/images/002/667/919/full/Kubernetes-Comandos.png)* |
-
-
-
  
 
 ## **2.6 - Demais componentes**
 
 - **2.61 - Pods**
 
-- **Namespaces**
+- **2.6.2 - Namespaces**
 
-- **Network**
+- **2.6.3 - Network**
 
-- **DNS**
+- **2.6.4 - DNS**
 
-- **Replicas e ReplicaSet**
+- **2.6.5 - Replicas e ReplicaSet**
 
-- **Services**
+- **2.6.6 - Services**
 
-- **Deployment**
+- **2.6.7 - Deployment**
+
+- **2.6.8 - Worker Nodes**
 
   
 
@@ -312,7 +355,7 @@ A figura a seguir mostra a estrutura dos principais comandos do `kubectl`.
 
 https://kubernetes.io/docs/concepts/workloads/pods/
 
-**[Pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/)** é a menor unidade que você irá tratar no k8s. Você poderá ter mais de um contêiner por Pod, porém vale lembrar que eles dividirão os mesmos recursos, como por exemplo IP. Uma das boas razões para se ter mais de um contêiner em um Pod é o fato de você ter os logs consolidados.
+**[Pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/)** é a menor unidade que você irá tratar no k8s. **Você poderá ter mais de um contêiner por Pod**, porém vale lembrar que eles dividirão os mesmos recursos, como por exemplo IP. Uma das boas razões para se ter mais de um contêiner em um Pod é o fato de você ter os logs consolidados.
 
 O Pod, por poder possuir diversos contêineres, muitas das vezes se assemelha a uma VM, onde você poderia ter diversos serviços rodando compartilhando o mesmo IP e demais recursos.
 
@@ -375,7 +418,7 @@ spec:											---->  espeficicações do container
 
 ##############################################################################################
 
-### **2.3.3 - Namespaces**
+### **2.6.2 - Namespaces**
 
 https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 
@@ -573,7 +616,7 @@ verifique a saida: Controlled By
 
 ##############################################################################################
 
-### **2.3.2 - Services**
+### **2.6.6 - Services**
 
 https://kubernetes.io/docs/concepts/services-networking/service/
 
@@ -581,7 +624,7 @@ Uma maneira abstrata de expor um aplicativo em execução em um conjunto de [Pod
 
 Com o Kubernetes, você não precisa modificar seu aplicativo para usar um mecanismo de descoberta de serviço desconhecido. O Kubernetes fornece aos pods seus próprios endereços IP e um único nome DNS para um conjunto de pods e pode fazer o balanceamento de carga entre eles
 
-
+![image-20210727205522965](./imagens/image-20210727205522965.png)
 
 É uma forma de você expor a comunicação através de um **NodePort** ou **LoadBalancer** para distribuir as requisições entre diversos Pods daquele Deployment. Funciona como um balanceador de carga.
 
@@ -602,9 +645,9 @@ kind: Service
 apiVersion: v1
 metadata:
   name: my-awesome-service
-spec:
-  selector:
-    app: nginx
+spec: 						
+  selector:					----> determina quais pod´s farão parte do service
+    app: nginx				----> determina quais pod´s farão parte do service
   ports:
   - protocol: TCP
     port: 32768
@@ -613,25 +656,41 @@ spec:
 
 
 
-#### **2.3.2.1 - Comandos**
+#### **2.6.6.1 - Comandos**
 
-| Descrição         | Comandos                                |
-| ----------------- | --------------------------------------- |
-| Lista Services    | kubectl get services                    |
-| Describe Services | kubectl describe svc my-awesome-service |
-|                   |                                         |
-|                   |                                         |
-|                   |                                         |
-|                   |                                         |
-|                   |                                         |
-|                   |                                         |
-|                   |                                         |
+| Descrição         | Comandos                               |
+| ----------------- | -------------------------------------- |
+| Lista Services    | kubectl get services / kubectl get svc |
+| Describe Services | kubectl describe svc "*service-name*"  |
+|                   |                                        |
+|                   |                                        |
+|                   |                                        |
+|                   |                                        |
+|                   |                                        |
+|                   |                                        |
+|                   |                                        |
 
 ##############################################################################################
 
-**2.3.5 - Deployment**
+**2.6.7 - Deployment**
 
 https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+
+Você descreve um *estado desejado* em uma implantação, e a implantação [Controlador](https://kubernetes.io/docs/concepts/architecture/controller/) altera o estado real para o estado desejado em uma taxa controlada. Você pode definir implantações para criar novos **ReplicaSets** ou remover implantações existentes e adotar todos os seus recursos com novas implantações.
+
+O deployment é uma ótima maneira de automatizar o gerenciamento de seus pods. O deployment permite que você especifique um estado desejado para um conjunto de pods. O cluster trabalhará constantemente para manter o estado desejado.
+
+- **Scaling**
+
+  Entender mais
+
+- **Rolling updates**
+
+  Entender mais
+
+- **Self-Healing**
+
+  Entender mais
 
 ![image-20210726220653723](./imagens/image-20210726220653723.png)
 
@@ -671,23 +730,38 @@ spec:
         - containerPort: 80
 ```
 
-**2.3.5.1 - Comandos**
+**2.6.7.1 - Comandos**
+
+| Descrição                          | Comando                                                      |
+| ---------------------------------- | ------------------------------------------------------------ |
+| Altera imagem no deploy            | kubectl set image deployment.v1.apps/"*nome-deployment*" nginx="image" |
+| Para acompanhar as atualizações    | kubectl describe deploy "*nome-deployment*"                  |
+| Cria deployment básico             | kubectl create deployment "*nome-deployment*" --image=nginx  |
+| Escala deployment                  | kubectl scale deployment "*nome-deployment*" --replicas="*qde-replicas*" |
+| Opção DryRun não Cria o Deployment | kubectl create deployment meu-nginx --image=nginx **--dry-run=client** -o yaml > deployment-template.yaml |
+|                                    |                                                              |
+|                                    |                                                              |
+|                                    |                                                              |
+|                                    |                                                              |
+|                                    |                                                              |
+|                                    |                                                              |
+
+##############################################################################################
+
+**2.6.8 - Worker Nodes**
+
+https://kubernetes.io/docs/concepts/architecture/nodes/
 
 
 
-| Descrição                       | Comando                                                      |
-| ------------------------------- | ------------------------------------------------------------ |
-| Altera imagem no deploy         | kubectl set image deployment.v1.apps/example-deployment nginx=darealmc/nginx-k8s:v2 |
-| Para acompanhar as atualizações | kubectl describe deploy example-deployment                   |
-|                                 |                                                              |
-|                                 |                                                              |
-|                                 |                                                              |
-|                                 |                                                              |
-|                                 |                                                              |
-|                                 |                                                              |
-|                                 |                                                              |
-|                                 |                                                              |
-|                                 |                                                              |
+**2.6.8.1 - Comandos**
+
+| Descrição     | Comando                             |
+| ------------- | ----------------------------------- |
+| Lista Nodes   | kubectl get nodes                   |
+| Describe Node | kubectl describe node "*node_name*" |
+|               |                                     |
+|               |                                     |
 
 ##############################################################################################
 
@@ -971,22 +1045,30 @@ Atenção! 1 core de CPU corresponde a 1000m (1000 milicore). Ao especificar 200
 
 
 
+https://kubernetes.io/docs/reference/kubectl/overview/
+
+A figura a seguir mostra a estrutura dos principais comandos do `kubectl`.
+
+![image-20210727204047129](./imagens/image-20210727204047129.png)
+
+
+
 |                           Comando                            | Descrição                                                    |
 | :----------------------------------------------------------: | :----------------------------------------------------------- |
-| kubeadm init --control-plane-endpoint "k8s-elb-01:6443" --upload-certs | subir o cluster com elb                                      |
-|          kubeadm token create --print-join-command           | Restaurar o token do join p/ worker node                     |
+|                                                              |                                                              |
+|                                                              |                                                              |
 |                 kubectl get componentstatus                  | Status dos componentes                                       |
 |                     kubectl cluster-info                     | Informações do cluster                                       |
 |                  kubectl cluster-info dump                   | Gerar Dump das infos do cluster                              |
 |               kubectl run nginx --image=nginx                | Cria um POD                                                  |
 |              kubectl get pods nginx **-o yaml**              | mostra o manifesto do pod                                    |
 | kubectl run meu-nginx --image nginx **--dry-run=client** -o yaml > pod-template.yaml | Opção DryRun não Cria o POD                                  |
-| kubectl create deployment meu-nginx --image=nginx **--dry-run=client** -o yaml > deployment-template.yaml | Opção DryRun não Cria o Deployment                           |
+|                                                              |                                                              |
 |                  kubectl explain "recurso"                   | Explica o recurso "main page"                                |
 |                        kubectl expose                        | Cria Services                                                |
 |                    kubectl logs -f nginx                     | Analise de Logs                                              |
-|        kubectl create deployment nginx --image=nginx         |                                                              |
-|    kubectl scale deployment "*nomedeploy*" --replicas=40     |                                                              |
+|                                                              |                                                              |
+|                                                              |                                                              |
 |  echo "source <(kubectl completion bash)" >> /root/.bashrc   | auto complete                                                |
 |                                                              |                                                              |
 |      kubectl get pods "nomedopod" -o yaml > meupod.yaml      | Cria um arquivo yaml com as infos do pod                     |

@@ -32,15 +32,15 @@ https://docs.google.com/presentation/d/1weqpBWa9FNjKc1ugCUIpwYYquvoIOFbUvEcZ9ZYa
 
 
 
-## **1.5 - AcloudGuru**
+## **1.3 - AcloudGuru**
 
 
 
-### **1.5.1 - Kubernetes Quick Start** ✔
+### **1.3.1 - Kubernetes Quick Start** ✔
 
 https://lucid.app/lucidchart/fc864348-11e5-47fd-a64d-82ba93d32bb3/view?page=c9hx29xGf93-#
 
-### **1.5.2 - Kubernetes Essentials ✔**
+### **1.3.2 - Kubernetes Essentials ✔**
 
 https://lucid.app/lucidchart/6d5625be-9ef9-411d-8bea-888de55db5cf/view?page=I_Too4-SqdGV#
 
@@ -94,9 +94,9 @@ https://github.com/linuxacademy/robot-shop.
 
 
 
-## **1.3 - LinuxTips**
+## **1.4 - LinuxTips**
 
-### **1.3.1 - Descomplicando o Kubernetes** 
+### **1.4.1 - Descomplicando o Kubernetes** 
 
 https://github.com/badtuxx/DescomplicandoKubernetes
 
@@ -110,17 +110,105 @@ https://www.youtube.com/watch?v=CTvsdWZrAW0
 
 https://github.com/badtuxx/k8s-canary-deploy-example
 
+helm
 
 
 
+## **1.5 - AWS**
 
-## **1.6 - AWS**
+1.5.1 - AWS training
+
+Containers on AWS: Ecosystem Integration
+
+Amazon Elastic Kubernetes Service (EKS) Primer
+
+APN Containers Navigate - Technical
+
+Running Containers on Amazon Elastic Kubernetes Service (Amazon EKS)
+
+
+
+**Containers na AWS**
+
+https://pages.awscloud.com/LATAM_TRAINCERT_WEBINAR_immersion-day-containers-video-series_20200331_7010z000001LIBT_LPVideos-CostOptimizationVideoSeries.html
+
+
 
 1.6.1 - worksops aws
+
+https://www.eksworkshop.com/
+
+WINDOWS CONTAINERS ON AWS
+
+https://ms-containers.workshop.aws/en/
+
+DISASTER RECOVERY ON AWS
+
+https://disaster-recovery.workshop.aws/en/
+
+BLUE/GREEN AND CANARY DEPLOYMENT FOR EKS AND ECS
+
+https://cicd-pipeline-cdk-eks-bluegreen.workshop.aws/en/
+
+MANAGE YOUR EKS CLUSTER IN FULL-STACK WITH CDK
+
+https://cdk-eks-devops.workshop.aws/en/
+
+INTRODUCTION TO AMAZON EKS
+
+https://eks-for-aws-summit-online.workshop.aws/
+
+AMAZON EKS TERRAFORM WORKSHOP
+
+https://tf-eks-workshop.workshop.aws/
+
+WELCOME TO THE AMAZON EC2 SPOT INSTANCES WORKSHOPS WEBSITE
+
+https://ec2spotworkshops.com/
+
+AWS MODERNIZATION WORKSHOP
+
+https://aqua.awsworkshop.io/
+
+APPLICATION MODERNIZATION WITH AWS, SNYK AND DOCKER
+
+https://docker-snyk.awsworkshop.io/
+
+AWS MODERNIZATION WORKSHOP WITH HARNESS
+
+https://harness.awsworkshop.io/
+
+Introduction to GitOps on EKS with Weaveworks
+
+https://weaveworks-gitops.awsworkshop.io/
+
+HELLO 
+
+https://observability.workshop.aws/en/
+
+AWS MODERNIZATION WORKSHOP: DEVSECOPS WITH ATLASSIAN & SNYK
+
+https://snyk-atlassian.awsworkshop.io/
+
+
+
+
+
+
+
+
 
 https://workshops.aws/
 
 https://awsworkshop.io/
+
+
+
+https://github.com/brunokktro/auladobruno
+
+
+
+
 
 ## **1.7 - Monitoramento**
 
@@ -128,7 +216,7 @@ https://kubedev.io/bonus-monitoramento/
 
 
 
-## **2.2 - Laboratório K8S**
+## **1.8 - Laboratório K8S**
 
 **Play with K8s**
 

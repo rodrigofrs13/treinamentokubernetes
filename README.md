@@ -34,7 +34,7 @@ https://docs.google.com/presentation/d/1weqpBWa9FNjKc1ugCUIpwYYquvoIOFbUvEcZ9ZYa
 
 ## **1.3 - AcloudGuru**
 
-
+https://github.com/ACloudGuru-Resources
 
 ### **1.3.1 - Kubernetes Quick Start** ✔
 

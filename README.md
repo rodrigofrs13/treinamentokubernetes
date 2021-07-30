@@ -52,7 +52,9 @@ https://github.com/linuxacademy/robot-shop.
 
 ### **1.5.4 - Kubernetes Deep Dive**
 
+https://github.com/nigelpoulton
 
+https://github.com/ACloudGuru-Resources/Course_Kubernetes_Deep_Dive_NP
 
 ### **1.5.4 - Helm Deep Dive V3**
 
@@ -134,7 +136,7 @@ https://pages.awscloud.com/LATAM_TRAINCERT_WEBINAR_immersion-day-containers-vide
 
 
 
-1.6.1 - worksops aws
+1.5.2 - Workshops AWS
 
 https://www.eksworkshop.com/
 
@@ -192,12 +194,6 @@ https://snyk-atlassian.awsworkshop.io/
 
 
 
-
-
-
-
-
-
 https://workshops.aws/
 
 https://awsworkshop.io/
@@ -241,11 +237,17 @@ https://kubernetes.io/pt-br/docs/home/
 
 
 
+**K8S Teoria**
+
+![image-20210729203449523](./imagens/image-20210729203449523.png)
+
 
 
 ## **2.2 - Componentes do K8s**
 
 ![image-20210719201310997](./imagens/image-20210719201310997.png)
+
+
 
 
 
@@ -261,11 +263,11 @@ https://kubernetes.io/docs/concepts/overview/components/
 
 https://kubernetes.io/pt-br/docs/concepts/overview/components/
 
-No **[ETCD](https://kubernetes.io/docs/concepts/overview/components/#etcd)** são armazenados o estado do cluster, rede e outras informações persistentes.
-
 Armazenamento de valor de chave consistente e altamente disponível usado como armazenamento de apoio do Kubernetes para todos os dados do cluster.
 
-Se seu cluster Kubernetes usa etcd como armazenamento de apoio, certifique-se de ter um plano de [backup](https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/#backing-up-an-etcd-cluster) para esses dado.
+- No **[ETCD](https://kubernetes.io/docs/concepts/overview/components/#etcd)** são armazenados o estado do cluster, rede e outras informações persistentes.
+- É Stateful. 
+- Se seu cluster Kubernetes usa etcd como armazenamento de apoio, certifique-se de ter um plano de [backup](https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/#backing-up-an-etcd-cluster) para esses dado.
 
 **2.3.1.1 - Comandos**
 
@@ -291,11 +293,11 @@ O kube-apiserver foi projetado para ser escalonado horizontalmente — ou seja, 
 
 **2.3.2.1 - Comandos**
 
-| Descrição          | Comando                         |
-| ------------------ | ------------------------------- |
-| Lista pods do etcd | kubectl get pods -n kube-system |
-|                    |                                 |
-|                    |                                 |
+| Descrição                | Comando                         |
+| ------------------------ | ------------------------------- |
+| Lista pods do api-server | kubectl get pods -n kube-system |
+|                          |                                 |
+|                          |                                 |
 
 ### **2.4.3 - [kube-scheduller](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver)** 
 
@@ -384,7 +386,11 @@ O **[kube-proxy](https://kubernetes.io/docs/concepts/overview/components/#kube-p
 
 Trata da comunicação entre os Nodes.
 
+- **CBR0 - Cluster Bridge Zero**  
+- **IPTABLES Mode** - Antigo
+- **IPVS Mode** - Novo
 
+![image-20210726215128527](./imagens/image-20210726215128527.png)
 
 ### **2.5.2 - Container runtime**
 
@@ -424,14 +430,14 @@ instalado em todos os nodes - master e worker
 
 - **2.6.8 - Worker Nodes**
 
+  ###
   
-
-
+  
 
 - **Labels**
 - **Controllers**
 - **Storage**
-- 
+- **Endpoints**
 
 
 
@@ -439,23 +445,30 @@ instalado em todos os nodes - master e worker
 
 ### **2.6.1 - POD´s**
 
-![image-20210726205830178](./imagens/image-20210726205830178.png)
-
 https://kubernetes.io/docs/concepts/workloads/pods/
 
-**[Pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/)** é a menor unidade que você irá tratar no k8s. **Você poderá ter mais de um contêiner por Pod**, porém vale lembrar que eles dividirão os mesmos recursos, como por exemplo IP. Uma das boas razões para se ter mais de um contêiner em um Pod é o fato de você ter os logs consolidados.
+**[Pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/)** é a menor unidade que você irá tratar no k8s. 
 
-O Pod, por poder possuir diversos contêineres, muitas das vezes se assemelha a uma VM, onde você poderia ter diversos serviços rodando compartilhando o mesmo IP e demais recursos.
+- **Você poderá ter mais de um contêiner por Pod**, porém vale lembrar que eles dividirão os mesmos recursos, como por exemplo IP. 
+- Uma das boas razões para se ter mais de um contêiner em um Pod é o fato de você ter os logs consolidados.
+- O Pod, por poder possuir diversos contêineres, muitas das vezes se assemelha a uma VM, onde você poderia ter diversos serviços rodando compartilhando o mesmo IP e demais recursos.
+- Os Pods podem se comunicar sem **NAT**.
 
-Os Pods podem se comunicar sem **NAT**.
+
+
+
+
+![image-20210726205830178](./imagens/image-20210726205830178.png)
+
+
 
 **LifeCycle**
 
 https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/
 
+**Entender mais do Lifecycle**
 
-
-Anatomia de um pod em yaml. 
+**Anatomia de um Pod ** 
 
 ```yaml
 apiVersion: v1									-----> Versão da API
@@ -568,7 +581,7 @@ No POD a namespace é declarada no metadata.
 
 ##############################################################################################
 
-### **2.3.5 - DNS**
+### **2.6.4 - DNS**
 
 https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/
 
@@ -588,17 +601,17 @@ options ndots:5
 
 ##############################################################################################
 
-### **2.5.6 - Redes**
+### **2.6.5 - Network**
 
 https://kubernetes.io/pt-br/docs/concepts/cluster-administration/networking/
 
 
 
-![Cluster Networking](./imagens/kubernetes-Networking-Model-1.png)
+![image-20210729212050005](./imagens/image-20210729212050005.png)
 
 
 
-## Container Network Interface
+**Container Network Interface**
 
 Para prover a rede para os contêineres, o k8s utiliza a especificação do **CNI**, Container Network Interface.
 
@@ -630,17 +643,25 @@ Isso é solucionado com a utilização de algum software que te ajudará na cria
 
 Mais informações em: https://kubernetes.io/docs/concepts/cluster-administration/addons/
 
+
+
+**2.6.5.1 - Comandos**
+
+| Descrição             | Comando                         |
+| --------------------- | ------------------------------- |
+| Lista pods do coredns | kubectl get pods -n kube-system |
+|                       |                                 |
+|                       |                                 |
+
 ##############################################################################################
 
 **2.3.5 - Replicas e Replicas Set**
 
-O objetivo de um ReplicaSet é manter um conjunto estável de pods de réplica em execução a qualquer momento. Como tal, costuma ser usado para garantir a disponibilidade de um número especificado de pods idênticos
-
 https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
 
+O objetivo de um **ReplicaSet** é manter um conjunto estável de pods de réplica em execução a qualquer momento. Como tal, costuma ser usado para garantir a disponibilidade de um número especificado de pods idênticos
 
-
-Anatomia de um replica set. 
+**Anatomia de um replica set.** 
 
 ![image-20210726214240452](./imagens/image-20210726214240452.png)
 
@@ -710,11 +731,25 @@ https://kubernetes.io/docs/concepts/services-networking/service/
 
 Uma maneira abstrata de expor um aplicativo em execução em um conjunto de [Pods](https://kubernetes.io/docs/concepts/workloads/pods/) como um serviço de rede.
 
-Com o Kubernetes, você não precisa modificar seu aplicativo para usar um mecanismo de descoberta de serviço desconhecido. O Kubernetes fornece aos pods seus próprios endereços IP e um único nome DNS para um conjunto de pods e pode fazer o balanceamento de carga entre eles
 
-![image-20210727205522965](./imagens/image-20210727205522965.png)
+
+![image-20210729211710504](./imagens/image-20210729211710504.png)
+
+Com o Kubernetes, você não precisa modificar seu aplicativo para usar um mecanismo de descoberta de serviço desconhecido. O Kubernetes fornece aos pods seus próprios endereços IP e um único nome DNS para um conjunto de pods e pode fazer o balanceamento de carga entre eles. 
 
 É uma forma de você expor a comunicação através de um **NodePort** ou **LoadBalancer** para distribuir as requisições entre diversos Pods daquele Deployment. Funciona como um balanceador de carga.
+
+**Tipos de Services:**
+
+- **NodePort:** Sempre acessível de **DENTRO** do Cluster - Por Porta
+- **ClusterIP:** Sempre acessível de **FORA** do Cluster - Por IP
+- **LoadBalancer:** Integração com Cloud Publica
+
+![image-20210729213308068](./imagens/image-20210729213308068.png)
+
+**O IP e o nome do Service nunca muda.** 
+
+
 
 O vinculo entre o Service e o Pod é feito pelo label informado no Selector conforme abaixo:
 
@@ -724,22 +759,30 @@ Ele cria um IP virtual para os pods, mas o endpoint continua sendo o ip dos pods
 
 ![image-20210726215644723](./imagens/image-20210726215644723.png)
 
-Anatomia do Service
 
-![image-20210726215128527](./imagens/image-20210726215128527.png)
+
+
+
+**Anatomia do Service**
 
 ```yaml
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
-  name: my-awesome-service
-spec: 						
-  selector:					----> determina quais pod´s farão parte do service
-    app: nginx				----> determina quais pod´s farão parte do service
+  labels:
+    run: nginx
+  name: nginx-clusterip
+  namespace: default
+spec:
+  externalTrafficPolicy: Cluster
   ports:
-  - protocol: TCP
-    port: 32768
+  - port: 80
+    protocol: TCP
     targetPort: 80
+  selector:					----> determina quais pod´s farão parte do service
+    run: nginx				----> determina quais pod´s farão parte do service
+    sessionAffinity: None
+  type: ClusterIP
 ```
 
 
@@ -844,14 +887,24 @@ https://kubernetes.io/docs/concepts/architecture/nodes/
 
 **2.6.8.1 - Comandos**
 
-| Descrição     | Comando                             |
-| ------------- | ----------------------------------- |
-| Lista Nodes   | kubectl get nodes                   |
-| Describe Node | kubectl describe node "*node_name*" |
-|               |                                     |
-|               |                                     |
+| Descrição                   | Comando                                                  |
+| --------------------------- | -------------------------------------------------------- |
+| Lista Nodes                 | kubectl get nodes                                        |
+| Describe Node               | kubectl describe node "*node_name*"                      |
+| Pegar bloco de ip dos nodes | kubectl get nodes -o jsonpath='{.items[*].spec.podCIDR}' |
+|                             |                                                          |
 
 ##############################################################################################
+
+**2.3.5 - Endpoints**
+
+**Sempre pega com o Endpoint os pods que estão no Selector.**
+
+![image-20210729212754923](./imagens/image-20210729212754923.png)
+
+##############################################################################################
+
+
 
 **2.3.5 - Labels**
 
@@ -993,6 +1046,14 @@ kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl versio
 ```
 kubeadm join --discovery-token-unsafe-skip-ca-verification --token=102952.1a7dd4cc8d1f4cc5 172.17.0.69:6443
 ```
+
+
+
+## **Best  Practices**
+
+- **ETCD** - em produção sempre manter fora do Master e em HA
+
+
 
 
 

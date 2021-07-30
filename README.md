@@ -56,6 +56,10 @@ https://github.com/nigelpoulton
 
 https://github.com/ACloudGuru-Resources/Course_Kubernetes_Deep_Dive_NP
 
+Parei em: Kubernetes Storage
+
+
+
 ### **1.5.4 - Helm Deep Dive V3**
 
 

@@ -818,21 +818,17 @@ spec:
 
 https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
 
+
+
 Você descreve um *estado desejado* em uma implantação, e a implantação [Controlador](https://kubernetes.io/docs/concepts/architecture/controller/) altera o estado real para o estado desejado em uma taxa controlada. Você pode definir implantações para criar novos **ReplicaSets** ou remover implantações existentes e adotar todos os seus recursos com novas implantações.
 
 O deployment é uma ótima maneira de automatizar o gerenciamento de seus pods. O deployment permite que você especifique um estado desejado para um conjunto de pods. O cluster trabalhará constantemente para manter o estado desejado.
 
-- **Scaling**
+- **Scaling** - Entender mais
+- **Rolling updates** - Entender mais
+- **Self-Healing** - Entender mais
 
-  Entender mais
-
-- **Rolling updates**
-
-  Entender mais
-
-- **Self-Healing**
-
-  Entender mais
+![image-20210802222430494](./imagens/image-20210802222430494.png)
 
 ![image-20210726220653723](./imagens/image-20210726220653723.png)
 
@@ -852,27 +848,67 @@ O deployment é uma ótima maneira de automatizar o gerenciamento de seus pods. 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: example-deployment 
-  labels: 
-    app: nginx
+  labels:
+    run: prod-redis						--> Labels
+  name: prod-redis
 spec:
-  replicas: 2							----> ReplicaSet
   selector:
     matchLabels:
-      app: nginx
+      run: prod-redis
+  replicas: 3							---> ReplicaSet
+  minReadySeconds: 300					---> Tempo para chegar o pod como health
+  strategy:								--> Estratégia de replicas
+    rollingUpdate:
+      maxSurge: 1						--> Vai criar uma nova réplica e deletar 1 / Pode ser qde ou %
+      maxUnavailable: 0
+    type: RollingUpdate
   template:
     metadata:
       labels:
-        app: nginx 
-    spec: 
+        run: prod-redis						--> Labels
+    spec:
       containers:
-      - name: nginx
-        image: darealmc/nginx-k8s:v1
-        ports:
-        - containerPort: 80
+      - image: redis:4.0
+        name: redis
 ```
 
-**2.6.7.1 - Comandos**
+
+
+### Stateful Sets
+
+StatefulSet é o objeto da API de carga de trabalho usado para gerenciar aplicações stateful. 
+
+Como uma implantação, um StatefulSet gerencia pods com base em uma especificação de contêiner idêntica. 
+
+Ao contrário de uma implantação, um StatefulSet mantém uma identidade persistente para cada um de seus pods. 
+
+Esses pods são criados com a mesma especificação, mas não são intercambiáveis: cada um tem um identificador persistente, mantido em qualquer reagendamento.
+
+### Daemon Sets
+
+Um DaemonSet garante que os nodes executem uma cópia de um pod. **À medida que os nodes são adicionados ao cluster, os pods são adicionados a eles.** 
+
+Porém, sempre que os nodes forem removidos do cluster, esses pods são coletados como lixo. A exclusão de um DaemonSet limpará os pods criados.
+
+Entre os diversos usos de um DaemonSet, podemos citar: 
+
+- Daemon de armazenamento em cluster em cada node, como glusterd e ceph, por exemplo. 
+- Daemon de coleta de logs em todos os nodes, como fluentd ou filebeat.
+- Daemon de monitoramento de node em cada node, como Prometheus Node Exporter, Flowmill, Sysdig Agent, collectd, Dynatrace OneAgent, AppDynamics Agent, entre outros. 
+
+Em um caso simples, um DaemonSet, cobrindo todos os nodes, seria usado para cada tipo de daemon. 
+
+Uma configuração mais complexa pode usar vários DaemonSets para um único tipo de daemon. 
+
+No entanto, com diferentes sinalizadores e/ou diferentes solicitações de memória e CPU para cada tipo de hardware.
+
+**2.6.7.1 - Anotações Importantes**
+
+- **Um tipo Pod por deployment, mas pode ter varias replicar desse pod (replicas set)**
+- **Sempre cria uma nova replica set quando vai fazer o rollout**
+- **Sempre utilizar a flag "--record" no apply para criar o history do rollout**
+
+**2.6.7.2 - Comandos**
 
 | Descrição                          | Comando                                                      |
 | ---------------------------------- | ------------------------------------------------------------ |
@@ -881,10 +917,10 @@ spec:
 | Cria deployment básico             | kubectl create deployment "*nome-deployment*" --image=nginx  |
 | Escala deployment                  | kubectl scale deployment "*nome-deployment*" --replicas="*qde-replicas*" |
 | Opção DryRun não Cria o Deployment | kubectl create deployment meu-nginx --image=nginx **--dry-run=client** -o yaml > deployment-template.yaml |
-|                                    |                                                              |
-|                                    |                                                              |
-|                                    |                                                              |
-|                                    |                                                              |
+| Acompanha o rollout da app         | kubectl rollout status deploy "*nome-do-deploy*"             |
+| History dos rolouts                | kubectl.exe rollout history deploy test                      |
+| Ver alterações na revisão          | kubectl.exe rollout history deploy test --revision=3         |
+| Volta na versão tageada            | kubectl.exe rollout undo deploy test                         |
 |                                    |                                                              |
 |                                    |                                                              |
 
@@ -920,6 +956,12 @@ O vinculo entre o Service e o Pod é feito pelo label informado no Selector conf
 ##############################################################################################
 
 **2.6.10 - Storage**
+
+Os volumes são um diretório que contém dados acessíveis aos contêineres em um pod. Um volume Kubernetes tem a mesma vida útil que o pod que o encapsula. 
+
+Ele sobrevive a todos os contêineres executados no pod e os dados são preservados quando um contêiner é reiniciado.
+
+O Kubernetes suporta muitos tipos de volumes e um pod pode usar todos eles simultaneamente.
 
 https://kubernetes.io/docs/concepts/storage/
 
@@ -1294,7 +1336,7 @@ A figura a seguir mostra a estrutura dos principais comandos do `kubectl`.
 |                  kubectl explain "recurso"                   | Explica o recurso "main page"                                |
 |                        kubectl expose                        | Cria Services                                                |
 |                    kubectl logs -f nginx                     | Analise de Logs                                              |
-|                                                              |                                                              |
+|                   kubectl version -o yaml                    | Versão do Kubernetes                                         |
 |                                                              |                                                              |
 |  echo "source <(kubectl completion bash)" >> /root/.bashrc   | auto complete                                                |
 |                                                              |                                                              |

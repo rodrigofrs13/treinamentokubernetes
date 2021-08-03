@@ -434,14 +434,21 @@ instalado em todos os nodes - master e worker
 
 - **2.6.8 - Worker Nodes**
 
+- **2.6.9 - Endpoints**
+
+- **2.6.10 - Storage**
+
   ###
   
   
 
 - **Labels**
+
 - **Controllers**
-- **Storage**
-- **Endpoints**
+
+- 
+
+- 
 
 
 
@@ -900,15 +907,82 @@ https://kubernetes.io/docs/concepts/architecture/nodes/
 
 ##############################################################################################
 
-**2.3.5 - Endpoints**
+**2.6.9 - Endpoints**
 
 **Sempre pega com o Endpoint os pods que estão no Selector.**
+
+O vinculo entre o Service e o Pod é feito pelo label informado no Selector conforme abaixo:
+
+![image-20210726215532711](./imagens/image-20210726215532711.png)
 
 ![image-20210729212754923](./imagens/image-20210729212754923.png)
 
 ##############################################################################################
 
+**2.6.10 - Storage**
 
+https://kubernetes.io/docs/concepts/storage/
+
+![image-20210802203359146](./imagens/image-20210802203359146.png)
+
+**Volumes**
+
+https://kubernetes.io/docs/concepts/storage/volumes/
+
+**Container Storage Interface (CSI)**
+
+https://kubernetes.io/blog/2019/01/15/container-storage-interface-ga/
+
+![image-20210802204057322](C:\Users\brik\AppData\Roaming\Typora\typora-user-images\image-20210802204057322.png)
+
+
+
+**Persistent Volumes**
+
+https://kubernetes.io/docs/concepts/storage/persistent-volumes/
+
+![image-20210802204251424](./imagens/image-20210802204251424.png)
+
+**PV** é criado no WorkerNode.
+
+**PVC** é o que aponta no POD.
+
+**Reclaim Policy no PV**
+
+- Retain
+- Detele
+
+![image-20210802204753235](./imagens/image-20210802204753235.png)
+
+![image-20210802204956898](./imagens/image-20210802204956898.png)
+
+
+
+**Storage Classes**
+
+Um StorageClass fornece uma maneira para os administradores descreverem as "classes" de armazenamento que oferecem.
+
+https://kubernetes.io/docs/concepts/storage/storage-classes/
+
+![image-20210802205318959](./imagens/image-20210802205318959.png)
+
+
+
+
+
+**2.6.10.1 - Comandos**
+
+
+
+| Descrição             | Comando                      |
+| --------------------- | ---------------------------- |
+| Listar o StorageClass | kubect get sc                |
+|                       | kubectl describe sc "nomesc" |
+|                       |                              |
+|                       |                              |
+|                       |                              |
+
+##############################################################################################
 
 **2.3.5 - Labels**
 

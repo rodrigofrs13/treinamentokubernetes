@@ -56,7 +56,7 @@ https://github.com/nigelpoulton
 
 https://github.com/ACloudGuru-Resources/Course_Kubernetes_Deep_Dive_NP
 
-Parei em: Kubernetes Storage
+Parei em: Scalling app automatically
 
 
 

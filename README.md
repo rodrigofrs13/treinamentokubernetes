@@ -85,13 +85,13 @@ https://github.com/ACloudGuru-Resources/Course_Kubernetes_Deep_Dive_NP
 
 ### 
 
-- ### Containers on AWS: Ecosystem Integration
+- ### **Containers on AWS: Ecosystem Integration**
 
-- ### Amazon Elastic Kubernetes Service (EKS) Primer
+- ### **Amazon Elastic Kubernetes Service (EKS) Primer**
 
-- ### APN Containers Navigate - Technical
+- ### **APN Containers Navigate - Technical**
 
-- ### Running Containers on Amazon Elastic Kubernetes Service (Amazon EKS)
+- ### **Running Containers on Amazon Elastic Kubernetes Service (Amazon EKS)**
 
 - ### **Containers na AWS**
 
@@ -99,114 +99,142 @@ https://pages.awscloud.com/LATAM_TRAINCERT_WEBINAR_immersion-day-containers-vide
 
 
 
-- ### Workshops AWS
+- ### **Workshops AWS**
 
   https://www.eksworkshop.com/
 
   
 
-- **WINDOWS CONTAINERS ON AWS**
+- ### **WINDOWS CONTAINERS ON AWS**
 
   https://ms-containers.workshop.aws/en/
 
   
 
-- DISASTER RECOVERY ON AWS
+  
 
-- https://disaster-recovery.workshop.aws/en/
+- ### **DISASTER RECOVERY ON AWS**
 
-- BLUE/GREEN AND CANARY DEPLOYMENT FOR EKS AND ECS
+  https://disaster-recovery.workshop.aws/en/
 
-- https://cicd-pipeline-cdk-eks-bluegreen.workshop.aws/en/
+  
 
-- MANAGE YOUR EKS CLUSTER IN FULL-STACK WITH CDK
+- ### **BLUE/GREEN AND CANARY DEPLOYMENT FOR EKS AND ECS**
 
-- https://cdk-eks-devops.workshop.aws/en/
-
-- INTRODUCTION TO AMAZON EKS
-
-- https://eks-for-aws-summit-online.workshop.aws/
-
-- AMAZON EKS TERRAFORM WORKSHOP
-
-- https://tf-eks-workshop.workshop.aws/
-
-- WELCOME TO THE AMAZON EC2 SPOT INSTANCES WORKSHOPS WEBSITE
-
-- https://ec2spotworkshops.com/
-
-- AWS MODERNIZATION WORKSHOP
-
-- https://aqua.awsworkshop.io/
-
-- APPLICATION MODERNIZATION WITH AWS, SNYK AND DOCKER
-
-- https://docker-snyk.awsworkshop.io/
-
-- AWS MODERNIZATION WORKSHOP WITH HARNESS
-
-- https://harness.awsworkshop.io/
-
-- Introduction to GitOps on EKS with Weaveworks
-
-- https://weaveworks-gitops.awsworkshop.io/
-
-- HELLO 
-
-- https://observability.workshop.aws/en/
-
-- AWS MODERNIZATION WORKSHOP: DEVSECOPS WITH ATLASSIAN & SNYK
-
-- https://snyk-atlassian.awsworkshop.io/
-
-- 
-
-- https://workshops.aws/
-
-- https://awsworkshop.io/
-
-- 
-
-- https://github.com/brunokktro/auladobruno
+  https://cicd-pipeline-cdk-eks-bluegreen.workshop.aws/en/
 
 
 
+- ### **MANAGE YOUR EKS CLUSTER IN FULL-STACK WITH CDK**
+
+  https://cdk-eks-devops.workshop.aws/en/
 
 
 
-## **1.7 - Monitoramento**
+- ### **INTRODUCTION TO AMAZON EKS**
+
+  https://eks-for-aws-summit-online.workshop.aws/
+
+
+
+- ### **AMAZON EKS TERRAFORM WORKSHOP**
+
+  https://tf-eks-workshop.workshop.aws/
+
+
+
+- ### **WELCOME TO THE AMAZON EC2 SPOT INSTANCES WORKSHOPS WEBSITE**
+
+  https://ec2spotworkshops.com/
+
+
+
+- ### **AWS MODERNIZATION WORKSHOP**
+
+  https://aqua.awsworkshop.io/
+
+
+
+- ### **APPLICATION MODERNIZATION WITH AWS, SNYK AND DOCKER**
+
+  https://docker-snyk.awsworkshop.io/
+
+
+
+- ### **AWS MODERNIZATION WORKSHOP WITH HARNESS**
+
+  https://harness.awsworkshop.io/
+
+
+
+- ### **Introduction to GitOps on EKS with Weaveworks**
+
+  https://weaveworks-gitops.awsworkshop.io/
+
+
+
+- ### **HELLO** 
+
+  https://observability.workshop.aws/en/
+
+
+
+- ### **AWS MODERNIZATION WORKSHOP: DEVSECOPS WITH ATLASSIAN & SNYK**
+
+  https://snyk-atlassian.awsworkshop.io/
+
+
+
+- ### **Workshop Links**
+
+  https://workshops.aws/
+
+  https://awsworkshop.io/
+
+
+
+- ### **Agregação de Links**
+
+  https://github.com/brunokktro/auladobruno
+
+
+
+
+
+
+## **Monitoramento**
 
 https://kubedev.io/bonus-monitoramento/
 
 
 
-## **1.4 - LinuxTips**
+## **LinuxTips**
 
-### **1.4.1 - Descomplicando o Kubernetes** 
+- ### **Descomplicando o Kubernetes** 
+
 
 https://github.com/badtuxx/DescomplicandoKubernetes
 
 multi etcd
 
-### **1.3.2 - Canary Deploy**
-
+- ### Canary Deploy
 
 
 https://www.youtube.com/watch?v=CTvsdWZrAW0
 
 https://github.com/badtuxx/k8s-canary-deploy-example
 
-helm
+- ### **helm**
 
 
 
-## **1.8 - Laboratório K8S**
+## **Laboratório K8S**
 
-**Play with K8s**
+- **Play with K8s**
 
 https://labs.play-with-k8s.com/
 
-**Katacoda**
+- **Katacoda**
 
 https://www.katacoda.com/courses/kubernetes
 
@@ -214,9 +242,9 @@ https://www.katacoda.com/courses/kubernetes
 
 
 
-# **2 - Anotações**
+# **Anotações**
 
-## **2.1 - Documentação oficial**
+## **Documentação oficial**
 
 https://kubernetes.io/pt-br/docs/home/
 

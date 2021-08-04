@@ -4,17 +4,18 @@
 
 
 
-# **1 - Treinamentos**
+# **Treinamentos**
 
 Colocar ✔ quando concluído. 
 
-## **1.1 - Linux Foundation** 
+## **Linux Foundation** 
 
-https://learning.edx.org/course/course-v1:LinuxFoundationX+LFS158x+3T2020/home✔
+- https://learning.edx.org/course/course-v1:LinuxFoundationX+LFS158x+3T2020/home✔
 
 
 
-## **1.2 - Curso de Introdução ao Kubernetes**
+
+## **Curso de Introdução ao Kubernetes**
 
 https://docs.google.com/presentation/d/1weqpBWa9FNjKc1ugCUIpwYYquvoIOFbUvEcZ9ZYapAg/edit#slide=id.g23786ddafa_0_68
 
@@ -32,67 +33,55 @@ https://docs.google.com/presentation/d/1weqpBWa9FNjKc1ugCUIpwYYquvoIOFbUvEcZ9ZYa
 
 
 
-## **1.3 - AcloudGuru**
+## **AcloudGuru**
 
-https://github.com/ACloudGuru-Resources
 
-### **1.3.1 - Kubernetes Quick Start** ✔
+
+- ### **Kubernetes Quick Start** ✔
+
 
 https://lucid.app/lucidchart/fc864348-11e5-47fd-a64d-82ba93d32bb3/view?page=c9hx29xGf93-#
 
-### **1.3.2 - Kubernetes Essentials ✔**
+- ### **Kubernetes Essentials ✔**
+
 
 https://lucid.app/lucidchart/6d5625be-9ef9-411d-8bea-888de55db5cf/view?page=I_Too4-SqdGV#
 
 https://github.com/linuxacademy/robot-shop.
 
-### **1.5.3 - Introduction to Kubernetes ✔**
+- ### **Introduction to Kubernetes ✔**
 
 
 
-### **1.5.4 - Kubernetes Deep Dive**
+
+- ### **Kubernetes Deep Dive**✔
+
 
 https://github.com/nigelpoulton
 
+https://github.com/ACloudGuru-Resources
+
 https://github.com/ACloudGuru-Resources/Course_Kubernetes_Deep_Dive_NP
 
-Parei em: Scalling app automatically
 
 
+- ### **Monitoring Kubernetes With Prometheus**
 
-### **1.5.4 - Helm Deep Dive V3**
+- ### **AIOps Essentials (Autoscaling Kubernetes with Prometheus Metrics)**
 
+- ### ** Kubernetes the Hard Way**
 
+- ### **Kubernetes Security**
 
-### **1.5.5 - Monitoring Kubernetes With Prometheus**
+- ### **Kubernetes Security (Advanced Concepts)**
 
+- ### **Advanced Networking with Kubernetes on AWS**
 
+- ### **Backing up and Restoring Kubernetes Data in etcd**
 
-### **1.5.6 - AIOps Essentials (Autoscaling Kubernetes with Prometheus Metrics)**
+- **Helm Deep Dive V3**
 
-
-
-### **1.5.7 - Kubernetes the Hard Way**
-
-
-
-### **1.5.8 - Kubernetes Security**
-
-
-
-### **1.5.9 - Kubernetes Security (Advanced Concepts)**
-
-
-
-### **1.5.10 - Advanced Networking with Kubernetes on AWS**
-
-
-
-### **1.5.11 - Backing up and Restoring Kubernetes Data in etcd**
-
-
-
-### **1.5.12 - Certified Kubernetes Administrator (CKA)**
+- ### **Certified Kubernetes Administrator (CKA)**
 
 
 
@@ -100,23 +89,8 @@ Parei em: Scalling app automatically
 
 
 
-## **1.4 - LinuxTips**
-
-### **1.4.1 - Descomplicando o Kubernetes** 
-
-https://github.com/badtuxx/DescomplicandoKubernetes
-
-multi etcd
-
-### **1.3.2 - Canary Deploy**
 
 
-
-https://www.youtube.com/watch?v=CTvsdWZrAW0
-
-https://github.com/badtuxx/k8s-canary-deploy-example
-
-helm
 
 
 
@@ -213,6 +187,26 @@ https://github.com/brunokktro/auladobruno
 ## **1.7 - Monitoramento**
 
 https://kubedev.io/bonus-monitoramento/
+
+
+
+## **1.4 - LinuxTips**
+
+### **1.4.1 - Descomplicando o Kubernetes** 
+
+https://github.com/badtuxx/DescomplicandoKubernetes
+
+multi etcd
+
+### **1.3.2 - Canary Deploy**
+
+
+
+https://www.youtube.com/watch?v=CTvsdWZrAW0
+
+https://github.com/badtuxx/k8s-canary-deploy-example
+
+helm
 
 
 
@@ -419,37 +413,28 @@ instalado em todos os nodes - master e worker
 ## **2.6 - Demais componentes**
 
 - **2.61 - Pods**
-
 - **2.6.2 - Namespaces**
-
 - **2.6.3 - Network**
-
 - **2.6.4 - DNS**
-
 - **2.6.5 - Replicas e ReplicaSet**
-
 - **2.6.6 - Services**
-
 - **2.6.7 - Deployment**
-
 - **2.6.8 - Worker Nodes**
-
 - **2.6.9 - Endpoints**
-
 - **2.6.10 - Storage**
+- **2.6.11 - Scaling**
+- **2.6.12 - Labels**
+- **2.6.13 - RBAC e Admission Control**
 
-  ###
-  
-  
+########## - Revisar ########
 
-- **Labels**
-
-- **Controllers**
-
+- **2.6.13 - Kubectl Taint**
+- **2.6.14 - Setup do K8S**
+- **2.6.15 - Best  Practices**
+- **2.6.16 - Exemplos**
+- **2.6.17 - Comandos **
+- **2.6.18 - Links Úteis**
 - 
-
-- 
-
 
 
 ##############################################################################################
@@ -512,7 +497,7 @@ spec:											---->  espeficicações do container
 
 
 
-#### **2.3.1.1- Comandos**
+#### **2.6.1.1- Comandos**
 
 | Descrição                                                    | Comando                                     |
 | :----------------------------------------------------------- | ------------------------------------------- |
@@ -538,7 +523,7 @@ Os namespaces fornecem um escopo para nomes. Os nomes dos recursos precisam ser 
 
 Específica com "**-n**", se não especificar nenhuma ele lista da namespace "*default*". 
 
-#### **2.3.3.1 - Comandos**
+#### **2.6.2.1 - Comandos**
 
 | Descrição         | Comandos                                               |
 | ----------------- | ------------------------------------------------------ |
@@ -592,27 +577,7 @@ No POD a namespace é declarada no metadata.
 
 ##############################################################################################
 
-### **2.6.4 - DNS**
-
-https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/
-
-![image-20210726212636211](./imagens/image-20210726212636211.png)
-
- Kubelet define esse arquivo para cada pod.
-
-```yaml
-root@examplepod:/# cat /etc/resolv.conf
-nameserver 10.96.0.10
-search pod-example.svc.cluster.local svc.cluster.local cluster.local ec2.internal
-options ndots:5
-
-```
-
-
-
-##############################################################################################
-
-### **2.6.5 - Network**
+### **2.6.3 - Network**
 
 https://kubernetes.io/pt-br/docs/concepts/cluster-administration/networking/
 
@@ -666,7 +631,29 @@ Mais informações em: https://kubernetes.io/docs/concepts/cluster-administratio
 
 ##############################################################################################
 
-**2.3.5 - Replicas e Replicas Set**
+### **2.6.4 - DNS**
+
+https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/
+
+![image-20210726212636211](./imagens/image-20210726212636211.png)
+
+ Kubelet define esse arquivo para cada pod.
+
+```yaml
+root@examplepod:/# cat /etc/resolv.conf
+nameserver 10.96.0.10
+search pod-example.svc.cluster.local svc.cluster.local cluster.local ec2.internal
+options ndots:5
+
+```
+
+
+
+### 
+
+##############################################################################################
+
+**2.6.5 - Replicas e Replicas Set**
 
 https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
 
@@ -985,6 +972,36 @@ https://kubernetes.io/docs/concepts/storage/persistent-volumes/
 
 ![image-20210802204251424](./imagens/image-20210802204251424.png)
 
+**EmptyDir** 
+
+Um volume do tipo **EmptyDir** é criado sempre que um Pod é atribuído a um nó existente. Esse volume é criado inicialmente vazio, e todos os contêineres do Pod podem ler e gravar arquivos no volume.
+
+Esse volume não é um volume com persistência de dados. Sempre que o Pod é removido de um nó, os dados no `EmptyDir` são excluídos permanentemente. É importante ressaltar que os dados não são excluídos em casos de falhas nos contêineres.
+
+Disco disponível somente enquando o pod estiver rodando.
+
+Recomendado para logs por exemplo.
+
+Disco no Node em /var/lib/kubelet/pods , find . -iname "*nomedodisco*"
+
+
+
+**Persistent Volume**
+
+O subsistema **PersistentVolume** fornece uma API para usuários e administradores que resume detalhes de como o armazenamento é fornecido e consumido pelos Pods. Para o melhor controle desse sistema foi introduzido dois recursos de API: `PersistentVolume` e `PersistentVolumeClaim`.
+
+Um **PersistentVolume** (PV) é um recurso no cluster, assim como um nó. Mas nesse caso é um recurso de armazenamento. O PV é uma parte do armazenamento no cluster que foi provisionado por um administrador. Os PVs tem um ciclo de vida independente de qualquer pod associado a ele. Essa API permite armazenamentos do tipo: NFS, ISCSI ou armazenamento de um provedor de nuvem específico.
+
+Um **PersistentVolumeClaim** (PVC) é semelhante a um Pod. Os Pods consomem recursos de um nó e os PVCs consomem recursos dos PVs.
+
+Mas o que é um PVC? Nada mais é do que uma solicitação de armazenamento criada por um usuário.
+
+Vamos criar um `PersistentVolume` do tipo `NFS`, para isso vamos instalar os pacotes necessários para criar um NFS Server no GNU/Linux.
+
+Sequencia: Cria o **PV** depois o **PVC**.
+
+
+
 **PV** é criado no WorkerNode.
 
 **PVC** é o que aponta no POD.
@@ -1026,7 +1043,56 @@ https://kubernetes.io/docs/concepts/storage/storage-classes/
 
 ##############################################################################################
 
-**2.3.5 - Labels**
+
+
+**2.6.11 - Scaling**
+
+**2.6.11.1 - Horizontal Pod Autoscaler - HPA**
+
+https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
+
+O autoescalador horizontal de pods dimensiona automaticamente o número de pods em um controlador de replicação, implantação, conjunto de réplicas ou conjunto com estado com base na utilização de CPU observada (ou, com suporte a [métricas personalizadas](https://git.k8s.io/community/contributors/design-proposals/instrumentation/custom-metrics-api.md) , em algumas outras métricas fornecidas pelo aplicativo).
+
+![image-20210803193803808](./imagens/image-20210803193803808.png)
+
+![image-20210803194211601](./imagens/image-20210803194211601.png)
+
+**ENTENDER MAIS SOBRE O CALCULO DE CPU**
+
+
+
+**2.6.11.2 - Vertical Pod Autoscaler - VPA**
+
+Em Alpha 
+
+**2.6.11.3 - Cluster Autoscaler - CA**
+
+**Para Nodes**
+
+
+
+**2.6.11.1 - Anotações Importantes**
+
+- **Um HPA por Deployment**
+- **autoscaling/v2 tem custom metrics/cpu/memory**
+- **No Cluster Autoscaler sempre utilizar Pod Resource Requests**
+- **No Cluster Autoscaler  não mexa com os pools de nós**
+- **No Cluster Autoscaler  verifique sua nuvem para suporte** (--enable-autoscaling)
+- **No Cluster Autoscaler teste o desempenho em grandes clusters**
+
+**2.6.11.1 - Comandos**
+
+| Descrição            | Comando         |
+| -------------------- | --------------- |
+| Listas todos os hpas | kubectl get hpa |
+|                      |                 |
+|                      |                 |
+|                      |                 |
+|                      |                 |
+
+##############################################################################################
+
+**2.6.12 - Labels**
 
 https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
 
@@ -1038,11 +1104,24 @@ Uso para filtros
 
 Pode-se usar até 3.
 
+## 
+
+O **Node Selector** é uma forma de classificar nossos nodes como por exemplo nosso node `elliot-02` que possui disco **SSD** e está localizado no DataCenter `UK`, e o node `elliot-03` que possui disco **HDD** e está localizado no DataCenter `Netherlands`.
+
+Para criar pods em nodes com o Label "disk""HDD", adiciona no deployment  no spec do pod a opção abaixo.
+
+```yaml
+ nodeSelector:
+              disk: HDD
+```
+
+
+
 **Labels recomentados**
 
 https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/
 
-**2.3.5.1 - Comandos**
+**Comandos**
 
 
 
@@ -1060,53 +1139,82 @@ https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/
 
 
 
+##############################################################################################
 
+**2.6.13 - RBAC e Admission Control**
+
+https://kubernetes.io/docs/reference/access-authn-authz/rbac/
+
+https://kubernetes.io/docs/reference/access-authn-authz/authorization/
+
+O controle de acesso baseado em função (RBAC) é um método de regular o acesso a recursos de computador ou rede com base nas funções de usuários individuais em sua organização.
+
+![image-20210803213720545](./imagens/image-20210803213720545.png)
+
+
+
+**Authentication (authN)**
+
+- Proveder ID
+- Token
+
+**Authorization (authZ)**
+
+- Liberações do usuários
+- **Role | ClusterRole**
+
+
+
+![image-20210803211927663](./imagens/image-20210803211927663.png)
+
+- **RoleBinding |ClusterRoleBinding**
+
+![image-20210803211804301](./imagens/image-20210803211804301.png)
+
+**Admission Control**
+
+https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/
+
+Admission Control é um trecho de código que intercepta solicitações para o servidor da API Kubernetes antes da persistência do objeto, mas depois que a solicitação é autenticada e autorizada. 
+
+- **Mutatung**
+
+- **Validating**
+
+  
+
+**Anotações Importantes**
+
+- **Alguns clusters abrem uma porta local insegura, desabilite em Produção;**
+- **Deny-by-default;**
+- **Kubernetes NÃO faz usuários;**
+- **Gerencie os usuários externamente;**
+
+**Comandos**
+
+
+
+| Descrição                             | Comando                                              |
+| ------------------------------------- | ---------------------------------------------------- |
+| Listar as ClusterRoleBindings         | kubectl.exe get clusterrolebindings                  |
+| Listar as ClusterRole                 | kubectl.exe get clusterrole                          |
+| Listar as Role de todas as namespaces | kubectl.exe get role --all-namespaces                |
+| Listar as Role de namespaces          | kubectl.exe get role -n "*namespaces*"               |
+| Lista uma role especifica             | kubectl.exe get clusterrole "*nome-da-role*"         |
+| Lista uma role especifica em YAML     | kubectl.exe get clusterrole "*nome-da-role*" -o yaml |
+|                                       |                                                      |
+|                                       |                                                      |
+|                                       |                                                      |
+
+
+
+##############################################################################################
 
 **[Supervisord](http://supervisord.org/)** é o responsável por monitorar e restabelecer, se necessário, o `kubelet` e o Docker. Por esse motivo, quando existe algum problema em relação ao kubelet, como por exemplo o uso do driver `cgroup` diferente do que está rodando no Docker, você perceberá que ele ficará tentando subir o kubelet frequentemente.
 
+##############################################################################################
 
-
-
-
-
-
-## **Volumes**
-
-**EmptyDir** 
-
-Um volume do tipo **EmptyDir** é criado sempre que um Pod é atribuído a um nó existente. Esse volume é criado inicialmente vazio, e todos os contêineres do Pod podem ler e gravar arquivos no volume.
-
-Esse volume não é um volume com persistência de dados. Sempre que o Pod é removido de um nó, os dados no `EmptyDir` são excluídos permanentemente. É importante ressaltar que os dados não são excluídos em casos de falhas nos contêineres.
-
-Disco disponível somente enquando o pod estiver rodando.
-
-Recomendado para logs por exemplo.
-
-Disco no Node em /var/lib/kubelet/pods , find . -iname "*nomedodisco*"
-
-
-
-**Persistent Volume**
-
-O subsistema **PersistentVolume** fornece uma API para usuários e administradores que resume detalhes de como o armazenamento é fornecido e consumido pelos Pods. Para o melhor controle desse sistema foi introduzido dois recursos de API: `PersistentVolume` e `PersistentVolumeClaim`.
-
-Um **PersistentVolume** (PV) é um recurso no cluster, assim como um nó. Mas nesse caso é um recurso de armazenamento. O PV é uma parte do armazenamento no cluster que foi provisionado por um administrador. Os PVs tem um ciclo de vida independente de qualquer pod associado a ele. Essa API permite armazenamentos do tipo: NFS, ISCSI ou armazenamento de um provedor de nuvem específico.
-
-Um **PersistentVolumeClaim** (PVC) é semelhante a um Pod. Os Pods consomem recursos de um nó e os PVCs consomem recursos dos PVs.
-
-Mas o que é um PVC? Nada mais é do que uma solicitação de armazenamento criada por um usuário.
-
-Vamos criar um `PersistentVolume` do tipo `NFS`, para isso vamos instalar os pacotes necessários para criar um NFS Server no GNU/Linux.
-
-Sequencia: Cria o **PV** depois o **PVC**.
-
-
-
-
-
-
-
-## Kubectl Taint
+**2.6.13 - Kubectl Taint**
 
 O **Taint** nada mais é do que adicionar propriedades ao nó do cluster para impedir que os pods sejam alocados em nós inapropriados.
 
@@ -1126,20 +1234,9 @@ O nó `master` está marcado com o taint `NoSchedule`, assim o scheduler do Kube
 
 
 
-## **Label**
+##############################################################################################
 
-O **Node Selector** é uma forma de classificar nossos nodes como por exemplo nosso node `elliot-02` que possui disco **SSD** e está localizado no DataCenter `UK`, e o node `elliot-03` que possui disco **HDD** e está localizado no DataCenter `Netherlands`.
-
-Para criar pods em nodes com o Label "disk""HDD", adiciona no deployment  no spec do pod a opção abaixo.
-
-```yaml
- nodeSelector:
-              disk: HDD
-```
-
-
-
-## **Setup do K8S**
+## **2.6.14 - Setup do K8S**
 
 1 - Inicia o Master Node
 
@@ -1167,19 +1264,19 @@ kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl versio
 kubeadm join --discovery-token-unsafe-skip-ca-verification --token=102952.1a7dd4cc8d1f4cc5 172.17.0.69:6443
 ```
 
+##############################################################################################
 
-
-## **Best  Practices**
+## **2.6.15 - Best  Practices**
 
 - **ETCD** - em produção sempre manter fora do Master e em HA
 
 
 
+##############################################################################################
 
 
 
-
-## **Exemplos**
+## **2.6.16 - Exemplos**
 
 **service-clusterip.yaml**
 
@@ -1308,9 +1405,9 @@ spec:
 Atenção! 1 core de CPU corresponde a 1000m (1000 milicore). Ao especificar 200m, estamos querendo reservar 20% de 1 core da CPU. Se fosse informado o valor 0.2 teria o mesmo efeito, ou seja, seria reservado 20% de 1 core da CPU.
 ```
 
+##############################################################################################
 
-
-# **Comandos Kubernetes**
+# **2.6.17 - Comandos **
 
 
 
@@ -1354,7 +1451,9 @@ A figura a seguir mostra a estrutura dos principais comandos do `kubectl`.
 |                                                              |                                                              |
 |                                                              |                                                              |
 
-# **Best Practices**
+##############################################################################################
+
+# **2.6.18 - Links Úteis**
 
 **Tipos de topologias de K8s multi-master**
 

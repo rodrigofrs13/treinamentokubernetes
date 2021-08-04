@@ -65,7 +65,7 @@ https://github.com/ACloudGuru-Resources/Course_Kubernetes_Deep_Dive_NP
 
 - ### **AIOps Essentials (Autoscaling Kubernetes with Prometheus Metrics)**
 
-- ### ** Kubernetes the Hard Way**
+- ### **Kubernetes the Hard Way**
 
 - ### **Kubernetes Security**
 
@@ -75,10 +75,9 @@ https://github.com/ACloudGuru-Resources/Course_Kubernetes_Deep_Dive_NP
 
 - ### **Backing up and Restoring Kubernetes Data in etcd**
 
-- **Helm Deep Dive V3**
+- ### **Helm Deep Dive V3**
 
 - ### **Certified Kubernetes Administrator (CKA)**
-
 
 
 

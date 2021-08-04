@@ -34,34 +34,31 @@ https://docs.google.com/presentation/d/1weqpBWa9FNjKc1ugCUIpwYYquvoIOFbUvEcZ9ZYa
 
 
 - ### **Kubernetes Quick Start** ✔
-
-
-https://lucid.app/lucidchart/fc864348-11e5-47fd-a64d-82ba93d32bb3/view?page=c9hx29xGf93-#
+  - https://lucid.app/lucidchart/fc864348-11e5-47fd-a64d-82ba93d32bb3/view?page=c9hx29xGf93-#
 
 - ### **Kubernetes Essentials ✔**
-
-
-https://lucid.app/lucidchart/6d5625be-9ef9-411d-8bea-888de55db5cf/view?page=I_Too4-SqdGV#
-
-https://github.com/linuxacademy/robot-shop.
+  - https://lucid.app/lucidchart/6d5625be-9ef9-411d-8bea-888de55db5cf/view?page=I_Too4-SqdGV#
+  - https://github.com/linuxacademy/robot-shop.
 
 - ### **Introduction to Kubernetes ✔**
 
 
-
-
 - ### **Kubernetes Deep Dive**✔
-
-
-https://github.com/nigelpoulton
-
-https://github.com/ACloudGuru-Resources
-
-https://github.com/ACloudGuru-Resources/Course_Kubernetes_Deep_Dive_NP
+  - https://github.com/nigelpoulton
+  - https://github.com/ACloudGuru-Resources
+  - https://github.com/ACloudGuru-Resources/Course_Kubernetes_Deep_Dive_NP
 
 
 
 - ### **Monitoring Kubernetes With Prometheus**
+
+  - *LAB - Monitoring in Kubernetes with Prometheus and Grafana*
+
+  - *LAB - Kubernetes Monitoring with Prometheus*
+
+  - *LAB - Creating Alerting Rules*
+
+    
 
 - ### **AIOps Essentials (Autoscaling Kubernetes with Prometheus Metrics)**
 
@@ -83,7 +80,7 @@ https://github.com/ACloudGuru-Resources/Course_Kubernetes_Deep_Dive_NP
 
 ## **AWS**
 
-### 
+- ### **eks no acloudguru**
 
 - ### **Containers on AWS: Ecosystem Integration**
 
@@ -94,20 +91,19 @@ https://github.com/ACloudGuru-Resources/Course_Kubernetes_Deep_Dive_NP
 - ### **Running Containers on Amazon Elastic Kubernetes Service (Amazon EKS)**
 
 - ### **Containers na AWS**
-
-https://pages.awscloud.com/LATAM_TRAINCERT_WEBINAR_immersion-day-containers-video-series_20200331_7010z000001LIBT_LPVideos-CostOptimizationVideoSeries.html
+  - https://pages.awscloud.com/LATAM_TRAINCERT_WEBINAR_immersion-day-containers-video-series_20200331_7010z000001LIBT_LPVideos-CostOptimizationVideoSeries.html
 
 
 
 - ### **Workshops AWS**
 
-  https://www.eksworkshop.com/
+  - https://www.eksworkshop.com/
 
   
 
 - ### **WINDOWS CONTAINERS ON AWS**
 
-  https://ms-containers.workshop.aws/en/
+  - https://ms-containers.workshop.aws/en/
 
   
 
@@ -115,88 +111,86 @@ https://pages.awscloud.com/LATAM_TRAINCERT_WEBINAR_immersion-day-containers-vide
 
 - ### **DISASTER RECOVERY ON AWS**
 
-  https://disaster-recovery.workshop.aws/en/
+  - https://disaster-recovery.workshop.aws/en/
 
   
 
 - ### **BLUE/GREEN AND CANARY DEPLOYMENT FOR EKS AND ECS**
 
-  https://cicd-pipeline-cdk-eks-bluegreen.workshop.aws/en/
+  - https://cicd-pipeline-cdk-eks-bluegreen.workshop.aws/en/
 
 
 
 - ### **MANAGE YOUR EKS CLUSTER IN FULL-STACK WITH CDK**
 
-  https://cdk-eks-devops.workshop.aws/en/
+  - https://cdk-eks-devops.workshop.aws/en/
 
 
 
 - ### **INTRODUCTION TO AMAZON EKS**
 
-  https://eks-for-aws-summit-online.workshop.aws/
+  - https://eks-for-aws-summit-online.workshop.aws/
 
 
 
 - ### **AMAZON EKS TERRAFORM WORKSHOP**
 
-  https://tf-eks-workshop.workshop.aws/
+  - https://tf-eks-workshop.workshop.aws/
 
 
 
 - ### **WELCOME TO THE AMAZON EC2 SPOT INSTANCES WORKSHOPS WEBSITE**
 
-  https://ec2spotworkshops.com/
+  - https://ec2spotworkshops.com/
 
 
 
 - ### **AWS MODERNIZATION WORKSHOP**
 
-  https://aqua.awsworkshop.io/
+  - https://aqua.awsworkshop.io/
 
 
 
 - ### **APPLICATION MODERNIZATION WITH AWS, SNYK AND DOCKER**
 
-  https://docker-snyk.awsworkshop.io/
+  - https://docker-snyk.awsworkshop.io/
 
 
 
 - ### **AWS MODERNIZATION WORKSHOP WITH HARNESS**
 
-  https://harness.awsworkshop.io/
+  - https://harness.awsworkshop.io/
 
 
 
 - ### **Introduction to GitOps on EKS with Weaveworks**
 
-  https://weaveworks-gitops.awsworkshop.io/
+  - https://weaveworks-gitops.awsworkshop.io/
 
 
 
 - ### **HELLO** 
 
-  https://observability.workshop.aws/en/
+  - https://observability.workshop.aws/en/
 
 
 
 - ### **AWS MODERNIZATION WORKSHOP: DEVSECOPS WITH ATLASSIAN & SNYK**
 
-  https://snyk-atlassian.awsworkshop.io/
+  - https://snyk-atlassian.awsworkshop.io/
 
 
 
 - ### **Workshop Links**
 
-  https://workshops.aws/
-
-  https://awsworkshop.io/
+  - https://workshops.aws/
+  - https://awsworkshop.io/
 
 
 
 - ### **Agregação de Links**
 
-  https://github.com/brunokktro/auladobruno
-
+  - ### https://github.com/brunokktro/auladobruno
 
 
 
@@ -204,7 +198,8 @@ https://pages.awscloud.com/LATAM_TRAINCERT_WEBINAR_immersion-day-containers-vide
 
 ## **Monitoramento**
 
-https://kubedev.io/bonus-monitoramento/
+- https://kubedev.io/bonus-monitoramento/
+
 
 
 
@@ -215,7 +210,7 @@ https://kubedev.io/bonus-monitoramento/
 
 https://github.com/badtuxx/DescomplicandoKubernetes
 
-multi etcd
+- ### **multi etcd**
 
 - ### Canary Deploy
 

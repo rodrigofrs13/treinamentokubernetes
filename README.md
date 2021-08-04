@@ -81,99 +81,94 @@ https://github.com/ACloudGuru-Resources/Course_Kubernetes_Deep_Dive_NP
 
 
 
+## **AWS**
 
+### 
 
+- ### Containers on AWS: Ecosystem Integration
 
+- ### Amazon Elastic Kubernetes Service (EKS) Primer
 
+- ### APN Containers Navigate - Technical
 
+- ### Running Containers on Amazon Elastic Kubernetes Service (Amazon EKS)
 
-
-
-## **1.5 - AWS**
-
-1.5.1 - AWS training
-
-Containers on AWS: Ecosystem Integration
-
-Amazon Elastic Kubernetes Service (EKS) Primer
-
-APN Containers Navigate - Technical
-
-Running Containers on Amazon Elastic Kubernetes Service (Amazon EKS)
-
-
-
-**Containers na AWS**
+- ### **Containers na AWS**
 
 https://pages.awscloud.com/LATAM_TRAINCERT_WEBINAR_immersion-day-containers-video-series_20200331_7010z000001LIBT_LPVideos-CostOptimizationVideoSeries.html
 
 
 
-1.5.2 - Workshops AWS
+- ### Workshops AWS
 
-https://www.eksworkshop.com/
+  https://www.eksworkshop.com/
 
-WINDOWS CONTAINERS ON AWS
+  
 
-https://ms-containers.workshop.aws/en/
+- **WINDOWS CONTAINERS ON AWS**
 
-DISASTER RECOVERY ON AWS
+  https://ms-containers.workshop.aws/en/
 
-https://disaster-recovery.workshop.aws/en/
+  
 
-BLUE/GREEN AND CANARY DEPLOYMENT FOR EKS AND ECS
+- DISASTER RECOVERY ON AWS
 
-https://cicd-pipeline-cdk-eks-bluegreen.workshop.aws/en/
+- https://disaster-recovery.workshop.aws/en/
 
-MANAGE YOUR EKS CLUSTER IN FULL-STACK WITH CDK
+- BLUE/GREEN AND CANARY DEPLOYMENT FOR EKS AND ECS
 
-https://cdk-eks-devops.workshop.aws/en/
+- https://cicd-pipeline-cdk-eks-bluegreen.workshop.aws/en/
 
-INTRODUCTION TO AMAZON EKS
+- MANAGE YOUR EKS CLUSTER IN FULL-STACK WITH CDK
 
-https://eks-for-aws-summit-online.workshop.aws/
+- https://cdk-eks-devops.workshop.aws/en/
 
-AMAZON EKS TERRAFORM WORKSHOP
+- INTRODUCTION TO AMAZON EKS
 
-https://tf-eks-workshop.workshop.aws/
+- https://eks-for-aws-summit-online.workshop.aws/
 
-WELCOME TO THE AMAZON EC2 SPOT INSTANCES WORKSHOPS WEBSITE
+- AMAZON EKS TERRAFORM WORKSHOP
 
-https://ec2spotworkshops.com/
+- https://tf-eks-workshop.workshop.aws/
 
-AWS MODERNIZATION WORKSHOP
+- WELCOME TO THE AMAZON EC2 SPOT INSTANCES WORKSHOPS WEBSITE
 
-https://aqua.awsworkshop.io/
+- https://ec2spotworkshops.com/
 
-APPLICATION MODERNIZATION WITH AWS, SNYK AND DOCKER
+- AWS MODERNIZATION WORKSHOP
 
-https://docker-snyk.awsworkshop.io/
+- https://aqua.awsworkshop.io/
 
-AWS MODERNIZATION WORKSHOP WITH HARNESS
+- APPLICATION MODERNIZATION WITH AWS, SNYK AND DOCKER
 
-https://harness.awsworkshop.io/
+- https://docker-snyk.awsworkshop.io/
 
-Introduction to GitOps on EKS with Weaveworks
+- AWS MODERNIZATION WORKSHOP WITH HARNESS
 
-https://weaveworks-gitops.awsworkshop.io/
+- https://harness.awsworkshop.io/
 
-HELLO 
+- Introduction to GitOps on EKS with Weaveworks
 
-https://observability.workshop.aws/en/
+- https://weaveworks-gitops.awsworkshop.io/
 
-AWS MODERNIZATION WORKSHOP: DEVSECOPS WITH ATLASSIAN & SNYK
+- HELLO 
 
-https://snyk-atlassian.awsworkshop.io/
+- https://observability.workshop.aws/en/
 
+- AWS MODERNIZATION WORKSHOP: DEVSECOPS WITH ATLASSIAN & SNYK
 
+- https://snyk-atlassian.awsworkshop.io/
 
-https://workshops.aws/
+- 
 
-https://awsworkshop.io/
+- https://workshops.aws/
 
+- https://awsworkshop.io/
 
+- 
 
-https://github.com/brunokktro/auladobruno
+- https://github.com/brunokktro/auladobruno
+
 
 
 

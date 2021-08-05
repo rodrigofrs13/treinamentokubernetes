@@ -52,6 +52,8 @@ https://docs.google.com/presentation/d/1weqpBWa9FNjKc1ugCUIpwYYquvoIOFbUvEcZ9ZYa
 
 - ### **Monitoring Kubernetes With Prometheus**
 
+  - https://lucid.app/lucidchart/3da24eca-0c4d-4f03-b202-ba8f455783d2/view?page=0_0#
+
   - *LAB - Monitoring in Kubernetes with Prometheus and Grafana*
 
   - *LAB - Kubernetes Monitoring with Prometheus*
@@ -235,11 +237,7 @@ https://www.katacoda.com/courses/kubernetes
 
 
 
-
-
-# **Anotações**
-
-## **Documentação oficial**
+# **Documentação oficial**
 
 https://kubernetes.io/pt-br/docs/home/
 
@@ -248,13 +246,13 @@ https://kubernetes.io/pt-br/docs/home/
 
 
 
-**K8S Teoria**
+## **K8S Teoria**
 
 ![image-20210729203449523](./imagens/image-20210729203449523.png)
 
 
 
-## **2.2 - Componentes do K8s**
+## **Componentes do K8s**
 
 ![image-20210719201310997](./imagens/image-20210719201310997.png)
 
@@ -262,7 +260,7 @@ https://kubernetes.io/pt-br/docs/home/
 
 
 
-## **2.3 - Componentes do Control Plane** (Master)
+## **Componentes do Control Plane** (Master)
 
 Os componentes da camada de gerenciamento tomam decisões globais sobre o cluster (por exemplo, agendamento de *pods*), bem como detectam e respondem aos eventos do cluster (por exemplo, iniciando um novo *[pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/)* quando o campo `replicas` de um *Deployment* não está atendido).
 
@@ -270,7 +268,7 @@ https://kubernetes.io/docs/concepts/overview/components/
 
 **Sempre no node MASTER**
 
-### **2.3.1 - ETCD**
+### **ETCD**
 
 https://kubernetes.io/pt-br/docs/concepts/overview/components/
 
@@ -292,7 +290,7 @@ Armazenamento de valor de chave consistente e altamente disponível usado como a
 
 
 
-### **2.3.2 - kube-apiserver**
+### **kube-apiserver**
 
 https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver
 
@@ -310,7 +308,7 @@ O kube-apiserver foi projetado para ser escalonado horizontalmente — ou seja, 
 |                          |                                 |
 |                          |                                 |
 
-### **2.4.3 - [kube-scheduller](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver)** 
+### **[kube-scheduller](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver)** 
 
 https://kubernetes.io/pt-br/docs/concepts/overview/components/
 
@@ -324,7 +322,7 @@ https://kubernetes.io/pt-br/docs/concepts/overview/components/
 |                    |                                 |
 |                    |                                 |
 
-### **2.4.4 - [kube-controller-manager](https://kubernetes.io/docs/concepts/overview/components/#cloud-controller-manager)** 
+### **[kube-controller-manager](https://kubernetes.io/docs/concepts/overview/components/#cloud-controller-manager)** 
 
 https://kubernetes.io/pt-br/docs/concepts/overview/components/
 
@@ -355,19 +353,19 @@ Alguns tipos desses controladores são:
 |                    |                                 |
 |                    |                                 |
 
-### **2.4.6 - cloud-controller-manager**
+### **cloud-controller-manager**
 
 Um componente da [camada de gerenciamento](https://kubernetes.io/pt-br/docs/reference/glossary/?all=true#term-control-plane) do Kubernetes que incorpora a lógica de controle específica da nuvem. O gerenciador de controle de nuvem permite que você vincule seu *cluster* na API do seu provedor de nuvem, e separar os componentes que interagem com essa plataforma de nuvem a partir de componentes que apenas interagem com seu cluster.
 
 
 
-### **2.3.4 - kubeadm**
+### **kubeadm**
 
 https://kubernetes.io/docs/reference/setup-tools/kubeadm/
 
 O kubeadm executa as ações necessárias para obter um cluster mínimo viável instalado e funcionando. Por design, ele se preocupa apenas com a inicialização, não com o provisionamento de máquinas. 
 
-**2.4.4.4 - Comandos**
+**Comandos**
 
 | Descrição                                                    | Comando                                                |
 | ------------------------------------------------------------ | ------------------------------------------------------ |
@@ -383,7 +381,7 @@ O kubeadm executa as ações necessárias para obter um cluster mínimo viável 
 
 
 
-## **2.5 - Node Components**
+## **Node Components**
 
 https://kubernetes.io/pt-br/docs/concepts/overview/components/
 
@@ -391,7 +389,7 @@ Os componentes de nó são executados em todos os nós, mantendo os *pods* em ex
 
 
 
-### **2.5.1 - [kube-proxy](https://kubernetes.io/docs/concepts/overview/components/#kube-proxy)**
+### **[kube-proxy](https://kubernetes.io/docs/concepts/overview/components/#kube-proxy)**
 
 O **[kube-proxy](https://kubernetes.io/docs/concepts/overview/components/#kube-proxy)** é o responsável por gerenciar a rede para os contêineres, é o responsável por expor portas dos mesmos.
 
@@ -403,13 +401,13 @@ Trata da comunicação entre os Nodes.
 
 ![image-20210726215128527](./imagens/image-20210726215128527.png)
 
-### **2.5.2 - Container runtime**
+### **Container runtime**
 
 O agente de execução (*runtime*) de contêiner é o software responsável por executar os contêineres.
 
 
 
-### **2.5.3 - kubelet**
+### **kubelet**
 
 https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/
 
@@ -419,11 +417,9 @@ node agent
 
 instalado em todos os nodes - master e worker
 
-
-
  
 
-## **2.6 - Demais componentes**
+## **Demais componentes**
 
 - **2.61 - Pods**
 - **2.6.2 - Namespaces**
@@ -452,7 +448,7 @@ instalado em todos os nodes - master e worker
 
 ##############################################################################################
 
-### **2.6.1 - POD´s**
+### **POD´s**
 
 https://kubernetes.io/docs/concepts/workloads/pods/
 
@@ -510,7 +506,7 @@ spec:											---->  espeficicações do container
 
 
 
-#### **2.6.1.1- Comandos**
+**Comandos**
 
 | Descrição                                                    | Comando                                     |
 | :----------------------------------------------------------- | ------------------------------------------- |
@@ -528,7 +524,7 @@ spec:											---->  espeficicações do container
 
 ##############################################################################################
 
-### **2.6.2 - Namespaces**
+### **Namespaces**
 
 https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 
@@ -536,7 +532,7 @@ Os namespaces fornecem um escopo para nomes. Os nomes dos recursos precisam ser 
 
 Específica com "**-n**", se não especificar nenhuma ele lista da namespace "*default*". 
 
-#### **2.6.2.1 - Comandos**
+**Comandos**
 
 | Descrição         | Comandos                                               |
 | ----------------- | ------------------------------------------------------ |
@@ -569,7 +565,7 @@ kubectl create -f ./my-namespace.yaml
 
 
 
-### **Setting the namespace for a request**
+**Setting the namespace for a request**
 
 To set the namespace for a current request, use the `--namespace` flag.
 
@@ -590,7 +586,7 @@ No POD a namespace é declarada no metadata.
 
 ##############################################################################################
 
-### **2.6.3 - Network**
+### **Network**
 
 https://kubernetes.io/pt-br/docs/concepts/cluster-administration/networking/
 
@@ -644,7 +640,7 @@ Mais informações em: https://kubernetes.io/docs/concepts/cluster-administratio
 
 ##############################################################################################
 
-### **2.6.4 - DNS**
+### **DNS**
 
 https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/
 
@@ -736,7 +732,7 @@ verifique a saida: Controlled By
 
 ##############################################################################################
 
-### **2.6.6 - Services**
+### **Services**
 
 https://kubernetes.io/docs/concepts/services-networking/service/
 
@@ -798,7 +794,7 @@ spec:
 
 
 
-#### **2.6.6.1 - Comandos**
+**Comandos**
 
 | Descrição         | Comandos                               |
 | ----------------- | -------------------------------------- |
@@ -814,7 +810,7 @@ spec:
 
 ##############################################################################################
 
-**2.6.7 - Deployment**
+### **Deployment**
 
 https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
 
@@ -874,7 +870,7 @@ spec:
 
 
 
-### Stateful Sets
+Stateful Sets
 
 StatefulSet é o objeto da API de carga de trabalho usado para gerenciar aplicações stateful. 
 
@@ -884,7 +880,7 @@ Ao contrário de uma implantação, um StatefulSet mantém uma identidade persis
 
 Esses pods são criados com a mesma especificação, mas não são intercambiáveis: cada um tem um identificador persistente, mantido em qualquer reagendamento.
 
-### Daemon Sets
+Daemon Sets
 
 Um DaemonSet garante que os nodes executem uma cópia de um pod. **À medida que os nodes são adicionados ao cluster, os pods são adicionados a eles.** 
 
@@ -902,13 +898,13 @@ Uma configuração mais complexa pode usar vários DaemonSets para um único tip
 
 No entanto, com diferentes sinalizadores e/ou diferentes solicitações de memória e CPU para cada tipo de hardware.
 
-**2.6.7.1 - Anotações Importantes**
+**Anotações Importantes**
 
 - **Um tipo Pod por deployment, mas pode ter varias replicar desse pod (replicas set)**
 - **Sempre cria uma nova replica set quando vai fazer o rollout**
 - **Sempre utilizar a flag "--record" no apply para criar o history do rollout**
 
-**2.6.7.2 - Comandos**
+**Comandos**
 
 | Descrição                          | Comando                                                      |
 | ---------------------------------- | ------------------------------------------------------------ |
@@ -926,13 +922,13 @@ No entanto, com diferentes sinalizadores e/ou diferentes solicitações de memó
 
 ##############################################################################################
 
-**2.6.8 - Worker Nodes**
+### **Worker Nodes**
 
 https://kubernetes.io/docs/concepts/architecture/nodes/
 
 
 
-**2.6.8.1 - Comandos**
+**Comandos**
 
 | Descrição                   | Comando                                                  |
 | --------------------------- | -------------------------------------------------------- |
@@ -943,7 +939,7 @@ https://kubernetes.io/docs/concepts/architecture/nodes/
 
 ##############################################################################################
 
-**2.6.9 - Endpoints**
+### **Endpoints**
 
 **Sempre pega com o Endpoint os pods que estão no Selector.**
 
@@ -955,7 +951,7 @@ O vinculo entre o Service e o Pod é feito pelo label informado no Selector conf
 
 ##############################################################################################
 
-**2.6.10 - Storage**
+### **Storage**
 
 Os volumes são um diretório que contém dados acessíveis aos contêineres em um pod. Um volume Kubernetes tem a mesma vida útil que o pod que o encapsula. 
 
@@ -1042,7 +1038,7 @@ https://kubernetes.io/docs/concepts/storage/storage-classes/
 
 
 
-**2.6.10.1 - Comandos**
+**Comandos**
 
 
 
@@ -1058,9 +1054,9 @@ https://kubernetes.io/docs/concepts/storage/storage-classes/
 
 
 
-**2.6.11 - Scaling**
+### **Scaling**
 
-**2.6.11.1 - Horizontal Pod Autoscaler - HPA**
+#### **Horizontal Pod Autoscaler - HPA**
 
 https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
 
@@ -1074,17 +1070,17 @@ O autoescalador horizontal de pods dimensiona automaticamente o número de pods 
 
 
 
-**2.6.11.2 - Vertical Pod Autoscaler - VPA**
+#### **Vertical Pod Autoscaler - VPA**
 
 Em Alpha 
 
-**2.6.11.3 - Cluster Autoscaler - CA**
+#### **Cluster Autoscaler - CA**
 
 **Para Nodes**
 
 
 
-**2.6.11.1 - Anotações Importantes**
+#### **Anotações Importantes**
 
 - **Um HPA por Deployment**
 - **autoscaling/v2 tem custom metrics/cpu/memory**
@@ -1093,7 +1089,7 @@ Em Alpha
 - **No Cluster Autoscaler  verifique sua nuvem para suporte** (--enable-autoscaling)
 - **No Cluster Autoscaler teste o desempenho em grandes clusters**
 
-**2.6.11.1 - Comandos**
+#### **Comandos**
 
 | Descrição            | Comando         |
 | -------------------- | --------------- |
@@ -1105,7 +1101,7 @@ Em Alpha
 
 ##############################################################################################
 
-**2.6.12 - Labels**
+### **Labels**
 
 https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
 
@@ -1134,7 +1130,7 @@ Para criar pods em nodes com o Label "disk""HDD", adiciona no deployment  no spe
 
 https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/
 
-**Comandos**
+#### **Comandos**
 
 
 
@@ -1154,7 +1150,7 @@ https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/
 
 ##############################################################################################
 
-**2.6.13 - RBAC e Admission Control**
+### **RBAC e Admission Control**
 
 https://kubernetes.io/docs/reference/access-authn-authz/rbac/
 
@@ -1166,12 +1162,12 @@ O controle de acesso baseado em função (RBAC) é um método de regular o acess
 
 
 
-**Authentication (authN)**
+#### **Authentication (authN)**
 
 - Proveder ID
 - Token
 
-**Authorization (authZ)**
+#### **Authorization (authZ)**
 
 - Liberações do usuários
 - **Role | ClusterRole**
@@ -1184,7 +1180,7 @@ O controle de acesso baseado em função (RBAC) é um método de regular o acess
 
 ![image-20210803211804301](./imagens/image-20210803211804301.png)
 
-**Admission Control**
+#### **Admission Control**
 
 https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/
 
@@ -1196,14 +1192,14 @@ Admission Control é um trecho de código que intercepta solicitações para o s
 
   
 
-**Anotações Importantes**
+#### **Anotações Importantes**
 
 - **Alguns clusters abrem uma porta local insegura, desabilite em Produção;**
 - **Deny-by-default;**
 - **Kubernetes NÃO faz usuários;**
 - **Gerencie os usuários externamente;**
 
-**Comandos**
+#### **Comandos**
 
 
 
@@ -1223,11 +1219,13 @@ Admission Control é um trecho de código que intercepta solicitações para o s
 
 ##############################################################################################
 
-**[Supervisord](http://supervisord.org/)** é o responsável por monitorar e restabelecer, se necessário, o `kubelet` e o Docker. Por esse motivo, quando existe algum problema em relação ao kubelet, como por exemplo o uso do driver `cgroup` diferente do que está rodando no Docker, você perceberá que ele ficará tentando subir o kubelet frequentemente.
+### **[Supervisord](http://supervisord.org/)** 
+
+é o responsável por monitorar e restabelecer, se necessário, o `kubelet` e o Docker. Por esse motivo, quando existe algum problema em relação ao kubelet, como por exemplo o uso do driver `cgroup` diferente do que está rodando no Docker, você perceberá que ele ficará tentando subir o kubelet frequentemente.
 
 ##############################################################################################
 
-**2.6.13 - Kubectl Taint**
+### **Kubectl Taint**
 
 O **Taint** nada mais é do que adicionar propriedades ao nó do cluster para impedir que os pods sejam alocados em nós inapropriados.
 
@@ -1245,21 +1243,159 @@ O nó `master` está marcado com o taint `NoSchedule`, assim o scheduler do Kube
 **Desabilitado** - kubectl taint node elliot-03 key1=value1:NoExecute-
 ```
 
+##############################################################################################
+
+# Monitoring 
+
+![image-20210804203946101](./imagens/image-20210804203946101.png)
+
+## **Prometheus**
+
+https://prometheus.io/
+
+![image-20210804204245381](./imagens/image-20210804204245381.png)
+
+
+
+### **Client Libraries**
+
+https://prometheus.io/docs/instrumenting/clientlibs/
+
+Antes de monitorar seus serviços, você precisa adicionar instrumentação ao código por meio de uma das bibliotecas cliente do Prometheus.
+
+Quando o Prometheus raspa o endpoint HTTP da sua instância, a biblioteca cliente envia o estado atual de todas as métricas rastreadas para o servidor.
+
+![image-20210804204703337](./imagens/image-20210804204703337.png)
+
+
+
+### **Exports**
+
+https://prometheus.io/docs/instrumenting/exporters/
+
+Existem várias bibliotecas e servidores que ajudam a exportar métricas existentes de sistemas de terceiros como métricas do Prometheus.
+
+
+
+![image-20210804204738616](./imagens/image-20210804204738616.png)
+
+
+
+### **Service Discovery**
+
+https://prometheus.io/blog/2015/06/01/advanced-service-discovery/
+
+![image-20210804205014829](./imagens/image-20210804205014829.png)
+
+
+
+### **Scraping**
+
+![image-20210804205014829](./imagens/image-20210804205014829.png)
+
+
+
+
+
+### **Setup Prometheus**
+
+https://github.com/linuxacademy/content-kubernetes-prometheus-env
+
+https://www.metricfire.com/blog/how-to-deploy-prometheus-on-kubernetes/#Deployment
+
+https://devopscube.com/setup-prometheus-monitoring-on-kubernetes/
+
+Linux Tips
+
+**Setup namespace**
+
+```bash
+kubectl apply -f namespaces.yml
+```
+
+**Setup Config MAP**
+
+Tem que alterar no job node-exporter os ips dos targets para os ips do master e dos nodes.
+
+```bash
+kubectl apply -f prometheus-config-map.yml
+```
+
+**Setup Deployment**
+
+Cria 2 containeres - Prometheus e Watch
+
+```bash
+kubectl apply -f prometheus-deployment.yml
+```
+
 
 
 ##############################################################################################
 
-## **2.6.14 - Setup do K8S**
+# **Setup do K8S**
 
-1 - Inicia o Master Node
+**Configura modulos**
 
+```bash
+sudo echo "br_netfilter" > /etc/modules-load.d/k8s.conf
+
+sudo echo "ip_vs" >> /etc/modules-load.d/k8s.conf
+
+sudo echo "ip_vs_rr" >> /etc/modules-load.d/k8s.conf
+
+sudo echo "ip_vs_sh" >> /etc/modules-load.d/k8s.conf
+
+sudo echo "ip_vs_wrr" >> /etc/modules-load.d/k8s.conf
+
+sudo echo "nf_conntrack_ipv4" >> /etc/modules-load.d/k8s.conf
 ```
+
+**Instala Docker**
+
+```bash
+sudo curl -fsSL https://get.docker.com | bash
+
+sudo mkdir -p /etc/systemd/system/docker.service.d
+
+sudo systemctl daemon-reload
+
+sudo systemctl restart docker
+```
+
+**Configura Repo K8S**
+
+```bash
+\#sudo apt-get update && apt-get install -y apt-transport-https gnupg2
+
+\#sudo curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+
+\#sudo echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list
+
+\#sudo apt-get update
+```
+
+**Instala pacotes K8S**
+
+```bash
+sudo apt-get install -y kubelet kubeadm kubectl
+```
+
+**Baixa imagens K8S**
+
+```bash
+sudo kubeadm config images pull
+```
+
+ **Inicia o Master Node**
+
+```shell
 kubeadm init --apiserver-advertise-address $(hostname -i)
 ```
 
-2 - Seta saída do kubeadm
+**Seta saída do kubeadm**
 
-```
+```shell
 sudo cp /etc/kubernetes/admin.conf $HOME/
 sudo chown $(id -u):$(id -g) $HOME/admin.conf
 export KUBECONFIG=$HOME/admin.conf
@@ -1267,19 +1403,19 @@ export KUBECONFIG=$HOME/admin.conf
 
 3 - Configura plugin rede
 
-```
+```shell
 kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version \|base64 \|tr -d '\n')"
 ```
 
 4 - Join dos nodes
 
-```
+```bash
 kubeadm join --discovery-token-unsafe-skip-ca-verification --token=102952.1a7dd4cc8d1f4cc5 172.17.0.69:6443
 ```
 
 ##############################################################################################
 
-## **2.6.15 - Best  Practices**
+# **Best  Practices**
 
 - **ETCD** - em produção sempre manter fora do Master e em HA
 
@@ -1289,7 +1425,7 @@ kubeadm join --discovery-token-unsafe-skip-ca-verification --token=102952.1a7dd4
 
 
 
-## **2.6.16 - Exemplos**
+# **Exemplos**
 
 **service-clusterip.yaml**
 
@@ -1420,7 +1556,7 @@ Atenção! 1 core de CPU corresponde a 1000m (1000 milicore). Ao especificar 200
 
 ##############################################################################################
 
-# **2.6.17 - Comandos **
+# **Comandos **
 
 
 
@@ -1466,7 +1602,7 @@ A figura a seguir mostra a estrutura dos principais comandos do `kubectl`.
 
 ##############################################################################################
 
-# **2.6.18 - Links Úteis**
+# **Links Úteis**
 
 **Tipos de topologias de K8s multi-master**
 

@@ -1245,9 +1245,19 @@ O nó `master` está marcado com o taint `NoSchedule`, assim o scheduler do Kube
 
 ##############################################################################################
 
-# Monitoring 
+# **Monitoring**
+
+**TODO - Mudar o setup do monitoramento para Helm.**
+
+https://docs.aws.amazon.com/pt_br/eks/latest/userguide/prometheus.html
+
+https://www.eksworkshop.com/intermediate/240_monitoring/deploy-prometheus/
 
 ![image-20210804203946101](./imagens/image-20210804203946101.png)
+
+
+
+
 
 ## **Prometheus**
 
@@ -1255,7 +1265,7 @@ https://prometheus.io/
 
 ![image-20210804204245381](./imagens/image-20210804204245381.png)
 
-
+![image-20210809212642725](./imagens/image-20210809212642725.png)
 
 ### **Client Libraries**
 
@@ -1301,17 +1311,21 @@ https://prometheus.io/blog/2015/06/01/advanced-service-discovery/
 
 https://github.com/linuxacademy/content-kubernetes-prometheus-env
 
-https://www.metricfire.com/blog/how-to-deploy-prometheus-on-kubernetes/#Deployment
 
-https://devopscube.com/setup-prometheus-monitoring-on-kubernetes/
-
-Linux Tips
 
 **Setup namespace**
 
 ```bash
 kubectl apply -f namespaces.yml
 ```
+
+Verificar se o recurso foi criado da corretamente.
+
+```bash
+kubectl get ns
+```
+
+![image-20210809205202305](./imagens/image-20210809205202305.png)
 
 **Setup Config MAP**
 
@@ -1321,6 +1335,14 @@ Tem que alterar no job node-exporter os ips dos targets para os ips do master e 
 kubectl apply -f prometheus-config-map.yml
 ```
 
+Verificar se o recurso foi criado da corretamente.
+
+```bash
+kubectl.exe get configmaps -n monitoring
+```
+
+![image-20210809205232171](./imagens/image-20210809205232171.png)
+
 **Setup Deployment**
 
 Cria 2 containeres - Prometheus e Watch
@@ -1329,7 +1351,109 @@ Cria 2 containeres - Prometheus e Watch
 kubectl apply -f prometheus-deployment.yml
 ```
 
+Verificar se o recurso foi criado da corretamente.
 
+```bash
+kubectl.exe get deploy -n monitoring
+```
+
+![image-20210809205134186](./imagens/image-20210809205134186.png)
+
+**Setup Prometheus Service** 
+
+```bash
+kubectl.exe apply -f prometheus-service.yml 
+```
+
+Verificar se o recurso foi criado da corretamente.
+
+```bash
+kubectl.exe get svc -n monitoring
+```
+
+
+
+![image-20210809210122572](./imagens/image-20210809210122572.png)
+
+
+
+**Setup ClusterRole**
+
+```bash
+kubectl.exe apply -f clusterRole.yml 
+```
+
+
+
+**Setup kube-state-metric**
+
+https://github.com/kubernetes/kube-state-metrics
+
+```bash
+kubectl.exe apply -f kube-state-metrics.yml
+```
+
+
+
+## **Grafana**
+
+![image-20210809214137423](C:\Users\brik\AppData\Roaming\Typora\typora-user-images\image-20210809214137423.png)
+
+
+
+### **Setup Grafana**
+
+**Deployment**
+
+```bash
+kubectl.exe apply -f grafana-deployment.yml
+```
+
+Verificar se o recurso foi criado da corretamente.
+
+```bash
+kubectl.exe get deploy -n monitoring
+```
+
+
+
+![image-20210809214517887](./imagens/image-20210809214517887.png)
+
+**Service**
+
+```bash
+kubectl.exe apply -f grafana-service.yml
+```
+
+Verificar se o recurso foi criado da corretamente.
+
+```bash
+kubectl.exe get svc -n monitoring
+```
+
+![image-20210809214745579](./imagens/image-20210809214745579.png)
+
+
+
+## **Node Exporter**
+
+https://prometheus.io/docs/guides/node-exporter/
+
+
+
+![image-20210809215541313](./imagens/image-20210809215541313.png)
+
+
+
+
+
+**Avaliar** 
+
+Fazer o do Linux tips
+
+https://www.metricfire.com/blog/how-to-deploy-prometheus-on-kubernetes/#Deployment
+
+https://devopscube.com/setup-prometheus-monitoring-on-kubernetes/
 
 ##############################################################################################
 

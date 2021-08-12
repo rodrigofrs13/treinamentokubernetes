@@ -48,22 +48,6 @@ https://docs.google.com/presentation/d/1weqpBWa9FNjKc1ugCUIpwYYquvoIOFbUvEcZ9ZYa
   - https://github.com/ACloudGuru-Resources
   - https://github.com/ACloudGuru-Resources/Course_Kubernetes_Deep_Dive_NP
 
-
-
-- ### **Monitoring Kubernetes With Prometheus**
-
-  - https://lucid.app/lucidchart/3da24eca-0c4d-4f03-b202-ba8f455783d2/view?page=0_0#
-
-  - *LAB - Monitoring in Kubernetes with Prometheus and Grafana*
-
-  - *LAB - Kubernetes Monitoring with Prometheus*
-
-  - *LAB - Creating Alerting Rules*
-
-    
-
-- ### **AIOps Essentials (Autoscaling Kubernetes with Prometheus Metrics)**
-
 - ### **Kubernetes the Hard Way**
 
 - ### **Kubernetes Security**
@@ -78,22 +62,56 @@ https://docs.google.com/presentation/d/1weqpBWa9FNjKc1ugCUIpwYYquvoIOFbUvEcZ9ZYa
 
 - ### **Certified Kubernetes Administrator (CKA)**
 
+- ### A Practical Guide to Amazon EKS
+
+- ### Learn Kubernetes by Doing
+
+- **Monitoring Kubernetes With Prometheus**✔
+
+  - https://lucid.app/lucidchart/3da24eca-0c4d-4f03-b202-ba8f455783d2/view?page=0_0#
+
+  - *LAB - Monitoring in Kubernetes with Prometheus and Grafana*
+
+  - *LAB - Kubernetes Monitoring with Prometheus*
+
+  - *LAB - Creating Alerting Rules*
+
+    
+
+- ### **AIOps Essentials (Autoscaling Kubernetes with Prometheus Metrics)**
+
+  - https://interactive.linuxacademy.com/diagrams/AIOpsEssentials.html
+
 
 
 ## **AWS**
 
-- ### **eks no acloudguru**
 
-- ### **Containers on AWS: Ecosystem Integration**
 
-- ### **Amazon Elastic Kubernetes Service (EKS) Primer**
+- **Amazon Elastic Kubernetes Service (EKS) Primer**✔
 
-- ### **APN Containers Navigate - Technical**
+  
 
-- ### **Running Containers on Amazon Elastic Kubernetes Service (Amazon EKS)**
+- ### **Containers on AWS: Ecosystem Integration✔**
 
-- ### **Containers na AWS**
+  ### **Running Containers on Amazon Elastic Kubernetes Service (Amazon EKS)**✔
+
+- ### **Containers na AWS✔**
   - https://pages.awscloud.com/LATAM_TRAINCERT_WEBINAR_immersion-day-containers-video-series_20200331_7010z000001LIBT_LPVideos-CostOptimizationVideoSeries.html
+
+  
+
+  
+
+- **Leitura**
+  - https://github.com/terraform-aws-modules/terraform-aws-eks
+  - https://aws.github.io/aws-eks-best-practices/
+
+
+
+- ### Amazon EKS on the AWS Cloud Quick Start Reference Deployment
+  - https://aws-quickstart.github.io/quickstart-amazon-eks/
+  - https://aws-quickstart.github.io/
 
 
 
@@ -195,12 +213,6 @@ https://docs.google.com/presentation/d/1weqpBWa9FNjKc1ugCUIpwYYquvoIOFbUvEcZ9ZYa
   - ### https://github.com/brunokktro/auladobruno
 
 
-
-
-
-## **Monitoramento**
-
-- https://kubedev.io/bonus-monitoramento/
 
 
 
@@ -1252,6 +1264,8 @@ O nó `master` está marcado com o taint `NoSchedule`, assim o scheduler do Kube
 https://docs.aws.amazon.com/pt_br/eks/latest/userguide/prometheus.html
 
 https://www.eksworkshop.com/intermediate/240_monitoring/deploy-prometheus/
+
+https://github.com/aws/eks-charts
 
 ![image-20210804203946101](./imagens/image-20210804203946101.png)
 

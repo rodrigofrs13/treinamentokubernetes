@@ -48,9 +48,18 @@ https://docs.google.com/presentation/d/1weqpBWa9FNjKc1ugCUIpwYYquvoIOFbUvEcZ9ZYa
   - https://github.com/ACloudGuru-Resources
   - https://github.com/ACloudGuru-Resources/Course_Kubernetes_Deep_Dive_NP
 
-- ### **Kubernetes the Hard Way**
-
+  
+  
+  
+  
 - ### **Kubernetes Security**
+
+
+  - https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1596555315055-302-kubernetessecuritydashboardsetup_1558387085.pdf
+
+  - https://lucid.app/lucidchart/d034d4e7-4f8f-46c2-ad9d-276cde0e0c48/view
+
+    
 
 - ### **Kubernetes Security (Advanced Concepts)**
 
@@ -66,7 +75,7 @@ https://docs.google.com/presentation/d/1weqpBWa9FNjKc1ugCUIpwYYquvoIOFbUvEcZ9ZYa
 
 - ### Learn Kubernetes by Doing
 
-- **Monitoring Kubernetes With Prometheus**✔
+- **Monitoring Kubernetes With Prometheus**
 
   - https://lucid.app/lucidchart/3da24eca-0c4d-4f03-b202-ba8f455783d2/view?page=0_0#
 
@@ -81,6 +90,17 @@ https://docs.google.com/presentation/d/1weqpBWa9FNjKc1ugCUIpwYYquvoIOFbUvEcZ9ZYa
 - ### **AIOps Essentials (Autoscaling Kubernetes with Prometheus Metrics)**
 
   - https://interactive.linuxacademy.com/diagrams/AIOpsEssentials.html
+
+- ### **Kubernetes the Hard Way**
+  - https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1596643768051-kthw-arch_1532028083.png
+  - https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1596643791307-kubernetes-the-hard-way-slides_1536875619.pdf
+  - https://github.com/kelseyhightower/kubernetes-the-hard-way
+
+
+
+## **Kubernetes 101**
+
+https://www.youtube.com/watch?v=IcslsH7OoYo&list=RDCMUCR-DXc1voovS8nhAvccRZhg&index=2
 
 
 
@@ -235,6 +255,12 @@ https://github.com/badtuxx/k8s-canary-deploy-example
 
 - ### **helm**
 
+  
+
+## **Jayendra Patil**
+
+https://jayendrapatil.com/certified-kubernetes-administrator-cka-learning-path/
+
 
 
 ## **Laboratório K8S**
@@ -247,7 +273,9 @@ https://labs.play-with-k8s.com/
 
 https://www.katacoda.com/courses/kubernetes
 
+- **Tutorials**
 
+https://kubernetes.io/docs/tutorials/
 
 # **Documentação oficial**
 
@@ -432,33 +460,6 @@ instalado em todos os nodes - master e worker
  
 
 ## **Demais componentes**
-
-- **2.61 - Pods**
-- **2.6.2 - Namespaces**
-- **2.6.3 - Network**
-- **2.6.4 - DNS**
-- **2.6.5 - Replicas e ReplicaSet**
-- **2.6.6 - Services**
-- **2.6.7 - Deployment**
-- **2.6.8 - Worker Nodes**
-- **2.6.9 - Endpoints**
-- **2.6.10 - Storage**
-- **2.6.11 - Scaling**
-- **2.6.12 - Labels**
-- **2.6.13 - RBAC e Admission Control**
-
-########## - Revisar ########
-
-- **2.6.13 - Kubectl Taint**
-- **2.6.14 - Setup do K8S**
-- **2.6.15 - Best  Practices**
-- **2.6.16 - Exemplos**
-- **2.6.17 - Comandos **
-- **2.6.18 - Links Úteis**
-- 
-
-
-##############################################################################################
 
 ### **POD´s**
 
@@ -1257,6 +1258,32 @@ O nó `master` está marcado com o taint `NoSchedule`, assim o scheduler do Kube
 
 ##############################################################################################
 
+### **Context**
+
+##############################################################################################
+
+### **Alias**
+
+alias kk=kubectl
+
+##############################################################################################
+
+### --dry-run 
+
+-o yaml
+
+##############################################################################################
+
+# **Security**
+
+
+
+
+
+
+
+##############################################################################################
+
 # **Monitoring**
 
 **TODO - Mudar o setup do monitoramento para Helm.**
@@ -1757,7 +1784,7 @@ A figura a seguir mostra a estrutura dos principais comandos do `kubectl`.
 |      kubectl get pods "nomedopod" -o yaml > meupod.yaml      | Cria um arquivo yaml com as infos do pod                     |
 | kubectl get pods "nomedopod" -o yaml --export > meupod.yaml  | Cria um arquivo yaml com as infos do pod, mas sem infos especificas |
 |                      kubeadm token list                      | Lista Tokens                                                 |
-|                                                              |                                                              |
+| aws eks --region "*region*" update-kubeconfig --name "*cluster-name*" | Conecta no cluster EKS                                       |
 |                                                              |                                                              |
 |                                                              |                                                              |
 |                                                              |                                                              |

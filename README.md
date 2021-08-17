@@ -300,11 +300,13 @@ https://kubernetes.io/pt-br/docs/home/
 
 
 
-## **Componentes do Control Plane** (Master)
+## **Master Node**
 
 Os componentes da camada de gerenciamento tomam decisões globais sobre o cluster (por exemplo, agendamento de *pods*), bem como detectam e respondem aos eventos do cluster (por exemplo, iniciando um novo *[pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/)* quando o campo `replicas` de um *Deployment* não está atendido).
 
 https://kubernetes.io/docs/concepts/overview/components/
+
+![image-20210816194814828](./imagens/image-20210816194814828.png)
 
 **Sempre no node MASTER**
 
@@ -314,11 +316,13 @@ https://kubernetes.io/pt-br/docs/concepts/overview/components/
 
 Armazenamento de valor de chave consistente e altamente disponível usado como armazenamento de apoio do Kubernetes para todos os dados do cluster.
 
+![image-20210816195041749](./imagens/image-20210816195041749.png)
+
 - No **[ETCD](https://kubernetes.io/docs/concepts/overview/components/#etcd)** são armazenados o estado do cluster, rede e outras informações persistentes.
 - É Stateful. 
 - Se seu cluster Kubernetes usa etcd como armazenamento de apoio, certifique-se de ter um plano de [backup](https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/#backing-up-an-etcd-cluster) para esses dado.
 
-**2.3.1.1 - Comandos**
+**Comandos**
 
 | Descrição          | Comando                         |
 | ------------------ | ------------------------------- |
@@ -330,11 +334,13 @@ Armazenamento de valor de chave consistente e altamente disponível usado como a
 
 
 
-### **kube-apiserver**
+### **API Server**
 
 https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver
 
 **[kube-apiserver](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver)** é a central de operações do cluster k8s. Todas as chamadas, internas ou externas são tratadas por ele. Ele é o único que conecta no ETCD.
+
+![image-20210816200040215](./imagens/image-20210816200040215.png)
 
 O servidor de API é um componente da [Camada de gerenciamento](https://kubernetes.io/pt-br/docs/reference/glossary/?all=true#term-control-plane) do Kubernetes que expõe a API do Kubernetes. O servidor de API é o *front end* para a camada de gerenciamento do Kubernetes.
 
@@ -348,13 +354,15 @@ O kube-apiserver foi projetado para ser escalonado horizontalmente — ou seja, 
 |                          |                                 |
 |                          |                                 |
 
-### **[kube-scheduller](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver)** 
+### **Scheduler**
 
 https://kubernetes.io/pt-br/docs/concepts/overview/components/
 
-**[kube-scheduller](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver)** usa um algoritmo para verificar em qual node o pod deverá ser hospedado. Ele verifica os recursos disponíveis do node para verificar qual o melhor node para receber aquele pod.
+**[kube-scheduler](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver)** usa um algoritmo para verificar em qual node o pod deverá ser hospedado. Ele verifica os recursos disponíveis do node para verificar qual o melhor node para receber aquele pod.
 
-**2.3.1.1 - Comandos**
+![image-20210816195123993](./imagens/image-20210816195123993.png)
+
+**Comandos**
 
 | Descrição          | Comando                         |
 | ------------------ | ------------------------------- |
@@ -362,11 +370,13 @@ https://kubernetes.io/pt-br/docs/concepts/overview/components/
 |                    |                                 |
 |                    |                                 |
 
-### **[kube-controller-manager](https://kubernetes.io/docs/concepts/overview/components/#cloud-controller-manager)** 
+### **Controller**
 
 https://kubernetes.io/pt-br/docs/concepts/overview/components/
 
 **[kube-controller-manager](https://kubernetes.io/docs/concepts/overview/components/#cloud-controller-manager)** é o controle principal que interage com o `kube-apiserver` para determinar o seu estado. Se o estado não bate, o manager irá contactar o controller necessário para checar seu estado desejado. Tem diversos controllers em uso como: os endpoints, namespace e replication.
+
+![image-20210816195229262](./imagens/image-20210816195229262.png)
 
 Componente da camada de gerenciamento que executa os processos de [controlador](https://kubernetes.io/docs/concepts/architecture/controller/).
 
@@ -384,8 +394,7 @@ Alguns tipos desses controladores são:
 
 
 
-
-**2.3.1.1 - Comandos**
+**Comandos**
 
 | Descrição          | Comando                         |
 | ------------------ | ------------------------------- |
@@ -421,17 +430,21 @@ O kubeadm executa as ações necessárias para obter um cluster mínimo viável 
 
 
 
-## **Node Components**
+## **Worker Node**
 
 https://kubernetes.io/pt-br/docs/concepts/overview/components/
 
+https://kubernetes.io/docs/concepts/architecture/nodes/
+
 Os componentes de nó são executados em todos os nós, mantendo os *pods* em execução e fornecendo o ambiente de execução do Kubernetes.	
 
+![image-20210816194858155](./imagens/image-20210816194858155.png)
 
+### **PROXY**
 
-### **[kube-proxy](https://kubernetes.io/docs/concepts/overview/components/#kube-proxy)**
+O **kube-proxy** é o responsável por gerenciar a rede para os contêineres, é o responsável por expor portas dos mesmos.
 
-O **[kube-proxy](https://kubernetes.io/docs/concepts/overview/components/#kube-proxy)** é o responsável por gerenciar a rede para os contêineres, é o responsável por expor portas dos mesmos.
+https://kubernetes.io/docs/concepts/overview/components/#kube-proxy
 
 Trata da comunicação entre os Nodes.
 
@@ -445,7 +458,7 @@ Trata da comunicação entre os Nodes.
 
 O agente de execução (*runtime*) de contêiner é o software responsável por executar os contêineres.
 
-
+![image-20210816200447426](./imagens/image-20210816200447426.png)
 
 ### **kubelet**
 
@@ -453,11 +466,25 @@ https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/
 
 O **[kubelet](https://kubernetes.io/docs/concepts/overview/components/#kubelet)** interage com o Docker instalado no node e garante que os contêineres que precisavam estar em execução realmente estão.
 
-node agent
+![image-20210816200243381](./imagens/image-20210816200243381.png)
 
-instalado em todos os nodes - master e worker
+- node agent
+
+- instalado em todos os nodes - master e worker
+- Conversa com API Server
 
  
+
+**Comandos**
+
+| Descrição                   | Comando                                                  |
+| --------------------------- | -------------------------------------------------------- |
+| Lista Nodes                 | kubectl get nodes                                        |
+| Describe Node               | kubectl describe node "*node_name*"                      |
+| Pegar bloco de ip dos nodes | kubectl get nodes -o jsonpath='{.items[*].spec.podCIDR}' |
+|                             |                                                          |
+
+##############################################################################################
 
 ## **Demais componentes**
 
@@ -933,22 +960,9 @@ No entanto, com diferentes sinalizadores e/ou diferentes solicitações de memó
 |                                    |                                                              |
 |                                    |                                                              |
 
-##############################################################################################
-
-### **Worker Nodes**
-
-https://kubernetes.io/docs/concepts/architecture/nodes/
 
 
-
-**Comandos**
-
-| Descrição                   | Comando                                                  |
-| --------------------------- | -------------------------------------------------------- |
-| Lista Nodes                 | kubectl get nodes                                        |
-| Describe Node               | kubectl describe node "*node_name*"                      |
-| Pegar bloco de ip dos nodes | kubectl get nodes -o jsonpath='{.items[*].spec.podCIDR}' |
-|                             |                                                          |
+### 
 
 ##############################################################################################
 
@@ -1274,11 +1288,184 @@ alias kk=kubectl
 
 ##############################################################################################
 
+# **Setup Dashboard**
+
+
+
+##############################################################################################
+
 # **Security**
 
 
 
+![image-20210816194455011](./imagens/image-20210816194455011.png)
 
+## **Tipos de Ataques**
+
+### **Attack Vectors**
+
+![image-20210816200810208](./imagens/image-20210816200810208.png)
+
+### **Access to etcd**
+
+![image-20210816200900986](./imagens/image-20210816200900986.png)
+
+### **Access Kubernetes API Server**
+
+![image-20210816200927328](./imagens/image-20210816200927328.png)
+
+### **Intercept/Modify/Inject Control Plane**
+
+![image-20210816200949941](./imagens/image-20210816200949941.png)
+
+### **Access via Kubelet API**
+
+![image-20210816201147842](./imagens/image-20210816201147842.png)
+
+### **Compromise Container Runtime**
+
+![image-20210816201553858](./imagens/image-20210816201553858.png)
+
+### **Intercept/Modify/Inject Application Traffic**
+
+![image-20210816201628340](./imagens/image-20210816201628340.png)
+
+### **Escape Container Host**
+
+![image-20210816201715269](./imagens/image-20210816201715269.png)
+
+### **Vulnarebilities**
+
+![image-20210816202113781](./imagens/image-20210816202113781.png)
+
+
+
+## **Principle of Least Privilege**
+
+![image-20210816202456943](./imagens/image-20210816202456943.png)
+
+O princípio significa dar a uma [conta de usuário](https://en.wikipedia.org/wiki/User_account) ou processo apenas os privilégios que são essenciais para executar sua função pretendida. Por exemplo, uma conta de usuário com o único propósito de criar backups não precisa instalar software: portanto, ela tem direitos apenas para executar backup e aplicativos relacionados a backup.
+
+https://en.wikipedia.org/wiki/Principle_of_least_privilege#cite_note-1
+
+- Utilizar namespaces;
+- Serviceaccounts;
+- Roles
+
+## **Boundaries**
+
+![image-20210816203347906](./imagens/image-20210816203347906.png)
+
+### **Cluster**
+
+![image-20210816204531592](./imagens/image-20210816204531592.png)
+
+### **Node**
+
+![image-20210816204546321](./imagens/image-20210816204546321.png)
+
+### **Namespaces**
+
+![image-20210816204602020](./imagens/image-20210816204602020.png)
+
+### **Pod**
+
+![image-20210816204612221](./imagens/image-20210816204612221.png)
+
+### **Container**
+
+![image-20210816204625231](./imagens/image-20210816204625231.png)
+
+
+
+## **TLS**
+
+![image-20210816205135814](./imagens/image-20210816205135814.png)
+
+![image-20210816205600729](./imagens/image-20210816205600729.png)
+
+### **API Server**
+
+![image-20210816205746574](C:\Users\brik\AppData\Roaming\Typora\typora-user-images\image-20210816205746574.png)
+
+### **ETCD**
+
+![image-20210816205800579](C:\Users\brik\AppData\Roaming\Typora\typora-user-images\image-20210816205800579.png)
+
+### **Scheduler**
+
+![image-20210816205811280](C:\Users\brik\AppData\Roaming\Typora\typora-user-images\image-20210816205811280.png)
+
+### **Controller**
+
+![image-20210816205824874](C:\Users\brik\AppData\Roaming\Typora\typora-user-images\image-20210816205824874.png)
+
+### **Services**
+
+![image-20210816205839626](C:\Users\brik\AppData\Roaming\Typora\typora-user-images\image-20210816205839626.png)
+
+
+
+## **Firewall and Virtual Private Networking**
+
+![image-20210816210251097](C:\Users\brik\AppData\Roaming\Typora\typora-user-images\image-20210816210251097.png)
+
+https://v1-17.docs.kubernetes.io/docs/tasks/access-application-cluster/configure-cloud-provider-firewall/
+
+### **Load Balancers**
+
+![image-20210816210312854](./imagens/image-20210816210312854.png)
+
+
+
+## **Using kube-bench toHarden a Cluster**
+
+![image-20210816210503115](./imagens/image-20210816210503115.png)
+
+https://github.com/aquasecurity/kube-bench
+
+**Setup**
+
+```shell
+$ kubectl apply -f job.yaml
+job.batch/kube-bench created
+
+$ kubectl get pods
+NAME                      READY   STATUS              RESTARTS   AGE
+kube-bench-j76s9   0/1     ContainerCreating   0          3s
+
+# Wait for a few seconds for the job to complete
+$ kubectl get pods
+NAME                      READY   STATUS      RESTARTS   AGE
+kube-bench-j76s9   0/1     Completed   0          11s
+
+# The results are held in the pod's logs
+kubectl logs kube-bench-j76s9
+[INFO] 1 Master Node Security Configuration
+[INFO] 1.1 API Server
+```
+
+
+
+## **Securing the Kubelet**
+
+https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/
+
+![image-20210816211300140](./imagens/image-20210816211300140.png)
+
+https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/kubelet-integration/
+
+https://kubernetes.io/docs/tasks/administer-cluster/reconfigure-kubelet/
+
+## **Securing ETCD**
+
+![image-20210816213207099](./imagens/image-20210816213207099.png)
+
+
+
+## **Melhores Práticas**
+
+https://kubernetes.io/docs/tasks/administer-cluster/securing-a-cluster/
 
 
 
@@ -1523,7 +1710,6 @@ apt-get update && apt-get upgrade -y
 
 ```bash
 sudo curl -fsSL https://get.docker.com | bash
-
 ```
 
 **Configura Cgroup**
@@ -1766,7 +1952,7 @@ A figura a seguir mostra a estrutura dos principais comandos do `kubectl`.
 |                           Comando                            | Descrição                                                    |
 | :----------------------------------------------------------: | :----------------------------------------------------------- |
 |                                                              |                                                              |
-|                                                              |                                                              |
+|                      kubectl get events                      | Lista os eventos                                             |
 |                 kubectl get componentstatus                  | Status dos componentes                                       |
 |                     kubectl cluster-info                     | Informações do cluster                                       |
 |                  kubectl cluster-info dump                   | Gerar Dump das infos do cluster                              |

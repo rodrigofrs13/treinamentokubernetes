@@ -55,11 +55,11 @@ https://docs.google.com/presentation/d/1weqpBWa9FNjKc1ugCUIpwYYquvoIOFbUvEcZ9ZYa
 - ### **Kubernetes Security**
 
 
-  - https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1596555315055-302-kubernetessecuritydashboardsetup_1558387085.pdf
+    - https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1596555315055-302-kubernetessecuritydashboardsetup_1558387085.pdf
 
-  - https://lucid.app/lucidchart/d034d4e7-4f8f-46c2-ad9d-276cde0e0c48/view
+    - https://lucid.app/lucidchart/d034d4e7-4f8f-46c2-ad9d-276cde0e0c48/view
 
-    
+  
 
 - ### **Kubernetes Security (Advanced Concepts)**
 
@@ -402,7 +402,7 @@ Alguns tipos desses controladores são:
 |                    |                                 |
 |                    |                                 |
 
-### **cloud-controller-manager**
+### **Cloud-controller-manager**
 
 Um componente da [camada de gerenciamento](https://kubernetes.io/pt-br/docs/reference/glossary/?all=true#term-control-plane) do Kubernetes que incorpora a lógica de controle específica da nuvem. O gerenciador de controle de nuvem permite que você vincule seu *cluster* na API do seu provedor de nuvem, e separar os componentes que interagem com essa plataforma de nuvem a partir de componentes que apenas interagem com seu cluster.
 
@@ -440,7 +440,7 @@ Os componentes de nó são executados em todos os nós, mantendo os *pods* em ex
 
 ![image-20210816194858155](./imagens/image-20210816194858155.png)
 
-### **PROXY**
+### **Proxy**
 
 O **kube-proxy** é o responsável por gerenciar a rede para os contêineres, é o responsável por expor portas dos mesmos.
 
@@ -1177,71 +1177,6 @@ https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/
 
 ##############################################################################################
 
-### **RBAC e Admission Control**
-
-https://kubernetes.io/docs/reference/access-authn-authz/rbac/
-
-https://kubernetes.io/docs/reference/access-authn-authz/authorization/
-
-O controle de acesso baseado em função (RBAC) é um método de regular o acesso a recursos de computador ou rede com base nas funções de usuários individuais em sua organização.
-
-![image-20210803213720545](./imagens/image-20210803213720545.png)
-
-
-
-#### **Authentication (authN)**
-
-- Proveder ID
-- Token
-
-#### **Authorization (authZ)**
-
-- Liberações do usuários
-- **Role | ClusterRole**
-
-
-
-![image-20210803211927663](./imagens/image-20210803211927663.png)
-
-- **RoleBinding |ClusterRoleBinding**
-
-![image-20210803211804301](./imagens/image-20210803211804301.png)
-
-#### **Admission Control**
-
-https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/
-
-Admission Control é um trecho de código que intercepta solicitações para o servidor da API Kubernetes antes da persistência do objeto, mas depois que a solicitação é autenticada e autorizada. 
-
-- **Mutatung**
-
-- **Validating**
-
-  
-
-#### **Anotações Importantes**
-
-- **Alguns clusters abrem uma porta local insegura, desabilite em Produção;**
-- **Deny-by-default;**
-- **Kubernetes NÃO faz usuários;**
-- **Gerencie os usuários externamente;**
-
-#### **Comandos**
-
-
-
-| Descrição                             | Comando                                              |
-| ------------------------------------- | ---------------------------------------------------- |
-| Listar as ClusterRoleBindings         | kubectl.exe get clusterrolebindings                  |
-| Listar as ClusterRole                 | kubectl.exe get clusterrole                          |
-| Listar as Role de todas as namespaces | kubectl.exe get role --all-namespaces                |
-| Listar as Role de namespaces          | kubectl.exe get role -n "*namespaces*"               |
-| Lista uma role especifica             | kubectl.exe get clusterrole "*nome-da-role*"         |
-| Lista uma role especifica em YAML     | kubectl.exe get clusterrole "*nome-da-role*" -o yaml |
-|                                       |                                                      |
-|                                       |                                                      |
-|                                       |                                                      |
-
 
 
 ##############################################################################################
@@ -1282,15 +1217,29 @@ alias kk=kubectl
 
 ##############################################################################################
 
-### --dry-run 
+### **--dry-run** 
 
 -o yaml
 
 ##############################################################################################
 
-# **Setup Dashboard**
+# **Setup WEB UI**
+
+https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1596555315055-302-kubernetessecuritydashboardsetup_1558387085.pdf
+
+kubectl.exe apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta4/aio/deploy/recommended.yaml
+
+https://docs.aws.amazon.com/pt_br/eks/latest/userguide/dashboard-tutorial.html
+
+**Get Token**
+
+kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep admin-user | awk '{print $1}')
 
 
+
+**Acesso**
+
+http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#!/login
 
 ##############################################################################################
 
@@ -1299,6 +1248,141 @@ alias kk=kubectl
 
 
 ![image-20210816194455011](./imagens/image-20210816194455011.png)
+
+## **3 A´s - Authentication - Authorization - Admission**
+
+![image-20210803213720545](./imagens/image-20210803213720545.png)
+
+![image-20210817211311147](./imagens/image-20210817211311147.png)
+
+### **Authorization(authZ)**
+
+https://kubernetes.io/docs/reference/access-authn-authz/authorization/
+
+- **Liberações do usuários**
+- **Role | ClusterRole**
+
+
+
+![image-20210803211927663](./imagens/image-20210803211927663.png)
+
+- **RoleBinding |ClusterRoleBinding**
+
+![image-20210803211804301](./imagens/image-20210803211804301.png)
+
+![image-20210817214249908](./imagens/image-20210817214249908.png)
+
+**RBAC**
+
+https://kubernetes.io/docs/reference/access-authn-authz/rbac/
+
+O controle de acesso baseado em função (RBAC) é um método de regular o acesso a recursos de computador ou rede com base nas funções de usuários individuais em sua organização.
+
+![image-20210817214420571](./imagens/image-20210817214420571.png)
+
+![image-20210817214515972](./imagens/image-20210817214515972.png)
+
+![image-20210817214551446](C:\Users\brik\AppData\Roaming\Typora\typora-user-images\image-20210817214551446.png)
+
+![image-20210817215453548](./imagens/image-20210817215453548.png)
+
+### **Authentication(authN)**
+
+https://kubernetes.io/pt-br/docs/reference/access-authn-authz/authentication/
+
+- **Proveder ID**
+- **Token**
+
+![image-20210817211507347](./imagens/image-20210817211507347.png)
+
+https://kubernetes.io/pt-br/docs/reference/access-authn-authz/authentication/#estrat%C3%A9gias-de-autentica%C3%A7%C3%A3o
+
+![image-20210817211700241](./imagens/image-20210817211700241.png)
+
+https://kubernetes.io/pt-br/docs/reference/access-authn-authz/authentication/#certificados-de-cliente-x509
+
+![image-20210817211912924](./imagens/image-20210817211912924.png)
+
+https://kubernetes.io/pt-br/docs/reference/access-authn-authz/authentication/#arquivo-est%C3%A1tico-de-token
+
+![image-20210817212009664](./imagens/image-20210817212009664.png)
+
+***Não Recomendado*** 
+
+
+
+![image-20210817212025851](./imagens/image-20210817212025851.png)
+
+https://kubernetes.io/pt-br/docs/reference/access-authn-authz/authentication/#tokens-de-contas-de-servi%C3%A7o
+
+![image-20210817212038271](./imagens/image-20210817212038271.png)
+
+
+
+https://kubernetes.io/docs/reference/access-authn-authz/rbac/
+
+
+
+O controle de acesso baseado em função (RBAC) é um método de regular o acesso a recursos de computador ou rede com base nas funções de usuários individuais em sua organização.
+
+
+
+
+
+### **Admission Control**
+
+https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/
+
+Admission Control é um trecho de código que intercepta solicitações para o servidor da API Kubernetes antes da persistência do objeto, mas depois que a solicitação é autenticada e autorizada. 
+
+![image-20210817220341901](./imagens/image-20210817220341901.png)
+
+![image-20210817220522335](./imagens/image-20210817220522335.png)
+
+![image-20210817220540968](./imagens/image-20210817220540968.png)
+
+https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#is-there-a-recommended-set-of-admission-controllers-to-use
+
+![image-20210817220941657](./imagens/image-20210817220941657.png)
+
+
+
+- **Mutatung**
+
+- **Validating**
+
+  
+
+### **Anotações Importantes**
+
+- *Alguns clusters abrem uma porta local insegura, desabilite em Produção;*
+- *Deny-by-default;*
+- *Kubernetes NÃO faz usuários;*
+- *Gerencie os usuários externamente;*
+
+### **Comandos**
+
+
+
+| Descrição                             | Comando                                              |
+| ------------------------------------- | ---------------------------------------------------- |
+| Listar as ClusterRoleBindings         | kubectl.exe get clusterrolebindings                  |
+| Listar as ClusterRole                 | kubectl.exe get clusterrole                          |
+| Listar as Role de todas as namespaces | kubectl.exe get role --all-namespaces                |
+| Listar as Role de namespaces          | kubectl.exe get role -n "*namespaces*"               |
+| Lista uma role especifica             | kubectl.exe get clusterrole "*nome-da-role*"         |
+| Lista uma role especifica em YAML     | kubectl.exe get clusterrole "*nome-da-role*" -o yaml |
+| Descrição da ClusterRole              | kubectl.exe describe clusterrole "*nome-da-role*"    |
+|                                       |                                                      |
+|                                       |                                                      |
+
+
+
+
+
+
+
+
 
 ## **Tipos de Ataques**
 
@@ -1688,6 +1772,10 @@ https://devopscube.com/setup-prometheus-monitoring-on-kubernetes/
 # **Setup do Kubernetes**
 
 **Configura modulos**
+
+// - Resolve problema de versão
+
+https://stackoverflow.com/questions/49721708/how-to-install-specific-version-of-kubernetes
 
 Crie o arquivo `/etc/modules-load.d/k8s.conf` com o seguinte conteúdo em todos os seus nós.
 

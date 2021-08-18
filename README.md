@@ -1245,7 +1245,9 @@ http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kube
 
 # **Security**
 
+https://kubernetes.io/docs/tasks/administer-cluster/securing-a-cluster/
 
+https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html
 
 ![image-20210816194455011](./imagens/image-20210816194455011.png)
 

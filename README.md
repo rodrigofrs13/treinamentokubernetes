@@ -55,9 +55,9 @@ https://docs.google.com/presentation/d/1weqpBWa9FNjKc1ugCUIpwYYquvoIOFbUvEcZ9ZYa
 - ### **Kubernetes Security**
 
 
-    - https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1596555315055-302-kubernetessecuritydashboardsetup_1558387085.pdf
-
+  - https://github.com/linuxacademy/content-kubernetes-security
     - https://lucid.app/lucidchart/d034d4e7-4f8f-46c2-ad9d-276cde0e0c48/view
+
 
   
 

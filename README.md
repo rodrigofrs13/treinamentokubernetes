@@ -52,14 +52,19 @@ https://docs.google.com/presentation/d/1weqpBWa9FNjKc1ugCUIpwYYquvoIOFbUvEcZ9ZYa
   
   
   
-- ### **Kubernetes Security**
+- ### **Kubernetes Security**✔
 
 
-  - https://github.com/linuxacademy/content-kubernetes-security
-    - https://lucid.app/lucidchart/d034d4e7-4f8f-46c2-ad9d-276cde0e0c48/view
+    - https://github.com/linuxacademy/content-kubernetes-security
 
+  - https://lucid.app/lucidchart/d034d4e7-4f8f-46c2-ad9d-276cde0e0c48/view
 
-  
+    
+
+- **Certified Kubernetes Administrator (CKA)**
+  - https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1607460115916-devops-wb002%20-%20S01%20Introduction.pdf
+  - https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1607459695041-devops-wb002%20-%20Certified%20Kubernetes%20Administrator%20-%20All%20Sections%20Combined.pdf
+
 
 - ### **Kubernetes Security (Advanced Concepts)**
 
@@ -69,9 +74,7 @@ https://docs.google.com/presentation/d/1weqpBWa9FNjKc1ugCUIpwYYquvoIOFbUvEcZ9ZYa
 
 - ### **Helm Deep Dive V3**
 
-- ### **Certified Kubernetes Administrator (CKA)**
-
-- ### A Practical Guide to Amazon EKS
+  ### A Practical Guide to Amazon EKS
 
 - ### Learn Kubernetes by Doing
 
@@ -292,11 +295,21 @@ https://kubernetes.io/pt-br/docs/home/
 
 
 
-## **Componentes do K8s**
+## **The Big Picture -  K8s**
+
+![image-20210819205057531](./imagens/image-20210819205057531.png)
 
 ![image-20210719201310997](./imagens/image-20210719201310997.png)
 
 
+
+## Control Plane
+
+O plano de controle é uma coleção de múltiplos componentes responsáveis por gerenciar o cluster-se globalmente. Essencialmente, o controle
+avião controla o cluster. Os componentes individuais do plano de controle podem ser executados em qualquer máquina do cluster, mas geralmente são
+executado em máquinas controladoras dedicadas.
+
+![image-20210819204235085](./imagens/image-20210819204235085.png)
 
 
 
@@ -316,6 +329,8 @@ https://kubernetes.io/pt-br/docs/concepts/overview/components/
 
 Armazenamento de valor de chave consistente e altamente disponível usado como armazenamento de apoio do Kubernetes para todos os dados do cluster.
 
+Etcd é o armazenamento de dados de backend para o Cluster do Kubernetes. Ele fornece armazenamento de alta disponibilidade para todos os dados relacionados ao estado do cluster.
+
 ![image-20210816195041749](./imagens/image-20210816195041749.png)
 
 - No **[ETCD](https://kubernetes.io/docs/concepts/overview/components/#etcd)** são armazenados o estado do cluster, rede e outras informações persistentes.
@@ -334,11 +349,15 @@ Armazenamento de valor de chave consistente e altamente disponível usado como a
 
 
 
-### **API Server**
+### **kube-api-server**
+
+É a central de operações do cluster k8s. Todas as chamadas, internas ou externas são tratadas por ele. Ele é o único que conecta no ETCD.
+
+Fornece a API Kubernetes, a interface primária para o plano de controle e o próprio cluster. Ao interagir com seu Kubernetes cluster, você geralmente fará isso usando o API Kubernetes.
 
 https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver
 
-**[kube-apiserver](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver)** é a central de operações do cluster k8s. Todas as chamadas, internas ou externas são tratadas por ele. Ele é o único que conecta no ETCD.
+
 
 ![image-20210816200040215](./imagens/image-20210816200040215.png)
 
@@ -354,11 +373,13 @@ O kube-apiserver foi projetado para ser escalonado horizontalmente — ou seja, 
 |                          |                                 |
 |                          |                                 |
 
-### **Scheduler**
+### **kube-scheduler**
 
 https://kubernetes.io/pt-br/docs/concepts/overview/components/
 
-**[kube-scheduler](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver)** usa um algoritmo para verificar em qual node o pod deverá ser hospedado. Ele verifica os recursos disponíveis do node para verificar qual o melhor node para receber aquele pod.
+Usa um algoritmo para verificar em qual node o pod deverá ser hospedado. Ele verifica os recursos disponíveis do node para verificar qual o melhor node para receber aquele pod.
+
+kube-scheduler lida com agendamento, o processo de seleção de um nó disponível no cluster no qual executar contêineres
 
 ![image-20210816195123993](./imagens/image-20210816195123993.png)
 
@@ -370,11 +391,13 @@ https://kubernetes.io/pt-br/docs/concepts/overview/components/
 |                    |                                 |
 |                    |                                 |
 
-### **Controller**
+### **kube-controller-manager**
 
 https://kubernetes.io/pt-br/docs/concepts/overview/components/
 
-**[kube-controller-manager](https://kubernetes.io/docs/concepts/overview/components/#cloud-controller-manager)** é o controle principal que interage com o `kube-apiserver` para determinar o seu estado. Se o estado não bate, o manager irá contactar o controller necessário para checar seu estado desejado. Tem diversos controllers em uso como: os endpoints, namespace e replication.
+É o controle principal que interage com o `kube-apiserver` para determinar o seu estado. Se o estado não bate, o manager irá contactar o controller necessário para checar seu estado desejado. Tem diversos controllers em uso como: os endpoints, namespace e replication.
+
+kube-controller-manager executa uma coleção de vários utilitários de controlador em um único processo. Esses controladores realizam uma variedade de tarefas relacionadas à automação dentro do Cluster Kubernetes
 
 ![image-20210816195229262](./imagens/image-20210816195229262.png)
 
@@ -402,9 +425,11 @@ Alguns tipos desses controladores são:
 |                    |                                 |
 |                    |                                 |
 
-### **Cloud-controller-manager**
+### **cloud-controller-manager**
 
 Um componente da [camada de gerenciamento](https://kubernetes.io/pt-br/docs/reference/glossary/?all=true#term-control-plane) do Kubernetes que incorpora a lógica de controle específica da nuvem. O gerenciador de controle de nuvem permite que você vincule seu *cluster* na API do seu provedor de nuvem, e separar os componentes que interagem com essa plataforma de nuvem a partir de componentes que apenas interagem com seu cluster.
+
+cloud-controller-manager fornece um interface entre o Kubernetes e vários plataformas em nuvem. Só é usado ao usar usando recursos baseados em nuvem o lado Kubernetes.
 
 
 
@@ -436,13 +461,20 @@ https://kubernetes.io/pt-br/docs/concepts/overview/components/
 
 https://kubernetes.io/docs/concepts/architecture/nodes/
 
+![image-20210819204938530](./imagens/image-20210819204938530.png)
+
 Os componentes de nó são executados em todos os nós, mantendo os *pods* em execução e fornecendo o ambiente de execução do Kubernetes.	
+
+Nós do Kubernetes são as máquinas onde o contêineres gerenciados pela execução do cluster. Um cluster pode tem qualquer número de nós. Vários componentes de nó gerenciam contêineres no máquina e se comunicar com o plano de controle.
 
 ![image-20210816194858155](./imagens/image-20210816194858155.png)
 
-### **Proxy**
+### **kube-proxy**
 
 O **kube-proxy** é o responsável por gerenciar a rede para os contêineres, é o responsável por expor portas dos mesmos.
+
+kube-proxy é um proxy de rede. Ele é executado em cada nó e lida com algumas tarefas relacionadas ao fornecimento rede entre contêineres e serviços no
+agrupar. 
 
 https://kubernetes.io/docs/concepts/overview/components/#kube-proxy
 
@@ -454,9 +486,11 @@ Trata da comunicação entre os Nodes.
 
 ![image-20210726215128527](./imagens/image-20210726215128527.png)
 
-### **Container runtime**
+### **container runtime**
 
 O agente de execução (*runtime*) de contêiner é o software responsável por executar os contêineres.
+
+O tempo de execução do contêiner não está integrado ao Kubernetes. Isto é uma parte separada do software responsável por realmente executando contêineres na máquina. O Kubernetes oferece suporte a vários tempos de execução de contêineres implementações. Alguns tempos de execução de contêineres populares são Docker e containerd.
 
 ![image-20210816200447426](./imagens/image-20210816200447426.png)
 
@@ -465,6 +499,8 @@ O agente de execução (*runtime*) de contêiner é o software responsável por 
 https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/
 
 O **[kubelet](https://kubernetes.io/docs/concepts/overview/components/#kubelet)** interage com o Docker instalado no node e garante que os contêineres que precisavam estar em execução realmente estão.
+
+Kubelet é o agente Kubernetes executado em cada nó. Ele se comunica com o plano de controle e garante que os contêineres sejam executados em seu nó como instruído pelo plano de controle. Kubelet também lida com o processo de geração de relatórios status do contêiner e outros dados sobre contêineres de volta ao plano de controle.
 
 ![image-20210816200243381](./imagens/image-20210816200243381.png)
 
@@ -574,17 +610,17 @@ Específica com "**-n**", se não especificar nenhuma ele lista da namespace "*d
 
 **Comandos**
 
-| Descrição         | Comandos                                               |
-| ----------------- | ------------------------------------------------------ |
-| Lista namespaces  | kubectl get namespace / kubectl get ns                 |
-| Cria namespaces   | kubectl create namespace "nomedanamespace"             |
-| Deleta namespaces | kubectl delete namespaces <insert-some-namespace-name> |
-|                   |                                                        |
-|                   |                                                        |
-|                   |                                                        |
-|                   |                                                        |
-|                   |                                                        |
-|                   |                                                        |
+| Descrição                     | Comandos                                                     |
+| ----------------------------- | ------------------------------------------------------------ |
+| Lista namespaces              | kubectl get namespace / kubectl get ns                       |
+| Cria namespaces               | kubectl create namespace "*nomedanamespace*"                 |
+| Deleta namespaces             | kubectl delete namespaces <insert-some-namespace-name>       |
+| Lista Pods com a namespace    | kubect get pods --namespace "*nomedanamespace*" / kubect get pods --n "*nomedanamespace*" |
+| Lista Pods de todas namespace | kubect get pods --all-namespaces                             |
+|                               |                                                              |
+|                               |                                                              |
+|                               |                                                              |
+|                               |                                                              |
 
 
 
@@ -613,7 +649,7 @@ For example:
 
 ```shell
 kubectl run nginx --image=nginx --namespace=<insert-namespace-name-here>
-kubectl get pods --namespace=<insert-namespace-name-here>
+
 ```
 
 
@@ -1251,7 +1287,69 @@ https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.h
 
 ![image-20210816194455011](./imagens/image-20210816194455011.png)
 
-## **3 A´s - Authentication - Authorization - Admission**
+## **Network Policies**
+
+https://kubernetes.io/docs/concepts/services-networking/network-policies/#:~:text=By%20default%2C%20pods%20are%20non,not%20allowed%20by%20any%20NetworkPolicy.
+
+
+
+![image-20210819201957114](./imagens/image-20210819201957114.png)
+
+
+
+![image-20210819202011642](./imagens/image-20210819202011642.png)
+
+
+
+![image-20210819202022149](./imagens/image-20210819202022149.png)
+
+![image-20210819202031959](./imagens/image-20210819202031959.png)
+
+![image-20210819202040637](./imagens/image-20210819202040637.png)
+
+
+
+## **Context**
+
+Um contexto de segurança define configurações de privilégio e controle de acesso para um pod ou contêiner. 
+
+https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
+
+
+
+![image-20210819195702800](./imagens/image-20210819195702800.png)
+
+![image-20210819195840584](./imagens/image-20210819195840584.png)
+
+
+
+### **Pod Security Police**
+
+Uma *política de segurança de pod* é um recurso em nível de cluster que controla aspectos confidenciais de segurança da especificação de pod. 
+
+https://kubernetes.io/docs/concepts/policy/pod-security-policy/
+
+https://kubernetes.io/docs/concepts/security/pod-security-standards/
+
+![image-20210819200324674](./imagens/image-20210819200324674.png)
+
+
+
+![image-20210819200445716](./imagens/image-20210819200445716.png)
+
+
+
+![image-20210819200501274](./imagens/image-20210819200501274.png)
+
+![image-20210819200512358](./imagens/image-20210819200512358.png)
+
+![image-20210819200522707](./imagens/image-20210819200522707.png)
+
+
+
+
+
+## **3  - A´s - Authentication - Authorization - Admission**
 
 ![image-20210803213720545](./imagens/image-20210803213720545.png)
 
@@ -1773,7 +1871,23 @@ https://devopscube.com/setup-prometheus-monitoring-on-kubernetes/
 
 # **Setup do Kubernetes**
 
-**Configura modulos**
+**Links**
+
+https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1623334133949-Building%20a%20Kubernetes%20Cluster.pdf
+
+https://docs.docker.com/engine/install/ubuntu/
+
+https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
+
+https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/
+
+https://buildvirtual.net/deploy-a-kubernetes-cluster-using-ansible/
+
+https://www.linuxsysadmins.com/install-kubernetes-cluster-with-ansible/
+
+https://kubernetes.io/blog/2019/03/15/kubernetes-setup-using-ansible-and-vagrant/
+
+**Configura módulos**
 
 // - Resolve problema de versão
 

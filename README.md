@@ -55,14 +55,13 @@ https://docs.google.com/presentation/d/1weqpBWa9FNjKc1ugCUIpwYYquvoIOFbUvEcZ9ZYa
 - ### **Kubernetes Security**✔
 
 
-    - https://github.com/linuxacademy/content-kubernetes-security
+  - https://github.com/linuxacademy/content-kubernetes-security
 
-  - https://lucid.app/lucidchart/d034d4e7-4f8f-46c2-ad9d-276cde0e0c48/view
+    - https://lucid.app/lucidchart/d034d4e7-4f8f-46c2-ad9d-276cde0e0c48/view
 
-    
+  
 
 - **Certified Kubernetes Administrator (CKA)**
-  - https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1607460115916-devops-wb002%20-%20S01%20Introduction.pdf
   - https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1607459695041-devops-wb002%20-%20Certified%20Kubernetes%20Administrator%20-%20All%20Sections%20Combined.pdf
 
 
@@ -104,6 +103,12 @@ https://docs.google.com/presentation/d/1weqpBWa9FNjKc1ugCUIpwYYquvoIOFbUvEcZ9ZYa
 ## **Kubernetes 101**
 
 https://www.youtube.com/watch?v=IcslsH7OoYo&list=RDCMUCR-DXc1voovS8nhAvccRZhg&index=2
+
+## **Udemy**
+
+https://www.udemy.com/course/kubernetes-hands-on-the-complete-guide/learn/lecture/27575504?start=0#overview
+
+https://www.udemy.com/course/certified-kubernetes-security-specialist/learn/lecture/23184246?start=0#overview
 
 
 
@@ -337,7 +342,15 @@ Etcd é o armazenamento de dados de backend para o Cluster do Kubernetes. Ele fo
 - É Stateful. 
 - Se seu cluster Kubernetes usa etcd como armazenamento de apoio, certifique-se de ter um plano de [backup](https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/#backing-up-an-etcd-cluster) para esses dado.
 
-**Comandos**
+#### **Backup/Restore etcd**
+
+https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1596581276472-devops-wb002%20-%20S03-L06%20Backing%20Up%20and%20Restoring%20Etcd%20Cluster%20Data.pdf
+
+https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/#backing-up-an-etcd-cluster
+
+
+
+#### **Comandos**
 
 | Descrição          | Comando                         |
 | ------------------ | ------------------------------- |
@@ -1279,6 +1292,245 @@ http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kube
 
 ##############################################################################################
 
+# **Management Tools**
+
+## **kubectl**
+
+kubectl é uma ferramenta de linha de comando que permite para interagir com o Kubernetes. kubectl usa a API Kubernetes para se comunicar com o cluster e realizar o seu comandos. 
+
+https://kubernetes.io/docs/reference/kubectl/overview/
+
+https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1596636121024-devops-wb002%20-%20S04-L01%20Working%20with%20Kubectl.pdf
+
+
+
+A figura a seguir mostra a estrutura dos principais comandos do `kubectl`.
+
+![image-20210727204047129](./imagens/image-20210727204047129.png)
+
+
+
+- kubectl get
+- kubectl describe
+- kubectl create
+- kubectl apply
+- kubectl delete
+- kubectl exec
+
+
+
+### **Comandos**
+
+| Comando                                             | Descrição                                  |
+| --------------------------------------------------- | ------------------------------------------ |
+| kubectl get events                                  | Lista os eventos                           |
+| kubectl get componentstatus                         | Status dos componentes                     |
+| kubectl api-resources                               | Para listar os shots names                 |
+| kubectl get pods -o yaml                            | Lista os pods no formato yaml              |
+| kubectl get pods -o json                            | Lista os pods no formato json              |
+| kubectl get pods -n "namespace"                     | Lista os pods de uma determinada namespace |
+| kubectl get pods -n "namespace" --selector "labels" | Selector é um filtro para Labels           |
+| kubectl describe pod "*pod-name*"                   | Describe nos pods                          |
+|                                                     |                                            |
+|                                                     |                                            |
+|                                                     |                                            |
+|                                                     |                                            |
+|                                                     |                                            |
+|                                                     |                                            |
+
+
+
+
+
+## **kubeadm**
+
+## **Minikube**
+
+Minikube permite que você defina automaticamente até um cluster Kubernetes de nó único local. É ótimo para ativar o Kubernetes e correndo rapidamente para o desenvolvimento finalidades.
+
+## **Helm**
+
+Helm fornece modelos e pacote gerenciamento de objetos Kubernetes. Vocês pode usá-lo para gerenciar seus próprios modelos (conhecido como gráficos).  Você também pode baixar e usar modelos compartilhados
+
+Usa Charts.
+
+## **Kompose**
+
+Kompose ajuda a traduzir Docker compor arquivos em objetos Kubernetes. Se você está usando o Docker Compose para alguns parte de seu fluxo de trabalho,  você pode mover seu aplicativo para o Kubernetes facilmente com Kompose.
+
+## **Kustomize**
+
+Kustomize é uma configuração ferramenta de gestão para gestão Configurações de objeto do Kubernetes. Isto permite que você compartilhe e reutilize modelos
+configurações para Kubernetes formulários.
+
+Similar ao Helm.
+
+##############################################################################################
+
+
+
+
+
+
+
+##############################################################################################
+
+# **Upgrade with kubeadm**
+
+https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1623333677445-devops-wb002%20-%20S03-L05%20Upgrading%20K8s%20with%20kubeadm.pdf
+
+https://kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/
+
+## **Master Node**
+
+1. Remover o Master Node do Cluster
+
+   *kubectl drain "master-node" --ignore-daemonsets*
+
+2. Upgrade kubeadm
+
+   *sudo apt-get update && \ sudo apt-get install -y --allow-change-held-packages kubeadm=1.21.1-00*
+
+3. Confirma a versão do kubeadm
+
+   *kubeadm version*
+
+4. Planejar os componentes que serão atualizados
+
+   *kubeadm upgrade plan v1.21.1*
+
+5. Efetuar o upgrade
+
+   *kubeadm upgrade apply v1.21.1*
+
+6. Atualizar kubelet e kubectl 
+
+   *sudo apt-get update && \ sudo apt-get install -y --allow-change-held-packages kubelet=1.21.1-00 kubectl=1.21.1-00*
+
+7. Restart kubelet
+
+   *sudo systemctl daemon-reload && sudo systemctl restart kubelet*
+
+8. Valida de a versão foi atualizada no Master Node 
+
+   *kubectl get nodes*
+
+9. Volta o Master Node no Cluster 
+
+   *kubectl uncordon "master-node"*
+
+   
+
+## **Worker Node**
+
+1. Remover o Worker Node do Cluster
+
+   *kubectl drain "worker-node" --ignore-daemonsets*
+
+2. Upgrade kubeadm
+
+   *sudo apt-get update && \ sudo apt-get install -y --allow-change-held-packages kubeadm=1.21.1-00*
+
+3. Confirma a versão do kubeadm
+
+   *kubeadm version*
+
+4. Planejar os componentes que serão atualizados
+
+   *kubeadm upgrade node*
+
+   
+
+5. Atualizar kubelet e kubectl 
+
+   *sudo apt-get update && \ sudo apt-get install -y --allow-change-held-packages kubelet=1.21.1-00 kubectl=1.21.1-00*
+
+6. Restart kubelet
+
+   *sudo systemctl daemon-reload && sudo systemctl restart kubelet*
+
+7. Valida de a versão foi atualizada no Master Node 
+
+   *kubectl get nodes*
+
+8. Volta o Master Node no Cluster 
+
+   *kubectl uncordon "master-node"*
+
+
+
+
+
+
+
+##############################################################################################
+
+# **Draining Node**
+
+https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/
+
+https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1596581256097-devops-wb002%20-%20S03-L04%20Safely%20Draining%20a%20K8s%20Node.pdf
+
+
+
+## Ignoring DaemonSets
+
+- **SchedulingDisabled** - Status do node onde o Kubernetes não irá mais colocar pods neste Worker Node.
+- Pod criado sem deployment não é recriado. 
+
+## **Uncordoning a Node**
+
+- Após habilitar o nó com o "*uncordon*" o Kubernetes não rebalanceia os pods entre os outros Worker Node e o Worker Nodeinserido. 
+
+## **Comandos**
+
+| Descrição                               | Comando                                       |
+| --------------------------------------- | --------------------------------------------- |
+| Remove Worker Node                      | kubectl drain <node name>                     |
+| Remove Worker Nodeignorando Daemon Sets | kubectl drain <node name> --ignore-daemonsets |
+| Inclui o Worker Node no cluster         | kubectl uncordon <node name>                  |
+|                                         |                                               |
+
+
+
+##############################################################################################
+
+# **High Availability**
+
+## **Control Plane**
+
+https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/
+
+Ao usar vários Control Planes para alta disponibilidade, você provavelmente precisa se comunicar com o API Kubernetes por meio de um balanceador de carga. Isso inclui clientes como instâncias kubelet em execução nos Worker Nodes.
+
+TODO - Ver o do linuxtips
+
+![image-20210823194619251](./imagens/image-20210823194619251.png)
+
+
+
+
+
+## **Stacked etcd**
+
+https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/ha-topology/
+
+Um cluster HA empilhado é uma [topologia em](https://en.wikipedia.org/wiki/Network_topology) que o cluster de armazenamento de dados distribuído fornecido pelo etcd é empilhado no topo do cluster formado pelos nós gerenciados pelo kubeadm que executam os componentes do Control Plane.
+
+![image-20210823195011894](./imagens/image-20210823195011894.png)
+
+
+
+## **External etcd**
+
+https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/ha-topology/
+
+Um cluster HA com etcd externo é uma [topologia em](https://en.wikipedia.org/wiki/Network_topology) que o cluster de armazenamento de dados distribuído fornecido pelo etcd é externo ao cluster formado pelos nós que executam os componentes do Control Plane.
+
+![image-20210823195036875](./imagens/image-20210823195036875.png)
+
+##############################################################################################
+
 # **Security**
 
 https://kubernetes.io/docs/tasks/administer-cluster/securing-a-cluster/
@@ -2145,19 +2397,15 @@ Atenção! 1 core de CPU corresponde a 1000m (1000 milicore). Ao especificar 200
 
 
 
-https://kubernetes.io/docs/reference/kubectl/overview/
 
-A figura a seguir mostra a estrutura dos principais comandos do `kubectl`.
-
-![image-20210727204047129](./imagens/image-20210727204047129.png)
 
 
 
 |                           Comando                            | Descrição                                                    |
 | :----------------------------------------------------------: | :----------------------------------------------------------- |
 |                                                              |                                                              |
-|                      kubectl get events                      | Lista os eventos                                             |
-|                 kubectl get componentstatus                  | Status dos componentes                                       |
+|                                                              |                                                              |
+|                                                              |                                                              |
 |                     kubectl cluster-info                     | Informações do cluster                                       |
 |                  kubectl cluster-info dump                   | Gerar Dump das infos do cluster                              |
 |               kubectl run nginx --image=nginx                | Cria um POD                                                  |

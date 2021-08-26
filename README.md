@@ -1,3 +1,5 @@
+
+
 # **Kubernetes**
 
 # **Treinamentos**
@@ -807,10 +809,10 @@ verifique a saida: Controlled By
 
 | Descrição               | Comando                                                      |
 | ----------------------- | ------------------------------------------------------------ |
-| Describe na replica set | kubectl describe rs/"nomedareplica"                          |
-| Escala replicas         | kubectl scale rs/"nomedareplica"--replicas="numero de replicas" |
-| Deleta replica set      | kubectl delete rs/"nomedareplica"                            |
-|                         | kubectl get rs/"nomedareplica"                               |
+| Describe na replica set | kubectl describe rs/"*nomedareplica*"                        |
+| Escala replicas         | kubectl scale rs/"*nomedareplica*"--replicas="*numero de replicas*" |
+| Deleta replica set      | kubectl delete rs/"*nomedareplica*"                          |
+|                         | kubectl get rs/"*nomedareplica*"                             |
 |                         |                                                              |
 |                         |                                                              |
 |                         |                                                              |
@@ -1226,10 +1228,6 @@ https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/
 
 ##############################################################################################
 
-
-
-##############################################################################################
-
 ### **[Supervisord](http://supervisord.org/)** 
 
 é o responsável por monitorar e restabelecer, se necessário, o `kubelet` e o Docker. Por esse motivo, quando existe algum problema em relação ao kubelet, como por exemplo o uso do driver `cgroup` diferente do que está rodando no Docker, você perceberá que ele ficará tentando subir o kubelet frequentemente.
@@ -1264,11 +1262,7 @@ O nó `master` está marcado com o taint `NoSchedule`, assim o scheduler do Kube
 
 alias kk=kubectl
 
-##############################################################################################
 
-### **--dry-run** 
-
--o yaml
 
 ##############################################################################################
 
@@ -1300,6 +1294,10 @@ kubectl é uma ferramenta de linha de comando que permite para interagir com o K
 
 https://kubernetes.io/docs/reference/kubectl/overview/
 
+https://kubernetes.io/docs/concepts/overview/working-with-objects/object-management/
+
+https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1604606241364-devops-wb002%20-%20S04-L02%20Kubectl%20Tips.pdf
+
 https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1596636121024-devops-wb002%20-%20S04-L01%20Working%20with%20Kubectl.pdf
 
 
@@ -1321,28 +1319,54 @@ A figura a seguir mostra a estrutura dos principais comandos do `kubectl`.
 
 ### **Comandos**
 
-| Comando                                             | Descrição                                  |
-| --------------------------------------------------- | ------------------------------------------ |
-| kubectl get events                                  | Lista os eventos                           |
-| kubectl get componentstatus                         | Status dos componentes                     |
-| kubectl api-resources                               | Para listar os shots names                 |
-| kubectl get pods -o yaml                            | Lista os pods no formato yaml              |
-| kubectl get pods -o json                            | Lista os pods no formato json              |
-| kubectl get pods -n "namespace"                     | Lista os pods de uma determinada namespace |
-| kubectl get pods -n "namespace" --selector "labels" | Selector é um filtro para Labels           |
-| kubectl describe pod "*pod-name*"                   | Describe nos pods                          |
-|                                                     |                                            |
-|                                                     |                                            |
-|                                                     |                                            |
-|                                                     |                                            |
-|                                                     |                                            |
-|                                                     |                                            |
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+
+| Comando                                                      | Descrição                                                    |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| kubectl get events                                           | Lista os eventos                                             |
+| kubectl get componentstatus                                  | Status dos componentes                                       |
+| kubectl api-resources                                        | Para listar os shots names                                   |
+| kubectl get pods -o yaml                                     | Lista os pods no formato yaml                                |
+| kubectl get pods -o json                                     | Lista os pods no formato json                                |
+| kubectl get pods -n "*namespace*"                            | Lista os pods de uma determinada namespace                   |
+| kubectl get pods --all-namespaces                            | Lista os pods de todas as namespace                          |
+| kubectl get pods -n "*namespace*" --selector "*labels*"      | Selector é um filtro para Labels                             |
+| kubectl describe pod "*pod-name*"                            | Describe nos pods                                            |
+| kubectl run nginx --image=nginx                              | Cria um POD c/ a imagem nginx                                |
+| kubectl get pods nginx **-o yaml**                           | Mostra o manifesto dos pods no formato yaml                  |
+| kubectl run "*pod-name*" --image nginx **--dry-run=client**  | Opção DryRun não Cria o POD                                  |
+| kubectl run "*pod-name*"  --image nginx **--dry-run=client** **-o yaml** | Opção DryRun não Cria o POD, mostra manifesto em yaml        |
+| kubectl run "*pod-name*"  --image nginx **--dry-run=client** **-o yaml** > pod-template.yaml | Joga a saída do comando p/ arquivo pod-template.yaml         |
+| kubectl get pods "*pod-name*"  -o yaml > meupod.yaml         | Cria um arquivo yaml com as infos do pod                     |
+| kubectl get pods "*pod-name*"  -o yaml --export > meupod.yaml | Cria um arquivo yaml com as infos do pod, mas sem infos especificas |
+| kubectl edit deploy "*nome-do-deploy*"                       | Edita on-line o deploy                                       |
+| kubectl cluster-info                                         | Informações do cluster                                       |
+| kubectl cluster-info dump                                    | Gerar Dump das infos do cluster                              |
+| kubectl explain "*recurso*"                                  | Explica o recurso "main page"                                |
+| kubectl expose                                               | Cria Services                                                |
+| kubectl create deployment "*deploy-name*" --image=nginx --dry-run -o yaml > deployment.yml | Joga a saída do comando p/ arquivo deployment.yaml           |
+|                                                              |                                                              |
+|                                                              |                                                              |
+|                                                              |                                                              |
+|                                                              |                                                              |
+|                                                              |                                                              |
+|                                                              |                                                              |
+|                                                              |                                                              |
 
 
 
 
 
 ## **kubeadm**
+
+### **Comandos**
+
+| Comando            | Descrição    |
+| ------------------ | ------------ |
+| kubeadm token list | Lista Tokens |
+|                    |              |
+|                    |              |
+|                    |              |
 
 ## **Minikube**
 
@@ -1607,28 +1631,131 @@ https://kubernetes.io/docs/concepts/security/pod-security-standards/
 
 ![image-20210817211311147](./imagens/image-20210817211311147.png)
 
-### **Authorization(authZ)**
-
-https://kubernetes.io/docs/reference/access-authn-authz/authorization/
-
-- **Liberações do usuários**
-- **Role | ClusterRole**
-
-
-
-![image-20210803211927663](./imagens/image-20210803211927663.png)
-
-- **RoleBinding |ClusterRoleBinding**
-
-![image-20210803211804301](./imagens/image-20210803211804301.png)
-
 ![image-20210817214249908](./imagens/image-20210817214249908.png)
 
-**RBAC**
+### **Authorization(authZ) - RBAC**
 
-https://kubernetes.io/docs/reference/access-authn-authz/rbac/
+- https://kubernetes.io/docs/reference/access-authn-authz/authorization/
 
-O controle de acesso baseado em função (RBAC) é um método de regular o acesso a recursos de computador ou rede com base nas funções de usuários individuais em sua organização.
+- https://kubernetes.io/docs/reference/access-authn-authz/rbac/
+
+- https://blog.lsantos.dev/dando-permissoes-a-usuarios-com-kubernetes/
+
+- https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1596636230976-devops-wb002%20-%20S04-L03%20Managing%20k8s%20Role-Based%20Access%20Control%20%28RBAC%29.pdf
+
+  
+
+Controle de acesso baseado em função (RBAC) em K8s permite que você controle quais usuários são permitidos para fazer e acessar dentro de seu cluster.
+Por exemplo, você pode usar RBAC para permitir desenvolvedores para ler metadados e registros de Pods do Kubernetes, mas não faz alterações em
+eles.
+
+**Roles** e **ClusterRoles** são Objetos Kubernetes que definem um conjunto de permissões. Esses permissões determinam quais usuários pode fazer no cluster.
+
+![image-20210825213124618](./imagens/image-20210825213124618.png)
+
+- **Role**
+
+  - Define as permissões dentro um determinado namespace
+
+  - As Roles são puramente aditivas (não há regras de "negação")
+
+  - Exemplo  Role
+
+    ```yaml
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: Role
+    metadata:
+      namespace: default
+      name: pod-reader
+    rules:
+    - apiGroups: [""] # "" indicates the core API group
+      resources: ["pods"]
+      verbs: ["get", "watch", "list"]
+    ```
+
+    
+
+- **ClusterRole**
+
+  - Define as permissões em todo o cluster permissões não específicas para um namespace único
+
+  - Exemplo ClusterRole
+
+  - ```yaml
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRole
+    metadata:
+      # "namespace" omitted since ClusterRoles are not namespaced
+      name: secret-reader
+    rules:
+    - apiGroups: [""]
+      #
+      # at the HTTP level, the name of the resource for accessing Secret
+      # objects is "secrets"
+      resources: ["secrets"]
+      verbs: ["get", "watch", "list"]
+    ```
+
+    
+
+**RoleBinding** e **ClusterRoleBinding** são objetos que conectam **Roles** e **ClusterRoles** para usuários.
+
+![image-20210825213435558](./imagens/image-20210825213435558.png)
+
+**RoleBinding**
+
+- Concede permissões dentro de um namespace específico apontando para uma **Role** já criada. 
+
+- Exemplo
+
+  ```yaml
+  apiVersion: rbac.authorization.k8s.io/v1
+  # This role binding allows "jane" to read pods in the "default" namespace.
+  # You need to already have a Role named "pod-reader" in that namespace.
+  kind: RoleBinding
+  metadata:
+    name: read-pods
+    namespace: default
+  subjects:
+  # You can specify more than one "subject"
+  - kind: User
+    name: jane # "name" is case sensitive
+    apiGroup: rbac.authorization.k8s.io
+  roleRef:
+    # "roleRef" specifies the binding to a Role / ClusterRole
+    kind: Role #this must be Role or ClusterRole
+    name: pod-reader # this must match the name of the Role or ClusterRole you wish to bind to
+    apiGroup: rbac.authorization.k8s.io
+  ```
+
+  
+
+**ClusterRoleBinding**
+
+- Concede esse acesso a todo o cluster
+- Exemplo
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+# This cluster role binding allows anyone in the "manager" group to read secrets in any namespace.
+kind: ClusterRoleBinding
+metadata:
+  name: read-secrets-global
+subjects:
+- kind: Group
+  name: manager # Name is case sensitive
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: secret-reader
+  apiGroup: rbac.authorization.k8s.io
+```
+
+
+
+
+
+
 
 ![image-20210817214420571](./imagens/image-20210817214420571.png)
 
@@ -2260,7 +2387,15 @@ kubeadm join --discovery-token-unsafe-skip-ca-verification --token=102952.1a7dd4
 
 ##############################################################################################
 
+# **Vídeos**
 
+## **RBAC**
+
+- **Webinar: Role based access control (RBAC) policies in Kubernetes** - https://www.youtube.com/watch?v=CnHTCTP8d48
+- **Effective RBAC - Jordan Liggitt, Red Hat** - https://www.youtube.com/watch?v=Nw1ymxcLIDI
+- **[ Kube 68 ] Kubernetes RBAC Demo | Creating Users and Roles** - https://www.youtube.com/watch?v=U67OwM-e9rQ
+
+##############################################################################################
 
 # **Exemplos**
 
@@ -2401,37 +2536,37 @@ Atenção! 1 core de CPU corresponde a 1000m (1000 milicore). Ao especificar 200
 
 
 
-|                           Comando                            | Descrição                                                    |
-| :----------------------------------------------------------: | :----------------------------------------------------------- |
-|                                                              |                                                              |
-|                                                              |                                                              |
-|                                                              |                                                              |
-|                     kubectl cluster-info                     | Informações do cluster                                       |
-|                  kubectl cluster-info dump                   | Gerar Dump das infos do cluster                              |
-|               kubectl run nginx --image=nginx                | Cria um POD                                                  |
-|              kubectl get pods nginx **-o yaml**              | mostra o manifesto do pod                                    |
-| kubectl run meu-nginx --image nginx **--dry-run=client** -o yaml > pod-template.yaml | Opção DryRun não Cria o POD                                  |
-|                                                              |                                                              |
-|                  kubectl explain "recurso"                   | Explica o recurso "main page"                                |
-|                        kubectl expose                        | Cria Services                                                |
-|                    kubectl logs -f nginx                     | Analise de Logs                                              |
-|                   kubectl version -o yaml                    | Versão do Kubernetes                                         |
-|                                                              |                                                              |
-|  echo "source <(kubectl completion bash)" >> /root/.bashrc   | auto complete                                                |
-|                                                              |                                                              |
-|      kubectl get pods "nomedopod" -o yaml > meupod.yaml      | Cria um arquivo yaml com as infos do pod                     |
-| kubectl get pods "nomedopod" -o yaml --export > meupod.yaml  | Cria um arquivo yaml com as infos do pod, mas sem infos especificas |
-|                      kubeadm token list                      | Lista Tokens                                                 |
-| aws eks --region "*region*" update-kubeconfig --name "*cluster-name*" | Conecta no cluster EKS                                       |
-|                                                              |                                                              |
-|                                                              |                                                              |
-|                                                              |                                                              |
-|                                                              |                                                              |
-|                                                              |                                                              |
-|                                                              |                                                              |
-|                                                              |                                                              |
-|                                                              |                                                              |
-|                                                              |                                                              |
+|                           Comando                            | Descrição              |
+| :----------------------------------------------------------: | :--------------------- |
+|                                                              |                        |
+|                                                              |                        |
+|  echo "source <(kubectl completion bash)" >> /root/.bashrc   | auto complete          |
+|                                                              |                        |
+| aws eks --region "*region*" update-kubeconfig --name "*cluster-name*" | Conecta no cluster EKS |
+|                                                              |                        |
+|                                                              |                        |
+|                                                              |                        |
+|                                                              |                        |
+|                                                              |                        |
+|                                                              |                        |
+|                                                              |                        |
+|                                                              |                        |
+|                                                              |                        |
+|                                                              |                        |
+|                                                              |                        |
+|                                                              |                        |
+|                                                              |                        |
+|                                                              |                        |
+|                                                              |                        |
+|                                                              |                        |
+|                                                              |                        |
+|                                                              |                        |
+|                                                              |                        |
+|                                                              |                        |
+|                                                              |                        |
+|                                                              |                        |
+|                                                              |                        |
+|                                                              |                        |
 
 ##############################################################################################
 

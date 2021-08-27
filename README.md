@@ -75,7 +75,7 @@ https://docs.google.com/presentation/d/1weqpBWa9FNjKc1ugCUIpwYYquvoIOFbUvEcZ9ZYa
 
 - ### **Helm Deep Dive V3**
 
-  ### A Practical Guide to Amazon EKS
+- ### A Practical Guide to Amazon EKS
 
 - ### Learn Kubernetes by Doing
 
@@ -538,78 +538,6 @@ Kubelet é o agente Kubernetes executado em cada nó. Ele se comunica com o plan
 ##############################################################################################
 
 ## **Demais componentes**
-
-### **POD´s**
-
-https://kubernetes.io/docs/concepts/workloads/pods/
-
-**[Pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/)** é a menor unidade que você irá tratar no k8s. 
-
-- **Você poderá ter mais de um contêiner por Pod**, porém vale lembrar que eles dividirão os mesmos recursos, como por exemplo IP. 
-- Uma das boas razões para se ter mais de um contêiner em um Pod é o fato de você ter os logs consolidados.
-- O Pod, por poder possuir diversos contêineres, muitas das vezes se assemelha a uma VM, onde você poderia ter diversos serviços rodando compartilhando o mesmo IP e demais recursos.
-- Os Pods podem se comunicar sem **NAT**.
-
-
-
-
-
-![image-20210726205830178](./imagens/image-20210726205830178.png)
-
-
-
-**LifeCycle**
-
-https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/
-
-**Entender mais do Lifecycle**
-
-**Anatomia de um Pod ** 
-
-```yaml
-apiVersion: v1									-----> Versão da API
-kind: Pod									    ----> O que quer criar 
-metadata:
-  name: examplepod								----> nome do pod
-  namespace: pod-example						----> nome da namespace
-spec:											---->  espeficicações do container
-  volumes:										---->  volumes
-  - name: html
-    emptyDir: {}
-  containers:
-  - name: webcontainer							---->  nome do container
-    image: nginx								---->  imagem do container
-    volumeMounts:
-    - name: html
-      mountPath: /usr/share/nginx/html
-  - name: filecontainer
-    image: debian
-    volumeMounts:
-    - name: html
-      mountPath: /html
-    command: ["/bin/sh", "-c"]
-    args:
-      - while true; do
-         date >> /html/index.html;
-         sleep 1;
-        done
-```
-
-
-
-**Comandos**
-
-| Descrição                                                    | Comando                                     |
-| :----------------------------------------------------------- | ------------------------------------------- |
-| Editar pod                                                   | kubect edit pod "nomedopod"                 |
-| Lista todos os pods de todos as namespaces                   | kubectl get pods --all-namespaces           |
-| Lista todos os pods de todos as namespaces  dentro dos worker nodes | kubectl get pods --all-namespaces -o wide   |
-| Deleta Pod                                                   | kubectl delete pod "nomepod" -n "namespace" |
-| Create Pod                                                   | kubectl create -f pod-exmeple.yaml          |
-|                                                              |                                             |
-|                                                              |                                             |
-|                                                              |                                             |
-|                                                              |                                             |
 
 
 
@@ -1286,6 +1214,429 @@ http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kube
 
 ##############################################################################################
 
+
+
+# **POD´s**
+
+https://kubernetes.io/docs/concepts/workloads/pods/
+
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/#interacting-with-running-pods
+
+**[Pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/)** é a menor unidade que você irá tratar no k8s. 
+
+- **Você poderá ter mais de um contêiner por Pod**, porém vale lembrar que eles dividirão os mesmos recursos, como por exemplo IP. 
+- Uma das boas razões para se ter mais de um contêiner em um Pod é o fato de você ter os logs consolidados.
+- O Pod, por poder possuir diversos contêineres, muitas das vezes se assemelha a uma VM, onde você poderia ter diversos serviços rodando compartilhando o mesmo IP e demais recursos.
+- Os Pods podem se comunicar sem **NAT**.
+
+
+
+
+
+![image-20210726205830178](./imagens/image-20210726205830178.png)
+
+##############################################################################################
+
+## **Anatomia de um Pod ** 
+
+```yaml
+apiVersion: v1									-----> Versão da API
+kind: Pod									    ----> O que quer criar 
+metadata:
+  name: examplepod								----> nome do pod
+  namespace: pod-example						----> nome da namespace
+spec:											---->  espeficicações do container
+  volumes:										---->  volumes
+  - name: html
+    emptyDir: {}
+  containers:
+  - name: webcontainer							---->  nome do container
+    image: nginx								---->  imagem do container
+    volumeMounts:
+    - name: html
+      mountPath: /usr/share/nginx/html
+  - name: filecontainer
+    image: debian
+    volumeMounts:
+    - name: html
+      mountPath: /html
+    command: ["/bin/sh", "-c"]
+    args:
+      - while true; do
+         date >> /html/index.html;
+         sleep 1;
+        done
+```
+
+
+
+##############################################################################################
+
+## **LifeCycle**
+
+https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/
+
+### **Probes**
+
+https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
+
+https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
+
+Uma [Probe](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#probe-v1-core) é um diagnóstico realizado periodicamente pelo [kubelet](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/) em um Container. Para realizar um diagnóstico, o kubelet chama um [Handler](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#handler-v1-core) implementado pelo contêiner. 
+
+- [ExecAction](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#execaction-v1-core) : [executa](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#execaction-v1-core) um comando especificado dentro do contêiner. O diagnóstico é considerado bem-sucedido se o comando sair com um código de status 0.
+- [TCPSocketAction](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#tcpsocketaction-v1-core) : executa uma verificação de TCP no endereço IP do pod em uma porta especificada. O diagnóstico é considerado bem-sucedido se a porta estiver aberta.
+- [HTTPGetAction](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#httpgetaction-v1-core) : executa uma `GET`solicitação HTTP no endereço IP do pod em uma porta e caminho especificados. O diagnóstico é considerado bem-sucedido se a resposta tiver um código de status maior ou igual a 200 e menor que 400.
+
+Cada Probe tem um de três resultados:
+
+- `Success`: O contêiner passou no diagnóstico.
+- `Failure`: O contêiner falhou no diagnóstico.
+- `Unknown`: O diagnóstico falhou, portanto, nenhuma ação deve ser tomada.
+
+O kubelet pode, opcionalmente, executar e reagir a três tipos de Probes em contêineres em execução:
+
+- ####  **LivenessProbe**
+
+  Indica se o contêiner está em execução. Se a investigação de liveness falhar, o kubelet elimina o contêiner e o contêiner fica sujeito à sua [política de reinicialização](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy) . Se um contêiner não fornecer um teste de atividade, o estado padrão é `Success`.
+
+  
+
+Exemplo
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    test: liveness
+  name: liveness-exec
+spec:
+  containers:
+  - name: liveness
+    image: k8s.gcr.io/busybox
+    args:
+    - /bin/sh
+    - -c
+    - touch /tmp/healthy; sleep 30; rm -rf /tmp/healthy; sleep 600
+    livenessProbe:
+      exec:
+        command:
+        - cat
+        - /tmp/healthy
+      initialDelaySeconds: 5  #--->> Expecifica que o kubelet deve aguardar 5 segundos antes de realizar a primeira checagem
+      periodSeconds: 5    #---->> Especifica que o kubelet deve realizar uma sondagem de atividade a cada 5 segundos.
+```
+
+
+
+- **readinessProbe**
+
+  Indica se o contêiner está pronto para responder às solicitações. Se a investigação de prontidão falhar, o controlador de endpoints remove o endereço IP do pod dos endpoints de todos os serviços que correspondem ao pod. O estado padrão de prontidão antes do atraso inicial é `Failure`. Se um contêiner não fornecer uma investigação de prontidão, o estado padrão será `Success`.
+
+  São usadas para permitir que o kubelet saiba quando o aplicativo está pronto para aceitar novo tráfego. Se o aplicativo precisar de algum tempo para inicializar o estado após o início do processo, configure a sondagem de prontidão para dizer ao Kubernetes para esperar antes de enviar novo tráfego.
+
+  Exemplo
+
+  ```yaml
+  apiVersion: v1
+  kind: Pod
+  metadata:
+    name: readiness-pod
+  spec:
+    containers:
+    - name: nginx
+      image: nginx:1.19.1
+  	readinessProbe:
+  	  httpGet:
+  		path: /
+  	    port: 80
+  	initialDelaySeconds: 5 #--->> Expecifica que o kubelet deve aguardar 5 segundos antes de realizar a primeira checagem
+  	periodSeconds: 5 #---->> Especifica que o kubelet deve realizar uma sondagem de atividade a cada 5 segundos.
+  ```
+
+  
+
+- **startupProbe**
+
+  Indica se o aplicativo dentro do contêiner foi iniciado. Todos os outros probes são desabilitados se um teste de inicialização for fornecido, até que seja bem-sucedido. Se a investigação de inicialização falhar, o kubelet elimina o contêiner e o contêiner fica sujeito à sua [política de reinicialização](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy) . Se um contêiner não fornece uma investigação de inicialização, o estado padrão é `Success`.
+
+  Exemplo
+
+  ```yaml
+  apiVersion: v1
+  kind: Pod
+  metadata:
+    name: startup-pod
+  spec:
+    containers:
+    - name: nginx
+      image: nginx:1.19.1
+      startupProbe:   #--->> startupProbe       
+        httpGet:
+          path: /
+  	    port: 80
+  	 failureThreshold: 30 #--> número de tentativas antes de marcar a detecção como falha. Para liveness probes, isso levará ao reinício do pod. Para readiness probes, isso marcará o pod como não preparado.
+  	 periodSeconds: 10
+  ```
+
+  
+
+### **Restart Policies**
+
+https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
+
+https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1597437528004-devops-wb002%20-%20S05-L05%20Building%20Self-Healing%20Pods%20with%20Restart%20Policies.pdf
+
+K8s pode reiniciar contêineres automaticamente quando eles falham. As políticas de reinicialização permitem que você personalizar este comportamento definindo quando você quer que os contêineres de um pod sejam reiniciado automaticamente.
+As políticas de reinicialização são um componente importante de aplicativos de autocura, que são reparado automaticamente quando um problema 
+surge. 
+Existem três valores possíveis para um pod política de reinicialização em K8s: Always, OnFailure e Never. **O valor padrão é Always.** 
+
+-  **Always**
+
+  É a política de reinicialização padrão no K8s. Com esta política, os contêineres sempre serão reiniciado se eles pararem, mesmo se tiverem concluído
+  com sucesso. Use esta política para aplicativos que deve estar sempre em execução.
+
+- **OnFailure**
+
+  A política de reinicialização OnFailure irá reiniciar contêineres apenas se o processo de contêiner sair com um código de erro ou o contêiner é
+  determinado a não ser saudável por uma vida sonda. Use esta política para aplicativos que precisa ser executado com sucesso e, em seguida, parar.
+
+- **Never**
+
+  A política de Never fará com que o pod contêineres para nunca serem reiniciados, mesmo se o o contêiner sai ou uma investigação de atividade falha. Usar isso para aplicativos que devem ser executados uma vez e nunca será reiniciado automaticamente.
+
+Exemplo:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: always-pod
+spec:
+  restartPolicy: Always #--->> Inserir qual Restart Police utilizar - Always ou OnFailure ou Never
+  containers:
+  - name: busybox
+    image: busybox
+    command: ['sh', '-c', 'sleep 10']
+```
+
+##############################################################################################
+
+## **Resource CPU/Memory**
+
+https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-requests-and-limits-of-pod-and-container
+
+https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1597437414250-devops-wb002%20-%20S05-L03%20Managing%20Container%20Resources.pdf
+
+
+
+##############################################################################################
+
+### **Resource Request**
+
+Exemplo
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: big-request-pod
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    command: ['sh', '-c', 'while true; do sleep 3600; done']
+    resources:
+      requests:
+	    cpu: "10000m"
+	    memory: "128Mi"
+
+```
+
+
+
+### **Resource Limits**
+
+Pod é encerrado por conta do limite de memória excedido. E caso continuarmos a acompanhar, veremos que o Pod será sempre restartado.
+
+Exemplo
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: big-request-pod
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    command: ['sh', '-c', 'while true; do sleep 3600; done']
+    resources:
+      limits:
+	    cpu: "250m"
+	    memory: "128Mi"
+```
+
+Exemplo com Limits e Request
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: resource-pod
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    command: ['sh', '-c', 'while true; do sleep 3600; done']
+    resources:
+      requests:
+        cpu: "250m"
+        memory: "128Mi"
+      limits:
+        cpu: "500m"
+        memory: "256Mi"
+
+```
+
+
+
+
+
+**Atenção! 1 core de CPU corresponde a 1000m (1000 milicore). Ao especificar 200m, estamos querendo reservar 20% de 1 core da CPU. Se fosse informado o valor 0.2 teria o mesmo efeito, ou seja, seria reservado 20% de 1 core da CPU.**
+
+
+
+
+
+
+
+##############################################################################################
+
+## **Secrets**
+
+https://kubernetes.io/docs/concepts/configuration/secret/
+
+Os Secreets são semelhantes aos ConfigMaps, mas são projetado para armazenar dados confidenciais, como senhas ou chaves de API, com mais segurança. Eles são criado e usado de forma semelhante ao ConfigMaps.
+
+Exemplo Secrets
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: my-secret
+type: Opaque
+data:
+secretkey1: <base64 String 1>
+secretkey2: <base64 String 2>
+```
+
+
+
+Vincular o Secret no Pod
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: env-pod
+spec:
+  containers:
+    - name: busybox
+    image: busybox
+    command: ['sh', '-c', 'echo "configmap: $CONFIGMAPVAR secret: $SECRETVAR"']
+    env:
+    - name: CONFIGMAPVAR
+      valueFrom:
+        configMapKeyRef:
+          name: my-configmap
+          key: key1
+    - name: SECRETVAR   ------------>> Vinculando o Secet no POD
+      valueFrom:
+        secretKeyRef:
+          name: my-secret
+          key: secretkey1
+
+```
+
+
+
+##############################################################################################
+
+## **ConfigMaps**
+
+https://kubernetes.io/docs/concepts/configuration/configmap/
+
+Você pode armazenar dados de configuração em Kubernetes usando ConfigMaps. Os ConfigMaps armazenam dados na forma de um mapa de valor-chave. Os dados do ConfigMap podem ser passado para o seu contêiner formulários.
+
+Exemplo ConfigMap
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-configmap
+data:
+  key1: Hello, world!
+  key2: |
+    Test
+    multiple lines
+    more lines
+```
+
+Vinculando o ConfigMap no POD
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: env-pod
+spec:
+  containers:
+    - name: busybox
+    image: busybox
+    command: ['sh', '-c', 'echo "configmap: $CONFIGMAPVAR secret: $SECRETVAR"']
+    env:
+    - name: CONFIGMAPVAR   ----------->> Vinculando o ConfigMap no POD
+      valueFrom:
+        configMapKeyRef:
+          name: my-configmap
+          key: key1
+    - name: SECRETVAR
+      valueFrom:
+        secretKeyRef:
+          name: my-secret
+          key: secretkey1
+
+```
+
+##############################################################################################
+
+
+
+**Comandos**
+
+| Descrição                                                    | Comando                                         |
+| :----------------------------------------------------------- | ----------------------------------------------- |
+| Editar pod                                                   | kubect edit pod "*nomedopod*"                   |
+| Lista todos os pods de todos as namespaces                   | kubectl get pods --all-namespaces               |
+| Lista todos os pods de todos as namespaces  dentro dos worker nodes | kubectl get pods --all-namespaces -o wide       |
+| Deleta Pod                                                   | kubectl delete pod "*nomepod*" -n "*namespace*" |
+| Create Pod                                                   | kubectl create -f pod-exmeple.yaml              |
+|                                                              |                                                 |
+|                                                              |                                                 |
+|                                                              |                                                 |
+|                                                              |                                                 |
+
+
+
+
+
+##############################################################################################
+
 # **Management Tools**
 
 ## **kubectl**
@@ -1391,11 +1742,95 @@ Similar ao Helm.
 
 ##############################################################################################
 
+# **Kubernetes Metrics Server**
+
+Para visualizar métricas sobre os recursos pods e contêineres estão usando, precisamos de um add-on para coletar e fornecer esses dados. 
+
+Esse complemento é o Kubernetes Metrics Server.
+
+### Instalar o ADD-ON 
+
+```shell
+kubectl apply -f https://raw.githubusercontent.com/linuxacademy/content-cka-resources/master/metrics-server-components.yaml
+```
 
 
 
+### Métricas
+
+```shell
+kubectl get --raw /apis/metrics.k8s.io/
+```
 
 
+
+### **Comandos**
+
+| Comando                                     | Descrição                        |
+| ------------------------------------------- | -------------------------------- |
+| kubectl top pod                             | Mostra consumo cpu/ram dos pods  |
+| kubectl top pod --sort-by cpu               | Lista por consumo de CPU         |
+| kubectl top pod --selector app=metrics-test | Lista pods com selector          |
+| kubectl top node                            | Mostra consumo cpu/ram dos Nodes |
+|                                             |                                  |
+
+
+
+##############################################################################################
+
+# **Service Account**
+
+Uma Service Account é uma conta usada por processos de contêineres dentro de pods para autenticar com a API K8s.
+Se seus pods precisam se comunicar com o API K8s, você pode usar Service Account  para controlar o acesso deles.
+
+https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
+
+https://kubernetes.io/docs/reference/access-authn-authz/rbac/
+
+https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1604087569423-devops-wb002%20-%20S04-L04%20Creating%20ServiceAccounts.pdf
+
+
+
+Exemplo de criação de uma Service Account
+
+```yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: my-serviceaccount
+```
+
+Exemplo de RoleBinding para Service Account
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: sa-pod-reader
+  namespace: default
+subjects:
+- kind: ServiceAccount
+  name: my-serviceaccount
+  namespace: default
+roleRef:
+  kind: Role
+  name: pod-reader
+  apiGroup: rbac.authorization.k8s.io
+
+```
+
+
+
+### **Comandos**
+
+
+
+| Comando                                  | Descrição                |
+| ---------------------------------------- | ------------------------ |
+| kubectl create sa "nomedaserviceaccoint" | Criar Service Account    |
+| kubectl get sa                           | Lista as Service Account |
+| kubectl describe sa my-serviceaccount    |                          |
+|                                          |                          |
 
 ##############################################################################################
 
@@ -1409,39 +1844,75 @@ https://kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/
 
 1. Remover o Master Node do Cluster
 
-   *kubectl drain "master-node" --ignore-daemonsets*
+   ```shell
+   kubectl drain "master-node" --ignore-daemonsets
+   ```
+
+   
 
 2. Upgrade kubeadm
 
-   *sudo apt-get update && \ sudo apt-get install -y --allow-change-held-packages kubeadm=1.21.1-00*
+   ```shell
+   sudo apt-get update && \ sudo apt-get install -y --allow-change-held-packages kubeadm=1.21.1-00
+   ```
+
+   
 
 3. Confirma a versão do kubeadm
 
-   *kubeadm version*
+   ```shell
+   kubeadm version
+   ```
+
+   
 
 4. Planejar os componentes que serão atualizados
 
-   *kubeadm upgrade plan v1.21.1*
+   ```shell
+   kubeadm upgrade plan v1.21.1
+   ```
+
+   
 
 5. Efetuar o upgrade
 
-   *kubeadm upgrade apply v1.21.1*
+   ```shell
+   kubeadm upgrade apply v1.21.1
+   ```
+
+   
 
 6. Atualizar kubelet e kubectl 
 
-   *sudo apt-get update && \ sudo apt-get install -y --allow-change-held-packages kubelet=1.21.1-00 kubectl=1.21.1-00*
+   ```shell
+   *sudo apt-get update && \ sudo apt-get install -y --allow-change-held-packages kubelet=1.21.1-00 kubectl=1.21.1-00
+   ```
+
+   
 
 7. Restart kubelet
 
-   *sudo systemctl daemon-reload && sudo systemctl restart kubelet*
+   ```shell
+   sudo systemctl daemon-reload && sudo systemctl restart kubelet
+   ```
+
+   
 
 8. Valida de a versão foi atualizada no Master Node 
 
-   *kubectl get nodes*
+   ```shell
+   kubectl get nodes
+   ```
+
+   
 
 9. Volta o Master Node no Cluster 
 
-   *kubectl uncordon "master-node"*
+   
+
+   ```shell
+   kubectl uncordon "master-node"
+   ```
 
    
 
@@ -1449,37 +1920,69 @@ https://kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/
 
 1. Remover o Worker Node do Cluster
 
-   *kubectl drain "worker-node" --ignore-daemonsets*
+   ```shell
+   kubectl drain "worker-node" --ignore-daemonsets*
+   ```
+
+   
 
 2. Upgrade kubeadm
 
-   *sudo apt-get update && \ sudo apt-get install -y --allow-change-held-packages kubeadm=1.21.1-00*
+   ```shell
+   sudo apt-get update && \ sudo apt-get install -y --allow-change-held-packages kubeadm=1.21.1-00*
+   ```
+
+   
 
 3. Confirma a versão do kubeadm
 
-   *kubeadm version*
+   
+
+   ```shell
+   kubeadm version
+   ```
+
+   
 
 4. Planejar os componentes que serão atualizados
 
-   *kubeadm upgrade node*
+   ```shell
+   kubeadm upgrade node
+   ```
 
    
 
 5. Atualizar kubelet e kubectl 
 
-   *sudo apt-get update && \ sudo apt-get install -y --allow-change-held-packages kubelet=1.21.1-00 kubectl=1.21.1-00*
+   ```shell
+   sudo apt-get update && \ sudo apt-get install -y --allow-change-held-packages kubelet=1.21.1-00 kubectl=1.21.1-00
+   ```
+
+   
 
 6. Restart kubelet
 
-   *sudo systemctl daemon-reload && sudo systemctl restart kubelet*
+   ```shell
+   sudo systemctl daemon-reload && sudo systemctl restart kubelet
+   ```
+
+   
 
 7. Valida de a versão foi atualizada no Master Node 
 
-   *kubectl get nodes*
+   ```shell
+   kubectl get nodes
+   ```
 
-8. Volta o Master Node no Cluster 
+   
 
-   *kubectl uncordon "master-node"*
+   Volta o Master Node no Cluster 
+
+   ```shell
+   kubectl uncordon "master-node"
+   ```
+
+   
 
 
 

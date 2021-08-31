@@ -392,11 +392,71 @@ O kube-apiserver foi projetado para ser escalonado horizontalmente — ou seja, 
 
 https://kubernetes.io/pt-br/docs/concepts/overview/components/
 
+https://kubernetes.io/docs/concepts/scheduling-eviction/kube-scheduler/
+
+https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1597437673008-devops-wb002%20-%20S06-L01%20Exploring%20k8s%20Scheduling.pdf
+
+https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1607461078344-devops-wb002%20-%20S06%20Advanced%20Pod%20Allocation.pdf
+
 Usa um algoritmo para verificar em qual node o pod deverá ser hospedado. Ele verifica os recursos disponíveis do node para verificar qual o melhor node para receber aquele pod.
 
 kube-scheduler lida com agendamento, o processo de seleção de um nó disponível no cluster no qual executar contêineres
 
-![image-20210816195123993](./imagens/image-20210816195123993.png)
+#### **nodeSelector**
+
+https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/
+
+`NodeSelector`é a forma mais simples recomendada de restrição de seleção de nó. `nodeSelector`é um campo de PodSpec. 
+
+**Utiliza Labels;** 
+
+Exemplo:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    env: test
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    imagePullPolicy: IfNotPresent
+  nodeSelector:				# --->> Label no WorkerNode
+    disktype: ssd
+```
+
+
+
+#### **nodeName**
+
+https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodename
+
+`nodeName`é a forma mais simples de restrição de seleção de nó, mas devido às suas limitações, normalmente não é usada. `nodeName`é um campo de PodSpec. Se não estiver vazio, o programador ignora o pod e o kubelet em execução no nó nomeado tenta executar o pod. Portanto, se `nodeName`for fornecido no PodSpec, terá precedência sobre os métodos acima para seleção de nós.
+
+Algumas das limitações de uso `nodeName`para selecionar nós são:
+
+- Se o nó nomeado não existir, o pod não será executado e, em alguns casos, pode ser excluído automaticamente.
+- Se o nó nomeado não tiver os recursos para acomodar o pod, ele falhará e o motivo indicará o motivo, por exemplo, OutOfmemory ou OutOfcpu.
+- Os nomes dos nós em ambientes de nuvem nem sempre são previsíveis ou estáveis
+
+Exemplo:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+  nodeName: kube-01  ## --->> Nome do Worker Node
+```
+
+
 
 **Comandos**
 
@@ -899,49 +959,7 @@ Ao contrário de uma implantação, um StatefulSet mantém uma identidade persis
 
 Esses pods são criados com a mesma especificação, mas não são intercambiáveis: cada um tem um identificador persistente, mantido em qualquer reagendamento.
 
-Daemon Sets
 
-Um DaemonSet garante que os nodes executem uma cópia de um pod. **À medida que os nodes são adicionados ao cluster, os pods são adicionados a eles.** 
-
-Porém, sempre que os nodes forem removidos do cluster, esses pods são coletados como lixo. A exclusão de um DaemonSet limpará os pods criados.
-
-Entre os diversos usos de um DaemonSet, podemos citar: 
-
-- Daemon de armazenamento em cluster em cada node, como glusterd e ceph, por exemplo. 
-- Daemon de coleta de logs em todos os nodes, como fluentd ou filebeat.
-- Daemon de monitoramento de node em cada node, como Prometheus Node Exporter, Flowmill, Sysdig Agent, collectd, Dynatrace OneAgent, AppDynamics Agent, entre outros. 
-
-Em um caso simples, um DaemonSet, cobrindo todos os nodes, seria usado para cada tipo de daemon. 
-
-Uma configuração mais complexa pode usar vários DaemonSets para um único tipo de daemon. 
-
-No entanto, com diferentes sinalizadores e/ou diferentes solicitações de memória e CPU para cada tipo de hardware.
-
-**Anotações Importantes**
-
-- **Um tipo Pod por deployment, mas pode ter varias replicar desse pod (replicas set)**
-- **Sempre cria uma nova replica set quando vai fazer o rollout**
-- **Sempre utilizar a flag "--record" no apply para criar o history do rollout**
-
-**Comandos**
-
-| Descrição                          | Comando                                                      |
-| ---------------------------------- | ------------------------------------------------------------ |
-| Altera imagem no deploy            | kubectl set image deployment.v1.apps/"*nome-deployment*" nginx="image" |
-| Para acompanhar as atualizações    | kubectl describe deploy "*nome-deployment*"                  |
-| Cria deployment básico             | kubectl create deployment "*nome-deployment*" --image=nginx  |
-| Escala deployment                  | kubectl scale deployment "*nome-deployment*" --replicas="*qde-replicas*" |
-| Opção DryRun não Cria o Deployment | kubectl create deployment meu-nginx --image=nginx **--dry-run=client** -o yaml > deployment-template.yaml |
-| Acompanha o rollout da app         | kubectl rollout status deploy "*nome-do-deploy*"             |
-| History dos rolouts                | kubectl.exe rollout history deploy test                      |
-| Ver alterações na revisão          | kubectl.exe rollout history deploy test --revision=3         |
-| Volta na versão tageada            | kubectl.exe rollout undo deploy test                         |
-|                                    |                                                              |
-|                                    |                                                              |
-
-
-
-### 
 
 ##############################################################################################
 
@@ -1147,7 +1165,7 @@ https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/
 | Lista os pods com o label "DC"          | kubectl get pods -L "label"                                  |
 | Setar Label no pod                      | kubectl label pod "nomedopod" "label"="valor" -n "namespace" |
 | Deletar pod com Label especifico        | kubectl delete pod -l "label"="valor" -n "namespace"         |
-|                                         |                                                              |
+| Add Label no Worker Node                | kubectl label nodes k8s-worker-01 special=true               |
 |                                         |                                                              |
 |                                         |                                                              |
 |                                         |                                                              |
@@ -1267,6 +1285,63 @@ spec:											---->  espeficicações do container
          sleep 1;
         done
 ```
+
+##############################################################################################
+
+## **Init Containers**
+
+https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
+
+https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1597437567672-devops-wb002%20-%20S05-L06%20Introducing%20Init%20Containers.pdf
+
+Os Init contêineres  são contêineres que executam uma vez durante o processo de inicialização de um pod. Um pod pode ter qualquer número de init
+contêineres, e cada um deles será executado uma vez ***(em ordem)*** até a conclusão.
+
+![image-20210830205002001](./imagens/image-20210830205002001.png)
+
+Exemplo:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+name: init-pod
+spec:
+containers:
+- name: nginx
+image: nginx:1.19.1
+initContainers:
+- name: delay
+image: busybox
+command: ['sleep', '30']
+
+```
+
+##############################################################################################
+
+## **Static POD**
+
+https://kubernetes.io/docs/tasks/configure-pod-container/static-pod/
+
+https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1597437741360-devops-wb002%20-%20S06-L03%20Using%20Static%20Pods.pdf
+
+Arquivo yaml fica no diretório: /etc/kubernetes/manifests/
+
+
+
+##############################################################################################
+
+## **Multi-Container POD**
+
+https://kubernetes.io/docs/tasks/access-application-cluster/communicate-containers-same-pod-shared-volume/
+
+https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1604087663409-devops-wb002%20-%20S05-L06%20Creating%20Multi-Container%20Pods.pdf
+
+Um pod do Kubernetes pode ter um ou mais containers. Um pod com mais de um container é um Pod de vários contêineres.
+Em um pod de vários contêineres, os contêineres compartilhar recursos como rede e armazenar. Eles podem interagir uns com os outros,
+trabalhando juntos para fornecer funcionalidade
+
+**NÃO É RECOMENDADO ESSE UTILIZAÇÃO.**
 
 
 
@@ -1630,6 +1705,79 @@ spec:
 |                                                              |                                                 |
 |                                                              |                                                 |
 |                                                              |                                                 |
+
+
+
+
+
+##############################################################################################
+
+# **Daemon Sets**
+
+https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
+
+https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1597437708790-devops-wb002%20-%20S06-L02%20Using%20DaemonSets.pdf
+
+**Um DaemonSet garante que os nodes executem uma cópia de um pod. À medida que os nodes são adicionados ao cluster, os pods são adicionados a eles.** 
+
+Porém, sempre que os nodes forem removidos do cluster, esses pods são coletados como lixo. A exclusão de um DaemonSet limpará os pods criados.
+
+Entre os diversos usos de um DaemonSet, podemos citar: 
+
+- Daemon de armazenamento em cluster em cada node, como glusterd e ceph, por exemplo. 
+- Daemon de coleta de logs em todos os nodes, como fluentd ou filebeat.
+- Daemon de monitoramento de node em cada node, como Prometheus Node Exporter, Flowmill, Sysdig Agent, collectd, Dynatrace OneAgent, AppDynamics Agent, entre outros. 
+
+Em um caso simples, um DaemonSet, cobrindo todos os nodes, seria usado para cada tipo de daemon. 
+
+Uma configuração mais complexa pode usar vários DaemonSets para um único tipo de daemon. 
+
+No entanto, com diferentes sinalizadores e/ou diferentes solicitações de memória e CPU para cada tipo de hardware.
+
+**Anotações Importantes**
+
+- **Um tipo Pod por deployment, mas pode ter varias replicar desse pod (replicas set)**
+- **Sempre cria uma nova replica set quando vai fazer o rollout**
+- **Sempre utilizar a flag "--record" no apply para criar o history do rollout**
+
+Exemplo:
+
+```yaml
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: my-daemonset
+spec:
+  selector:
+    matchLabels:
+      app: my-daemonset ## -->> define quais pods farão parte deste Daemon Set
+  template:
+    metadata:
+      labels:
+        app: my-daemonset
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.19.1
+```
+
+
+
+## **Comandos**
+
+| Descrição                          | Comando                                                      |
+| ---------------------------------- | ------------------------------------------------------------ |
+| Altera imagem no deploy            | kubectl set image deployment.v1.apps/"*nome-deployment*" nginx="image" |
+| Para acompanhar as atualizações    | kubectl describe deploy "*nome-deployment*"                  |
+| Cria deployment básico             | kubectl create deployment "*nome-deployment*" --image=nginx  |
+| Escala deployment                  | kubectl scale deployment "*nome-deployment*" --replicas="*qde-replicas*" |
+| Opção DryRun não Cria o Deployment | kubectl create deployment meu-nginx --image=nginx **--dry-run=client** -o yaml > deployment-template.yaml |
+| Acompanha o rollout da app         | kubectl rollout status deploy "*nome-do-deploy*"             |
+| History dos rolouts                | kubectl.exe rollout history deploy test                      |
+| Ver alterações na revisão          | kubectl.exe rollout history deploy test --revision=3         |
+| Volta na versão tageada            | kubectl.exe rollout undo deploy test                         |
+|                                    |                                                              |
+|                                    |                                                              |
 
 
 
@@ -3039,37 +3187,37 @@ Atenção! 1 core de CPU corresponde a 1000m (1000 milicore). Ao especificar 200
 
 
 
-|                           Comando                            | Descrição              |
-| :----------------------------------------------------------: | :--------------------- |
-|                                                              |                        |
-|                                                              |                        |
-|  echo "source <(kubectl completion bash)" >> /root/.bashrc   | auto complete          |
-|                                                              |                        |
-| aws eks --region "*region*" update-kubeconfig --name "*cluster-name*" | Conecta no cluster EKS |
-|                                                              |                        |
-|                                                              |                        |
-|                                                              |                        |
-|                                                              |                        |
-|                                                              |                        |
-|                                                              |                        |
-|                                                              |                        |
-|                                                              |                        |
-|                                                              |                        |
-|                                                              |                        |
-|                                                              |                        |
-|                                                              |                        |
-|                                                              |                        |
-|                                                              |                        |
-|                                                              |                        |
-|                                                              |                        |
-|                                                              |                        |
-|                                                              |                        |
-|                                                              |                        |
-|                                                              |                        |
-|                                                              |                        |
-|                                                              |                        |
-|                                                              |                        |
-|                                                              |                        |
+|                           Comando                            | Descrição                                               |
+| :----------------------------------------------------------: | :------------------------------------------------------ |
+|             kubectl logs sidecar-pod -c sidecar              | Ver logs do container Sidecar dentro do pod sidecar-pod |
+|                                                              |                                                         |
+|  echo "source <(kubectl completion bash)" >> /root/.bashrc   | auto complete                                           |
+|                                                              |                                                         |
+| aws eks --region "*region*" update-kubeconfig --name "*cluster-name*" | Conecta no cluster EKS                                  |
+|                                                              |                                                         |
+|                                                              |                                                         |
+|                                                              |                                                         |
+|                                                              |                                                         |
+|                                                              |                                                         |
+|                                                              |                                                         |
+|                                                              |                                                         |
+|                                                              |                                                         |
+|                                                              |                                                         |
+|                                                              |                                                         |
+|                                                              |                                                         |
+|                                                              |                                                         |
+|                                                              |                                                         |
+|                                                              |                                                         |
+|                                                              |                                                         |
+|                                                              |                                                         |
+|                                                              |                                                         |
+|                                                              |                                                         |
+|                                                              |                                                         |
+|                                                              |                                                         |
+|                                                              |                                                         |
+|                                                              |                                                         |
+|                                                              |                                                         |
+|                                                              |                                                         |
 
 ##############################################################################################
 

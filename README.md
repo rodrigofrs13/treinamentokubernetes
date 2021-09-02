@@ -124,7 +124,7 @@ https://www.udemy.com/course/certified-kubernetes-security-specialist/learn/lect
 
 - ### **Containers on AWS: Ecosystem Integration✔**
 
-  ### **Running Containers on Amazon Elastic Kubernetes Service (Amazon EKS)**✔
+- ### **Running Containers on Amazon Elastic Kubernetes Service (Amazon EKS)**✔
 
 - ### **Containers na AWS✔**
   - https://pages.awscloud.com/LATAM_TRAINCERT_WEBINAR_immersion-day-containers-video-series_20200331_7010z000001LIBT_LPVideos-CostOptimizationVideoSeries.html
@@ -665,79 +665,17 @@ No POD a namespace é declarada no metadata.
 
 ##############################################################################################
 
-### **Network**
+### 
 
-https://kubernetes.io/pt-br/docs/concepts/cluster-administration/networking/
-
-
-
-![image-20210729212050005](./imagens/image-20210729212050005.png)
-
-
-
-**Container Network Interface**
-
-Para prover a rede para os contêineres, o k8s utiliza a especificação do **CNI**, Container Network Interface.
-
-CNI é uma especificação que reúne algumas bibliotecas para o desenvolvimento de plugins para configuração e gerenciamento de redes para os contêineres. Ele provê uma interface comum entre as diversas soluções de rede para o k8s. Você encontra diversos plugins para AWS, GCP, Cloud Foundry entre outros.
-
-Mais informações em: https://github.com/containernetworking/cni
-
-Enquanto o CNI define a rede dos pods, ele não te ajuda na comunicação entre os pods de diferentes nodes.
-
-As características básicas da rede do k8s são:
-
-- Todos os pods conseguem se comunicar entre eles em diferentes nodes;
-- Todos os nodes pode se comunicar com todos os pods;
-- **Não utilizar NAT.**
-
-**Todos os IPs dos pods e nodes são roteados sem a utilização de [NAT](https://en.wikipedia.org/wiki/Network_address_translation). **
-
-Isso é solucionado com a utilização de algum software que te ajudará na criação de uma rede Overlay. Seguem alguns:
-
-- [Weave](https://www.weave.works/docs/net/latest/kube-addon/)
-- [Flannel](https://github.com/coreos/flannel/blob/master/Documentation/kubernetes.md)
-- [Canal](https://github.com/tigera/canal/tree/master/k8s-install)
-- [Calico](https://docs.projectcalico.org/latest/introduction/)
-- [Romana](http://romana.io/)
-- [Nuage](https://github.com/nuagenetworks/nuage-kubernetes/blob/v5.1.1-1/docs/kubernetes-1-installation.rst)
-- [Contiv](http://contiv.github.io/)
-
-**Mais utilizados Waeve ou Flannel. **
-
-Mais informações em: https://kubernetes.io/docs/concepts/cluster-administration/addons/
-
-
-
-**2.6.5.1 - Comandos**
-
-| Descrição             | Comando                         |
-| --------------------- | ------------------------------- |
-| Lista pods do coredns | kubectl get pods -n kube-system |
-|                       |                                 |
-|                       |                                 |
+|      |      |
+| ---- | ---- |
+|      |      |
+|      |      |
+|      |      |
 
 ##############################################################################################
 
-### **DNS**
 
-https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/
-
-![image-20210726212636211](./imagens/image-20210726212636211.png)
-
- Kubelet define esse arquivo para cada pod.
-
-```yaml
-root@examplepod:/# cat /etc/resolv.conf
-nameserver 10.96.0.10
-search pod-example.svc.cluster.local svc.cluster.local cluster.local ec2.internal
-options ndots:5
-
-```
-
-
-
-### 
 
 ##############################################################################################
 
@@ -889,76 +827,6 @@ spec:
 
 ##############################################################################################
 
-### **Deployment**
-
-https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
-
-
-
-Você descreve um *estado desejado* em uma implantação, e a implantação [Controlador](https://kubernetes.io/docs/concepts/architecture/controller/) altera o estado real para o estado desejado em uma taxa controlada. Você pode definir implantações para criar novos **ReplicaSets** ou remover implantações existentes e adotar todos os seus recursos com novas implantações.
-
-O deployment é uma ótima maneira de automatizar o gerenciamento de seus pods. O deployment permite que você especifique um estado desejado para um conjunto de pods. O cluster trabalhará constantemente para manter o estado desejado.
-
-- **Scaling** - Entender mais
-- **Rolling updates** - Entender mais
-- **Self-Healing** - Entender mais
-
-![image-20210802222430494](./imagens/image-20210802222430494.png)
-
-![image-20210726220653723](./imagens/image-20210726220653723.png)
-
-
-
-![image-20210726220716616](./imagens/image-20210726220716616.png)
-
-
-
-![image-20210726220728016](./imagens/image-20210726220728016.png)
-
-
-
-![image-20210726220739374](./imagens/image-20210726220739374.png)
-
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  labels:
-    run: prod-redis						--> Labels
-  name: prod-redis
-spec:
-  selector:
-    matchLabels:
-      run: prod-redis
-  replicas: 3							---> ReplicaSet
-  minReadySeconds: 300					---> Tempo para chegar o pod como health
-  strategy:								--> Estratégia de replicas
-    rollingUpdate:
-      maxSurge: 1						--> Vai criar uma nova réplica e deletar 1 / Pode ser qde ou %
-      maxUnavailable: 0
-    type: RollingUpdate
-  template:
-    metadata:
-      labels:
-        run: prod-redis						--> Labels
-    spec:
-      containers:
-      - image: redis:4.0
-        name: redis
-```
-
-
-
-Stateful Sets
-
-StatefulSet é o objeto da API de carga de trabalho usado para gerenciar aplicações stateful. 
-
-Como uma implantação, um StatefulSet gerencia pods com base em uma especificação de contêiner idêntica. 
-
-Ao contrário de uma implantação, um StatefulSet mantém uma identidade persistente para cada um de seus pods. 
-
-Esses pods são criados com a mesma especificação, mas não são intercambiáveis: cada um tem um identificador persistente, mantido em qualquer reagendamento.
-
 
 
 ##############################################################################################
@@ -1078,50 +946,15 @@ https://kubernetes.io/docs/concepts/storage/storage-classes/
 
 
 
-### **Scaling**
+### 
 
-#### **Horizontal Pod Autoscaler - HPA**
-
-https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
-
-O autoescalador horizontal de pods dimensiona automaticamente o número de pods em um controlador de replicação, implantação, conjunto de réplicas ou conjunto com estado com base na utilização de CPU observada (ou, com suporte a [métricas personalizadas](https://git.k8s.io/community/contributors/design-proposals/instrumentation/custom-metrics-api.md) , em algumas outras métricas fornecidas pelo aplicativo).
-
-![image-20210803193803808](./imagens/image-20210803193803808.png)
-
-![image-20210803194211601](./imagens/image-20210803194211601.png)
-
-**ENTENDER MAIS SOBRE O CALCULO DE CPU**
-
-
-
-#### **Vertical Pod Autoscaler - VPA**
-
-Em Alpha 
-
-#### **Cluster Autoscaler - CA**
-
-**Para Nodes**
-
-
-
-#### **Anotações Importantes**
-
-- **Um HPA por Deployment**
-- **autoscaling/v2 tem custom metrics/cpu/memory**
-- **No Cluster Autoscaler sempre utilizar Pod Resource Requests**
-- **No Cluster Autoscaler  não mexa com os pools de nós**
-- **No Cluster Autoscaler  verifique sua nuvem para suporte** (--enable-autoscaling)
-- **No Cluster Autoscaler teste o desempenho em grandes clusters**
-
-#### **Comandos**
-
-| Descrição            | Comando         |
-| -------------------- | --------------- |
-| Listas todos os hpas | kubectl get hpa |
-|                      |                 |
-|                      |                 |
-|                      |                 |
-|                      |                 |
+|      |      |
+| ---- | ---- |
+|      |      |
+|      |      |
+|      |      |
+|      |      |
+|      |      |
 
 ##############################################################################################
 
@@ -1712,6 +1545,236 @@ spec:
 
 ##############################################################################################
 
+# **Deployment**
+
+https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+
+https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1598045591691-devops-wb002%20-%20S07-L01%20K8s%20Deployments%20Overview.pdf
+
+
+
+Você descreve um *estado desejado* em um Deployment, e o Deployment [Controlador](https://kubernetes.io/docs/concepts/architecture/controller/) altera o estado real para o estado desejado em uma taxa controlada. Você pode definir Deployment para criar novos **ReplicaSets** ou remover Deployment existentes e adotar todos os seus recursos com novas Deployments.
+
+Um objeto K8s que define um objeto desejado estado para um ReplicaSet (um conjunto de réplicas Pods). O Deployment [Controlador](https://kubernetes.io/docs/concepts/architecture/controller/)  procura manter o estado desejado por criação, exclusão e substituição de pods com novas configurações.
+
+O deployment é uma ótima maneira de automatizar o gerenciamento de seus pods. O deployment permite que você especifique um estado desejado para um conjunto de pods. O cluster trabalhará constantemente para manter o estado desejado.
+
+**Pontos importantes**
+
+- **replicas** - O número de pods de réplica do a Deployment buscará manter
+
+- **selector** - Um seletor de Label usado para identificar a réplica Pods gerenciados pela Deployment 
+
+- **template** - Um template de definição de pod usado para criar réplicas de pods
+
+**Casos de uso**
+
+- Amplie facilmente um aplicativo para cima ou para baixo em alterando o número de réplicas.
+- Execute atualizações contínuas para implantar um novo versão do software.
+- Reverter para uma versão anterior do software.
+
+
+
+
+
+- **Self-Healing** - Entender mais
+
+![image-20210802222430494](./imagens/image-20210802222430494.png)
+
+![image-20210726220653723](./imagens/image-20210726220653723.png)
+
+
+
+![image-20210726220716616](./imagens/image-20210726220716616.png)
+
+
+
+![image-20210726220728016](./imagens/image-20210726220728016.png)
+
+
+
+![image-20210726220739374](./imagens/image-20210726220739374.png)
+
+
+
+Exemplo:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: prod-redis				##		--> Labels  // Mesmo do selector
+  name: prod-redis
+spec:					## --->> Spec do deployment
+  selector:					## --->> Pods que farão parte deste deploy
+    matchLabels:
+      run: prod-redis
+  replicas: 3					##		---> ReplicaSet
+  minReadySeconds: 300			##		---> Tempo para chegar o pod como health
+  strategy:						##		--> Estratégia de replicas
+    rollingUpdate:
+      maxSurge: 1				##		--> Vai criar uma nova réplica e deletar 1 / Pode ser qde ou %
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        run: prod-redis			##			--> Labels
+    spec:			## --->> Spec do container
+      containers:
+      - image: redis:4.0
+        name: redis
+```
+
+
+
+## **Scaling**
+
+https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#scaling-a-deployment
+
+https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1598045960267-devops-wb002%20-%20S07-L02%20Scaling%20Applications%20With%20Deployments.pdf
+
+### **Horizontal Pod Autoscaler - HPA**
+
+https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
+
+O Horizontal Pod Autoscaler dimensiona automaticamente o número de pods em um controlador de replicação, implantação, conjunto de réplicas ou conjunto com estado com base na utilização de CPU observada (ou, com suporte a [métricas personalizadas](https://git.k8s.io/community/contributors/design-proposals/instrumentation/custom-metrics-api.md) , em algumas outras métricas fornecidas pelo aplicativo).
+
+![image-20210803193803808](./imagens/image-20210803193803808.png)
+
+![image-20210803194211601](./imagens/image-20210803194211601.png)
+
+**ENTENDER MAIS SOBRE O CALCULO DE CPU**
+
+
+
+### **Vertical Pod Autoscaler - VPA**
+
+Em Alpha 
+
+### **Cluster Autoscaler - CA**
+
+**Para Nodes**
+
+
+
+### **Anotações Importantes**
+
+- ***Um HPA por Deployment***
+- **autoscaling/v2 tem custom metrics/cpu/memory**
+- **No Cluster Autoscaler sempre utilizar Pod Resource Requests**
+- **No Cluster Autoscaler  não mexa com os pools de nós**
+- **No Cluster Autoscaler  verifique sua nuvem para suporte** (--enable-autoscaling)
+- **No Cluster Autoscaler teste o desempenho em grandes clusters**
+
+
+
+### **Comandos**
+
+| Descrição            | Comando                                                      |
+| -------------------- | ------------------------------------------------------------ |
+| Listas todos os hpas | kubectl get hpa                                              |
+| Edita o deploymeny   | kubectl edit deploy "*nomedodeploy*"                         |
+| Escala deployment    | kubectl scale deployment.v1.apps/"*nomedodeploy*" --replicas="*numero de replicas*" |
+|                      |                                                              |
+
+## **Rolling Updates**
+
+https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-back-a-deployment
+
+https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#updating-a-deployment
+
+https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1598046005723-devops-wb002%20-%20S07-L03%20Managing%20Rolling%20Updates%20With%20Deployments.pdf
+
+Rolling Updates permitem que você faça mudanças em pods de implantação em um taxa controlada, substituindo gradualmente
+Pods com novos Pods. Isso permite que você para atualizar seus pods sem incorrer tempo de inatividade.
+
+Exemplo:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: prod-redis				##		--> Labels  // Mesmo do selector
+  name: prod-redis
+spec:					## --->> Spec do deployment
+  selector:					## --->> Pods que farão parte deste deploy
+    matchLabels:
+      run: prod-redis
+  replicas: 3					##		---> ReplicaSet
+  minReadySeconds: 300			##		---> Tempo para chegar o pod como health
+  strategy:						##		--> Estratégia de replicas
+    rollingUpdate:
+      maxSurge: 1				##		--> Vai criar uma nova réplica e deletar 1 / Pode ser qde ou %
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        run: prod-redis			##			--> Labels
+    spec:			## --->> Spec do container
+      containers:
+      - image: redis:4.0
+        name: redis
+```
+
+### Via comando
+
+```shell
+kubectl set image deployment/my-deployment nginx=nginx:broken --record
+```
+
+A flag "*--record*" grava o momento para em caso de problemas efetuar o rollback. 
+
+Histórico dos deployments com as revisões 
+
+```shell
+kubectl rollout history deployment.v1.apps/my-deployment
+```
+
+![image-20210901212804150](./imagens/image-20210901212804150.png)
+
+Reverter setando uma revisão, se não setar a revisão ele volta para a ultima. 
+
+```shell
+kubectl rollout undo deployment.v1.apps/my-deployment --to-revision=<last working revision>
+```
+
+
+
+### **Comandos**
+
+| Descrição                                            | Comando                                                      |
+| ---------------------------------------------------- | ------------------------------------------------------------ |
+| Status dos updates                                   | kubectl rollout status deployment.v1.apps/"*deployment-name*" |
+| Update da imagem com a flag "--record" para gravação | kubectl set image deployment/"*deployment-name*"nginx=nginx:broken --record |
+| Lista histórico de revisões                          | kubectl rollout history deployment.v1.apps/"*deployment-name*" |
+| Revert um update setando uma revisão                 | kubectl rollout undo deployment.v1.apps/"*deployment-name*"t --to-revision="*numero-da-revisão*" |
+|                                                      |                                                              |
+|                                                      |                                                              |
+
+
+
+##############################################################################################
+
+Stateful Sets
+
+StatefulSet é o objeto da API de carga de trabalho usado para gerenciar aplicações stateful. 
+
+Como uma implantação, um StatefulSet gerencia pods com base em uma especificação de contêiner idêntica. 
+
+Ao contrário de uma Deployment, um StatefulSet mantém uma identidade persistente para cada um de seus pods. 
+
+Esses pods são criados com a mesma especificação, mas não são intercambiáveis: cada um tem um identificador persistente, mantido em qualquer reagendamento.
+
+
+
+
+
+##############################################################################################
+
 # **Daemon Sets**
 
 https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
@@ -1780,6 +1843,177 @@ spec:
 |                                    |                                                              |
 
 
+
+
+
+##############################################################################################
+
+# **Network**
+
+https://kubernetes.io/pt-br/docs/concepts/cluster-administration/networking/
+
+https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1607461667110-devops-wb002%20-%20S08%20Networking.pdf
+
+Todo `Pod` obtém seu próprio endereço IP. Isso significa que vocë não precisa criar links explícitos entre os `Pods` e vocë quase nunca terá que lidar com o mapeamento de portas de contêineres para portas do host. Isso cria um modelo simples, retro-compatível onde os `Pods` podem ser tratados muito mais como VMs ou hosts físicos da perspectiva de alocação de portas, nomes, descobrimento de serviços (*service discovery*), balanceamento de carga, configuração de aplicações e migrações.
+
+
+
+![image-20210729212050005](./imagens/image-20210729212050005.png)
+
+
+
+## **Container Network Interface(CNI)**
+
+Para prover a rede para os contêineres, o k8s utiliza a especificação do **CNI**, Container Network Interface.
+
+CNI é uma especificação que reúne algumas bibliotecas para o desenvolvimento de plugins para configuração e gerenciamento de redes para os contêineres. Ele provê uma interface comum entre as diversas soluções de rede para o k8s. Você encontra diversos plugins para AWS, GCP, Cloud Foundry entre outros.
+
+Mais informações em: https://github.com/containernetworking/cni
+
+Enquanto o CNI define a rede dos pods, ele não te ajuda na comunicação entre os pods de diferentes nodes.
+
+As características básicas da rede do k8s são:
+
+- Todos os pods conseguem se comunicar entre eles em diferentes nodes;
+- Todos os nodes pode se comunicar com todos os pods;
+- **Não utilizar NAT.**
+
+**Todos os IPs dos pods e nodes são roteados sem a utilização de [NAT](https://en.wikipedia.org/wiki/Network_address_translation). **
+
+Isso é solucionado com a utilização de algum software que te ajudará na criação de uma rede Overlay. Seguem alguns:
+
+- [Weave](https://www.weave.works/docs/net/latest/kube-addon/)
+- [Flannel](https://github.com/coreos/flannel/blob/master/Documentation/kubernetes.md)
+- [Canal](https://github.com/tigera/canal/tree/master/k8s-install)
+- [Calico](https://docs.projectcalico.org/latest/introduction/)
+- [Romana](http://romana.io/)
+- [Nuage](https://github.com/nuagenetworks/nuage-kubernetes/blob/v5.1.1-1/docs/kubernetes-1-installation.rst)
+- [Contiv](http://contiv.github.io/)
+
+**Mais utilizados Waeve ou Flannel. **
+
+Mais informações em: https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+
+
+**Comandos**
+
+| Descrição             | Comando                         |
+| --------------------- | ------------------------------- |
+| Lista pods do coredns | kubectl get pods -n kube-system |
+|                       |                                 |
+|                       |                                 |
+
+## **Network Policy**
+
+https://kubernetes.io/docs/concepts/services-networking/network-policies/
+
+https://kubernetes.io/pt-br/docs/concepts/services-networking/network-policies/
+
+https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1604087764609-devops-wb002%20-%20S08-L04%20Using%20NetworkPolicies.pdf
+
+Exemplo:
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: my-networkpolicy
+namespace: np-test
+spec:
+podSelector:
+matchLabels:
+app: nginx
+policyTypes:
+- Ingress
+- Egress
+ingress:
+- from:
+- namespaceSelector:
+matchLabels:
+team: np-test
+ports:
+- port: 80
+protocol: TCP
+
+
+```
+
+
+
+- **spec**: A [spec](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status) contém todas as informações necessárias para definir uma política de redes em um namespace.
+- **podSelector**: Cada `NetworkPolicy` inclui um `podSelector` que seleciona o grupo de pods que a política se aplica. A política acima seleciona os pods com a *label* "role=db". Um `podSelector` vazio seleciona todos os pods no namespace.
+- **policyTypes**: Cada `NetworkPolicy` inclui uma lista de `policyTypes` que pode incluir `Ingress`, `Egress` ou ambos. O campo `policyTypes` indica se a política se aplica ao tráfego de entrada com destino aos pods selecionados, o tráfego de saída com origem dos pods selecionados ou ambos.
+- **ingress**: Cada `NetworkPolicy` pode incluir uma lista de regras de entrada permitidas através do campo `ingress`. Cada regra permite o tráfego que corresponde simultaneamente às sessões `from` (de) e `ports` (portas). 
+- **egress**: Cada política pode incluir uma lista de regras de regras de saída permitidas através do campo `egress`. Cada regra permite o tráfego que corresponde simultaneamente às sessões `to` (para) e `ports` (portas). 
+
+
+
+Selector `to` e `from`
+
+https://kubernetes.io/pt-br/docs/concepts/services-networking/network-policies/#comportamento-dos-seletores-to-e-from
+
+Existem quatro tipos de seletores que podem ser especificados nas sessões `ingress.from` ou `egress.to`:
+
+- **podSelector**: Seleciona Pods no mesmo namespace que a política de rede foi criada, e que deve ser permitido origens no tráfego de entrada ou destinos no tráfego de saída.
+
+- **namespaceSelector**: Seleciona namespaces para o qual todos os Pods devem ser permitidos como origens no caso de tráfego de entrada ou destino no tráfego de saída.
+
+- **namespaceSelector** *e* **podSelector**: Uma entrada `to`/`from` única que permite especificar ambos `namespaceSelector` e `podSelector` e seleciona um conjunto de Pods dentro de um namespace. 
+
+  ```yaml
+    ...
+    ingress:
+    - from:
+      - namespaceSelector:
+          matchLabels:
+            user: alice
+        podSelector:
+          matchLabels:
+            role: client
+    ...
+  ```
+
+  
+
+- **ipBlock**: Isso seleciona um conjunto particular de faixas de IP a serem permitidos como origens no caso de entrada ou destinos no caso de saída. Devem ser considerados IPs externos ao cluster, uma vez que os IPs dos Pods são efêmeros e imprevisíveis.
+
+- **Port**: You can target a range of ports instead of a single port.
+
+  ```yaml
+     ports:
+      - protocol: TCP
+        port: 32000
+        endPort: 32768
+  ```
+
+  
+
+## **DNS**
+
+https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/
+
+https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1598046103047-devops-wb002%20-%20S08-L03%20Understanding%20K8s%20DNS.pdf
+
+
+
+Exemplo do nome do pod.
+
+```shell
+pod-ip-address.namespace-name.pod.cluster.local
+```
+
+![image-20210726212636211](./imagens/image-20210726212636211.png)
+
+ Kubelet define esse arquivo para cada pod.
+
+```yaml
+root@examplepod:/# cat /etc/resolv.conf
+nameserver 10.96.0.10
+search pod-example.svc.cluster.local svc.cluster.local cluster.local ec2.internal
+options ndots:5
+
+```
 
 
 

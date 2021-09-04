@@ -124,7 +124,7 @@ https://www.udemy.com/course/certified-kubernetes-security-specialist/learn/lect
 
 - ### **Containers on AWS: Ecosystem Integration✔**
 
-- ### **Running Containers on Amazon Elastic Kubernetes Service (Amazon EKS)**✔
+- ### **Running Containers on Amazon Elastic Kubernetes Service (Amazon EKS)** ✔
 
 - ### **Containers na AWS✔**
   - https://pages.awscloud.com/LATAM_TRAINCERT_WEBINAR_immersion-day-containers-video-series_20200331_7010z000001LIBT_LPVideos-CostOptimizationVideoSeries.html
@@ -357,8 +357,6 @@ https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/#back
 | Descrição          | Comando                         |
 | ------------------ | ------------------------------- |
 | Lista pods do etcd | kubectl get pods -n kube-system |
-|                    |                                 |
-|                    |                                 |
 
 
 
@@ -380,13 +378,11 @@ O servidor de API é um componente da [Camada de gerenciamento](https://kubernet
 
 O kube-apiserver foi projetado para ser escalonado horizontalmente — ou seja, ele pode ser escalado com a implantação de mais instâncias. Você pode executar várias instâncias do kube-apiserver e balancear (balanceamento de carga, etc) o tráfego entre essas instâncias.
 
-**2.3.2.1 - Comandos**
+**Comandos**
 
 | Descrição                | Comando                         |
 | ------------------------ | ------------------------------- |
 | Lista pods do api-server | kubectl get pods -n kube-system |
-|                          |                                 |
-|                          |                                 |
 
 ### **kube-scheduler**
 
@@ -463,8 +459,6 @@ spec:
 | Descrição          | Comando                         |
 | ------------------ | ------------------------------- |
 | Lista pods do etcd | kubectl get pods -n kube-system |
-|                    |                                 |
-|                    |                                 |
 
 ### **kube-controller-manager**
 
@@ -497,8 +491,6 @@ Alguns tipos desses controladores são:
 | Descrição          | Comando                         |
 | ------------------ | ------------------------------- |
 | Lista pods do etcd | kubectl get pods -n kube-system |
-|                    |                                 |
-|                    |                                 |
 
 ### **cloud-controller-manager**
 
@@ -520,13 +512,8 @@ O kubeadm executa as ações necessárias para obter um cluster mínimo viável 
 | ------------------------------------------------------------ | ------------------------------------------------------ |
 | kubeadm init --pod-network-cidr=10.24.4.0.0/16               | Inicia o cluster setanto o ip do pod-netowork -Flannel |
 | kubeadm init --apiserver-advertise-address $(hostname -i)    |                                                        |
-|                                                              |                                                        |
-|                                                              |                                                        |
 | kubeadm init --control-plane-endpoint "k8s-elb-01:6443" --upload-certs | Subir o cluster com elb                                |
 | kubeadm token create --print-join-command                    | Restaurar o token do join p/ worker node               |
-|                                                              |                                                        |
-|                                                              |                                                        |
-|                                                              |                                                        |
 
 
 
@@ -593,7 +580,6 @@ Kubelet é o agente Kubernetes executado em cada nó. Ele se comunica com o plan
 | Lista Nodes                 | kubectl get nodes                                        |
 | Describe Node               | kubectl describe node "*node_name*"                      |
 | Pegar bloco de ip dos nodes | kubectl get nodes -o jsonpath='{.items[*].spec.podCIDR}' |
-|                             |                                                          |
 
 ##############################################################################################
 
@@ -620,10 +606,6 @@ Específica com "**-n**", se não especificar nenhuma ele lista da namespace "*d
 | Deleta namespaces             | kubectl delete namespaces <insert-some-namespace-name>       |
 | Lista Pods com a namespace    | kubect get pods --namespace "*nomedanamespace*" / kubect get pods --n "*nomedanamespace*" |
 | Lista Pods de todas namespace | kubect get pods --all-namespaces                             |
-|                               |                                                              |
-|                               |                                                              |
-|                               |                                                              |
-|                               |                                                              |
 
 
 
@@ -662,18 +644,6 @@ No POD a namespace é declarada no metadata.
 ![image-20210726205550668](./imagens/image-20210726205550668.png)
 
 
-
-##############################################################################################
-
-### 
-
-|      |      |
-| ---- | ---- |
-|      |      |
-|      |      |
-|      |      |
-
-##############################################################################################
 
 
 
@@ -739,222 +709,16 @@ verifique a saida: Controlled By
 | Escala replicas         | kubectl scale rs/"*nomedareplica*"--replicas="*numero de replicas*" |
 | Deleta replica set      | kubectl delete rs/"*nomedareplica*"                          |
 |                         | kubectl get rs/"*nomedareplica*"                             |
-|                         |                                                              |
-|                         |                                                              |
-|                         |                                                              |
-|                         |                                                              |
-|                         |                                                              |
-
-
-
-##############################################################################################
-
-### **Services**
-
-https://kubernetes.io/docs/concepts/services-networking/service/
-
-Uma maneira abstrata de expor um aplicativo em execução em um conjunto de [Pods](https://kubernetes.io/docs/concepts/workloads/pods/) como um serviço de rede.
-
-
-
-![image-20210729211710504](./imagens/image-20210729211710504.png)
-
-Com o Kubernetes, você não precisa modificar seu aplicativo para usar um mecanismo de descoberta de serviço desconhecido. O Kubernetes fornece aos pods seus próprios endereços IP e um único nome DNS para um conjunto de pods e pode fazer o balanceamento de carga entre eles. 
-
-É uma forma de você expor a comunicação através de um **NodePort** ou **LoadBalancer** para distribuir as requisições entre diversos Pods daquele Deployment. Funciona como um balanceador de carga.
-
-**Tipos de Services:**
-
-- **NodePort:** Sempre acessível de **DENTRO** do Cluster - Por Porta
-- **ClusterIP:** Sempre acessível de **FORA** do Cluster - Por IP
-- **LoadBalancer:** Integração com Cloud Publica
-
-![image-20210729213308068](./imagens/image-20210729213308068.png)
-
-**O IP e o nome do Service nunca muda.** 
-
-
-
-O vinculo entre o Service e o Pod é feito pelo label informado no Selector conforme abaixo:
-
-![image-20210726215532711](./imagens/image-20210726215532711.png)
-
-Ele cria um IP virtual para os pods, mas o endpoint continua sendo o ip dos pods. 
-
-![image-20210726215644723](./imagens/image-20210726215644723.png)
-
-
-
-
-
-**Anatomia do Service**
-
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    run: nginx
-  name: nginx-clusterip
-  namespace: default
-spec:
-  externalTrafficPolicy: Cluster
-  ports:
-  - port: 80
-    protocol: TCP
-    targetPort: 80
-  selector:					----> determina quais pod´s farão parte do service
-    run: nginx				----> determina quais pod´s farão parte do service
-    sessionAffinity: None
-  type: ClusterIP
-```
-
-
-
-**Comandos**
-
-| Descrição         | Comandos                               |
-| ----------------- | -------------------------------------- |
-| Lista Services    | kubectl get services / kubectl get svc |
-| Describe Services | kubectl describe svc "*service-name*"  |
-|                   |                                        |
-|                   |                                        |
-|                   |                                        |
-|                   |                                        |
-|                   |                                        |
-|                   |                                        |
-|                   |                                        |
-
-##############################################################################################
-
-
-
-##############################################################################################
-
-### **Endpoints**
-
-**Sempre pega com o Endpoint os pods que estão no Selector.**
-
-O vinculo entre o Service e o Pod é feito pelo label informado no Selector conforme abaixo:
-
-![image-20210726215532711](./imagens/image-20210726215532711.png)
-
-![image-20210729212754923](./imagens/image-20210729212754923.png)
-
-##############################################################################################
-
-### **Storage**
-
-Os volumes são um diretório que contém dados acessíveis aos contêineres em um pod. Um volume Kubernetes tem a mesma vida útil que o pod que o encapsula. 
-
-Ele sobrevive a todos os contêineres executados no pod e os dados são preservados quando um contêiner é reiniciado.
-
-O Kubernetes suporta muitos tipos de volumes e um pod pode usar todos eles simultaneamente.
-
-https://kubernetes.io/docs/concepts/storage/
-
-![image-20210802203359146](./imagens/image-20210802203359146.png)
-
-**Volumes**
-
-https://kubernetes.io/docs/concepts/storage/volumes/
-
-**Container Storage Interface (CSI)**
-
-https://kubernetes.io/blog/2019/01/15/container-storage-interface-ga/
-
-![image-20210802204057322](C:\Users\brik\AppData\Roaming\Typora\typora-user-images\image-20210802204057322.png)
-
-
-
-**Persistent Volumes**
-
-https://kubernetes.io/docs/concepts/storage/persistent-volumes/
-
-![image-20210802204251424](./imagens/image-20210802204251424.png)
-
-**EmptyDir** 
-
-Um volume do tipo **EmptyDir** é criado sempre que um Pod é atribuído a um nó existente. Esse volume é criado inicialmente vazio, e todos os contêineres do Pod podem ler e gravar arquivos no volume.
-
-Esse volume não é um volume com persistência de dados. Sempre que o Pod é removido de um nó, os dados no `EmptyDir` são excluídos permanentemente. É importante ressaltar que os dados não são excluídos em casos de falhas nos contêineres.
-
-Disco disponível somente enquando o pod estiver rodando.
-
-Recomendado para logs por exemplo.
-
-Disco no Node em /var/lib/kubelet/pods , find . -iname "*nomedodisco*"
-
-
-
-**Persistent Volume**
-
-O subsistema **PersistentVolume** fornece uma API para usuários e administradores que resume detalhes de como o armazenamento é fornecido e consumido pelos Pods. Para o melhor controle desse sistema foi introduzido dois recursos de API: `PersistentVolume` e `PersistentVolumeClaim`.
-
-Um **PersistentVolume** (PV) é um recurso no cluster, assim como um nó. Mas nesse caso é um recurso de armazenamento. O PV é uma parte do armazenamento no cluster que foi provisionado por um administrador. Os PVs tem um ciclo de vida independente de qualquer pod associado a ele. Essa API permite armazenamentos do tipo: NFS, ISCSI ou armazenamento de um provedor de nuvem específico.
-
-Um **PersistentVolumeClaim** (PVC) é semelhante a um Pod. Os Pods consomem recursos de um nó e os PVCs consomem recursos dos PVs.
-
-Mas o que é um PVC? Nada mais é do que uma solicitação de armazenamento criada por um usuário.
-
-Vamos criar um `PersistentVolume` do tipo `NFS`, para isso vamos instalar os pacotes necessários para criar um NFS Server no GNU/Linux.
-
-Sequencia: Cria o **PV** depois o **PVC**.
-
-
-
-**PV** é criado no WorkerNode.
-
-**PVC** é o que aponta no POD.
-
-**Reclaim Policy no PV**
-
-- Retain
-- Detele
-
-![image-20210802204753235](./imagens/image-20210802204753235.png)
-
-![image-20210802204956898](./imagens/image-20210802204956898.png)
-
-
-
-**Storage Classes**
-
-Um StorageClass fornece uma maneira para os administradores descreverem as "classes" de armazenamento que oferecem.
-
-https://kubernetes.io/docs/concepts/storage/storage-classes/
-
-![image-20210802205318959](./imagens/image-20210802205318959.png)
-
-
-
-
-
-**Comandos**
-
-
-
-| Descrição             | Comando                      |
-| --------------------- | ---------------------------- |
-| Listar o StorageClass | kubect get sc                |
-|                       | kubectl describe sc "nomesc" |
-|                       |                              |
-|                       |                              |
-|                       |                              |
-
-##############################################################################################
 
 
 
 ### 
 
-|      |      |
-| ---- | ---- |
-|      |      |
-|      |      |
-|      |      |
-|      |      |
-|      |      |
+##############################################################################################
+
+
+
+
 
 ##############################################################################################
 
@@ -999,9 +763,6 @@ https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/
 | Setar Label no pod                      | kubectl label pod "nomedopod" "label"="valor" -n "namespace" |
 | Deletar pod com Label especifico        | kubectl delete pod -l "label"="valor" -n "namespace"         |
 | Add Label no Worker Node                | kubectl label nodes k8s-worker-01 special=true               |
-|                                         |                                                              |
-|                                         |                                                              |
-|                                         |                                                              |
 
 
 
@@ -1415,12 +1176,6 @@ spec:
 
 **Atenção! 1 core de CPU corresponde a 1000m (1000 milicore). Ao especificar 200m, estamos querendo reservar 20% de 1 core da CPU. Se fosse informado o valor 0.2 teria o mesmo efeito, ou seja, seria reservado 20% de 1 core da CPU.**
 
-
-
-
-
-
-
 ##############################################################################################
 
 ## **Secrets**
@@ -1534,10 +1289,6 @@ spec:
 | Lista todos os pods de todos as namespaces  dentro dos worker nodes | kubectl get pods --all-namespaces -o wide       |
 | Deleta Pod                                                   | kubectl delete pod "*nomepod*" -n "*namespace*" |
 | Create Pod                                                   | kubectl create -f pod-exmeple.yaml              |
-|                                                              |                                                 |
-|                                                              |                                                 |
-|                                                              |                                                 |
-|                                                              |                                                 |
 
 
 
@@ -1677,7 +1428,6 @@ Em Alpha
 | Listas todos os hpas | kubectl get hpa                                              |
 | Edita o deploymeny   | kubectl edit deploy "*nomedodeploy*"                         |
 | Escala deployment    | kubectl scale deployment.v1.apps/"*nomedodeploy*" --replicas="*numero de replicas*" |
-|                      |                                                              |
 
 ## **Rolling Updates**
 
@@ -1752,8 +1502,6 @@ kubectl rollout undo deployment.v1.apps/my-deployment --to-revision=<last workin
 | Update da imagem com a flag "--record" para gravação | kubectl set image deployment/"*deployment-name*"nginx=nginx:broken --record |
 | Lista histórico de revisões                          | kubectl rollout history deployment.v1.apps/"*deployment-name*" |
 | Revert um update setando uma revisão                 | kubectl rollout undo deployment.v1.apps/"*deployment-name*"t --to-revision="*numero-da-revisão*" |
-|                                                      |                                                              |
-|                                                      |                                                              |
 
 
 
@@ -1839,12 +1587,230 @@ spec:
 | History dos rolouts                | kubectl.exe rollout history deploy test                      |
 | Ver alterações na revisão          | kubectl.exe rollout history deploy test --revision=3         |
 | Volta na versão tageada            | kubectl.exe rollout undo deploy test                         |
-|                                    |                                                              |
-|                                    |                                                              |
 
 
 
 
+
+##############################################################################################
+
+# **Services**
+
+https://kubernetes.io/docs/concepts/services-networking/service/
+
+https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1604349679632-devops-wb002%20-%20S09-L02%20Using%20K8s%20Services.pdf
+
+https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1607461878133-devops-wb002%20-%20S09%20Services.pdf
+
+Uma maneira abstrata de expor um aplicativo em execução em um conjunto de [Pods](https://kubernetes.io/docs/concepts/workloads/pods/) como um serviço de rede.
+
+
+
+![image-20210729211710504](./imagens/image-20210729211710504.png)
+
+![image-20210729213308068](./imagens/image-20210729213308068.png)
+
+Com o Kubernetes, você não precisa modificar seu aplicativo para usar um mecanismo de descoberta de serviço desconhecido. O Kubernetes fornece aos pods seus próprios endereços IP e um único nome DNS para um conjunto de pods e pode fazer o balanceamento de carga entre eles. 
+
+É uma forma de você expor a comunicação através de um **NodePort** ou **LoadBalancer** para distribuir as requisições entre diversos Pods daquele Deployment. Funciona como um balanceador de carga.
+
+
+
+**Tipos de Services:**
+
+https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
+
+- **NodePort:** Sempre acessível de **FORA** do Cluster - Por Porta
+
+  Exemplo:
+
+  ```yaml
+  apiVersion: v1
+  kind: Service					## tipo
+  metadata:
+    name: svc-nodeport
+  spec:
+    type: NodePort				## Tipo do service
+    selector:						## Match com dos pods e deploy
+      app: svc-example
+    ports:
+      - protocol: TCP
+        port: 80
+        targetPort: 80
+        nodePort: 30080			## Porta externa ao cluster
+  
+  ```
+
+  
+
+- **ClusterIP:** Sempre acessível de **DENTRO** do Cluster - Por IP
+
+  Exemplo:
+
+  ```yaml
+  apiVersion: v1
+  kind: Service					## tipo
+  metadata:
+    name: svc-clusterip
+  spec:
+    type: ClusterIP				## Tipo do service
+    selector:						## Match com dos pods e deploy
+      app: svc-example
+    ports:
+      - protocol: TCP
+        port: 80
+        targetPort: 80
+  
+  ```
+
+  
+
+- **LoadBalancer:** Integração com Cloud Publica, para ser acessível de **FORA** do cluster. 
+
+
+
+**O IP e o nome do Service nunca muda.** 
+
+
+
+O vinculo entre o Service e o Pod é feito pelo label informado no Selector conforme abaixo:
+
+![image-20210726215532711](./imagens/image-20210726215532711.png)
+
+Ele cria um IP virtual para os pods, mas o endpoint continua sendo o ip dos pods. 
+
+![image-20210726215644723](./imagens/image-20210726215644723.png)
+
+
+
+
+
+**Anatomia do Service**
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: nginx
+  name: nginx-clusterip
+  namespace: default
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:					----> determina quais pod´s farão parte do service
+    run: nginx				----> determina quais pod´s farão parte do service
+    sessionAffinity: None
+  type: ClusterIP
+```
+
+
+
+
+
+## **Endpoints**
+
+Os **Endpoints** são as entidades subjacentes (como pods) para as quais um **Service** encaminha o tráfego.
+
+**Sempre pega com o Endpoint os pods que estão no Selector.**
+
+O vinculo entre o Service e o Pod é feito pelo label informado no Selector conforme abaixo:
+
+![image-20210726215532711](./imagens/image-20210726215532711.png)
+
+![image-20210729212754923](./imagens/image-20210729212754923.png)
+
+
+
+## **Service DNS Names**
+
+https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/
+
+https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1604349764457-devops-wb002%20-%20S09-L03%20Discovering%20K8s%20Services%20With%20DNS.pdf
+
+Exemplo:
+
+```shell
+service-name.namespace-name.svc.cluster-domain.example
+```
+
+Default domain lcluster
+
+```shell
+cluster.local
+```
+
+
+
+## Comados
+
+| Descrição         | Comandos                               |
+| ----------------- | -------------------------------------- |
+| Lista Services    | kubectl get services / kubectl get svc |
+| Describe Services | kubectl describe svc "*service-name*"  |
+|                   | kubectl get endpoints "*service-name*" |
+|                   |                                        |
+|                   |                                        |
+
+##############################################################################################
+
+# **Ingress**
+
+https://kubernetes.io/docs/concepts/services-networking/ingress/
+
+https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1604349777567-devops-wb002%20-%20S09-L04%20Managing%20Access%20from%20Outside%20with%20K8s%20Ingress.pdf
+
+Expõe as rotas HTTP e HTTPS de fora do cluster para os **Services** dentro do cluster. O roteamento de tráfego é controlado por regras definidas no recurso Ingress.
+
+Um Ingress é um objeto Kubernetes que gerencia acesso externo aos serviços no cluster. Um Ingress é capaz de fornecer mais funcionalidade do que um simples serviço NodePort, como SSL terminação, balanceamento de carga avançado ou hospedagem virtual baseada em nomes.
+
+![image-20210903210711431](./imagens/image-20210903210711431.png)
+
+
+
+Exemplo:
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /somepah
+        pathType: Prefix
+        backend:
+          service:
+            name: test
+            port:
+              number: 80
+
+```
+
+A requisição feita em  ***http://<<some-endpoint>/somepah*** será roteado para a porta 80 do Service "web". 
+
+![image-20210903211308726](./imagens/image-20210903211308726.png)
+
+## **Ingress Controllers**
+
+Na verdade, os objetos do Ingress não fazem nada sozinhos. No para que o Ingresses faça qualquer coisa, você deve instalar um ou mais controladores do Ingress. Existem vários controladores de entrada disponíveis todos os quais implementam métodos diferentes para fornecer acesso externo aos seus serviços.
+
+
+
+https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/
+
+**Comandos**
+
+| Descrição     | Comando |
+| ------------- | ------- |
+| Lista ingress |         |
 
 ##############################################################################################
 
@@ -1901,8 +1867,6 @@ Mais informações em: https://kubernetes.io/docs/concepts/cluster-administratio
 | Descrição             | Comando                         |
 | --------------------- | ------------------------------- |
 | Lista pods do coredns | kubectl get pods -n kube-system |
-|                       |                                 |
-|                       |                                 |
 
 ## **Network Policy**
 
@@ -1993,6 +1957,8 @@ Existem quatro tipos de seletores que podem ser especificados nas sessões `ingr
 
 https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/
 
+https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1604349764457-devops-wb002%20-%20S09-L03%20Discovering%20K8s%20Services%20With%20DNS.pdf
+
 https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1598046103047-devops-wb002%20-%20S08-L03%20Understanding%20K8s%20DNS.pdf
 
 
@@ -2014,6 +1980,350 @@ search pod-example.svc.cluster.local svc.cluster.local cluster.local ec2.interna
 options ndots:5
 
 ```
+
+
+
+##############################################################################################
+
+# **Storage**
+
+https://kubernetes.io/docs/concepts/storage/volumes/
+
+https://kubernetes.io/docs/concepts/storage/
+
+https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1604349952306-devops-wb002%20-%20S10-L04%20Using%20K8s%20Persistent%20Volumes.pdf
+
+Os volumes são um diretório que contém dados acessíveis aos contêineres em um pod. Um volume Kubernetes tem a mesma vida útil que o pod que o encapsula. 
+
+Ele sobrevive a todos os contêineres executados no pod e os dados são preservados quando um contêiner é reiniciado.
+
+O Kubernetes suporta muitos tipos de volumes e um pod pode usar todos eles simultaneamente.
+
+
+
+![image-20210802203359146](./imagens/image-20210802203359146.png)
+
+
+
+## **Container File System**
+
+O Container File System é efêmero. Arquivos no sistema de arquivos do contêiner existem apenas enquanto como o contêiner existe.
+Se um contêiner for excluído ou recriado no K8s, os dados armazenados no sistema de arquivos do contêiner são perdidos.
+
+
+
+## **Volumes**
+
+https://kubernetes.io/docs/concepts/storage/volumes/
+
+https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1604349985834-devops-wb002%20-%20S10-L02%20Using%20K8s%20Volumes.pdf
+
+
+
+Muitos aplicativos precisam de um método mais persistente método de armazenamento de dados. Os volumes permitem que você armazene dados fora do
+sistema de arquivos do contêiner, permitindo o contêiner para acessar os dados em tempo de execução.
+Isso pode permitir que os dados persistam além da vida de o recipiente.
+
+### **Volume Types**
+
+https://kubernetes.io/docs/concepts/storage/volumes/#volume-types
+
+- NFS
+- Cloud storage mechanisms (AWS, Azure, GCP)
+- ConfigMaps and Secrets
+- A simple directory on the K8s node
+
+#### **hostPath**
+
+Armazena dados em um diretório especificado no Workers K8s.
+
+Exemplo:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: volume-pod
+spec:
+  restartPolicy: Never
+  containers:
+  - name: busybox
+    image: busybox
+    command: ['sh', '-c', 'echo Success! > /output/success.txt']
+    volumeMounts:         ## Especificação do Container
+    - name: my-volume
+      mountPath: /output        ## Ponto de montagem no container
+  volumes:                              ## Especificação do Pod, monta no Worker node
+  - name: my-volume
+    hostPath:
+      path: /var/data
+```
+
+
+
+#### **EmptyDir** 
+
+Um volume do tipo **EmptyDir** é criado sempre que um Pod é atribuído a um nó existente. Esse volume é criado inicialmente vazio, e todos os contêineres do Pod podem ler e gravar arquivos no volume.
+
+Esse volume não é um volume com persistência de dados. Sempre que o Pod é removido de um nó, os dados no `EmptyDir` são excluídos permanentemente. É importante ressaltar que os dados não são excluídos em casos de falhas nos contêineres.
+
+- Disco disponível somente enquando o pod estiver rodando.
+- Recomendado para logs por exemplo.
+- Disco no Node em /var/lib/kubelet/pods , find . -iname "*nomedodisco*"
+
+Exemplo:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: shared-volume-pod
+spec:
+  containers:
+  - name: busybox1
+    image: busybox
+    command: ['sh', '-c', 'while true; do echo Success! > /output/output.txt; sleep 5; done']
+    volumeMounts:
+    - name: my-volume
+      mountPath: /output
+  - name: busybox2
+    image: busybox
+    command: ['sh', '-c', 'while true; do cat /input/output.txt; sleep 5; done']
+    volumeMounts:
+    - name: my-volume
+      mountPath: /input
+  volumes:
+  - name: my-volume
+    emptyDir: {}
+
+```
+
+
+
+### **Volume Mounts**
+
+Volumes regulares podem ser configurados com relativa facilidade dentro de uma especificação de pod / contêiner.
+
+**volumes**: na especificação do pod, eles especificam o volumes de armazenamento disponíveis para o Pod. Elas especificam o tipo de volume e outros dados que determina onde e como os dados estão realmente armazenado.
+
+Pode montar o mesmo volume em vários containers dentro do Pod. 
+
+**volumeMounts**: na especificação do contêiner, estes referenciar os volumes na especificação do Pod e fornecer um mountPath (a localização no arquivo
+sistema onde o processo do contêiner irá acessar os dados de volume).
+
+Exemplo:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: volume-pod
+spec:
+  restartPolicy: Never
+  containers:
+  - name: busybox
+    image: busybox
+    command: ['sh', '-c', 'echo Success! > /output/success.txt']
+    volumeMounts:         ## Especificação do Container
+    - name: my-volume
+      mountPath: /output        ## Ponto de montagem no container
+  volumes:                              ## Especificação do Pod, monta no Worker node
+  - name: my-volume
+    hostPath:
+      path: /var/data
+```
+
+
+
+## **Persistent Volumes**
+
+https://kubernetes.io/docs/concepts/storage/persistent-volumes/
+
+https://kubernetes.io/pt-br/docs/concepts/storage/persistent-volumes/
+
+**Persistent Volume** fornece uma API para usuários e administradores que resume detalhes de como o armazenamento é fornecido e consumido pelos Pods. Para o melhor controle desse sistema foi introduzido dois recursos de API: `PersistentVolume` e `PersistentVolumeClaim`.
+
+**PersistentVolumes** são objetos K8s que permitem você deve tratar o armazenamento como um recurso abstrato para ser consumido por Pods, bem como guloseimas K8s recursos de computação, como memória e CPU.
+Um **PersistentVolume** usa um conjunto de atributos para descrever o recurso de armazenamento subjacente (como como um disco ou local de armazenamento em nuvem) que irá ser usado para armazenar dados.
+
+**Persistent Volume-(PV)** é um recurso no cluster, assim como um Worker. Mas nesse caso é um recurso de armazenamento. O PV é uma parte do armazenamento no cluster que foi provisionado por um administrador. Os PVs tem um ciclo de vida independente de qualquer pod associado a ele. Essa API permite armazenamentos do tipo: NFS, ISCSI ou armazenamento de um provedor de nuvem específico.
+
+Exemplo:
+
+```yaml
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: my-pv
+spec:
+  storageClassName: localdisk				## Referencia do StorageClass criado
+  persistentVolumeReclaimPolicy: Recycle
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:					## Local onde será criado no Worker
+    path: /var/output
+
+```
+
+
+
+**PersistentVolumeClaim-(PVC)** é semelhante a um Pod. Os Pods consomem recursos de um nó e os PVCs consomem recursos dos PVs.
+
+Mas o que é um **PVC**? Nada mais é do que uma solicitação de armazenamento criada por um usuário.
+
+Exemplo:
+
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: my-pvc
+spec:
+  storageClassName: localdisk
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+```
+
+
+
+**PV** é criado no WorkerNode.
+
+**PVC** é o que aponta no POD.
+
+**OBS: Cria o PV depois o PVC.**
+
+![image-20210903214001982](./imagens/image-20210903214001982.png)
+
+
+
+![image-20210802204251424](./imagens/image-20210802204251424.png)
+
+
+
+### **Montando um PVC no Pod**
+
+Exemplo:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pv-pod
+spec:
+  restartPolicy: Never
+  containers:
+  - name: busybox
+    image: busybox
+    command: ['sh', '-c', 'echo Success! > /output/success.txt']
+    volumeMounts:
+      - name: pv-storage
+        mountPath: /output
+  volumes:
+    - name: pv-storage
+      persistentVolumeClaim:
+        claimName: my-pvc		## Referencia ao PVC
+```
+
+
+
+### **Storage Classes**
+
+https://kubernetes.io/docs/concepts/storage/storage-classes/
+
+Um StorageClass fornece uma maneira para os administradores descreverem as "classes" de armazenamento que oferecem.
+
+![image-20210802205318959](./imagens/image-20210802205318959.png)
+
+Exemplo:
+
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: standard
+provisioner: kubernetes.io/aws-ebs
+parameters:
+  type: gp2
+reclaimPolicy: Retain
+allowVolumeExpansion: true		## Redimencionar capacidade 
+mountOptions:
+  - debug
+volumeBindingMode: Immediate
+```
+
+#### **allowVolumeExpansion** 
+
+A propriedade **allowVolumeExpansion** de um StorageClass determina se o StorageClass suporta a capacidade de redimensionar volumes depois de serem criados. Se esta propriedade não for definida como **true**, tente redimensionar um volume que usa este StorageClass irá resultar em um erro.
+
+#### **persistentVolumeReclaimPolicy** 
+
+https://kubernetes.io/docs/concepts/storage/storage-classes/#reclaim-policy
+
+### **Reclaim Policy sempre PV**
+
+- **Retain** 
+
+  https://kubernetes.io/pt-br/docs/concepts/storage/persistent-volumes/#deletar
+
+  Mantém todos os dados. Isso requer um administrador para limpar manualmente os dados e preparar o recurso de armazenamento para reutilização.
+
+  
+
+- **Delete** 
+
+  https://kubernetes.io/pt-br/docs/concepts/storage/persistent-volumes/#deletar
+
+  Exclui o armazenamento subjacente recurso automaticamente (***só funciona para nuvem recursos de armazenamento***).
+
+  
+
+- **Recycle** 
+
+  https://kubernetes.io/pt-br/docs/concepts/storage/persistent-volumes/#reciclar
+
+  Exclui automaticamente todos os dados no recurso de armazenamento subjacente, permitindo o PersistentVolume a ser reutilizado.
+
+ ![image-20210802204753235](./imagens/image-20210802204753235.png)
+
+![image-20210802204956898](./imagens/image-20210802204956898.png)
+
+
+
+
+
+## **Container Storage Interface (CSI)**
+
+https://kubernetes.io/blog/2019/01/15/container-storage-interface-ga/
+
+![image-20210802204057322](C:\Users\brik\AppData\Roaming\Typora\typora-user-images\image-20210802204057322.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+## **Comandos**
+
+
+
+| Descrição             | Comando                      |
+| --------------------- | ---------------------------- |
+| Listar o StorageClass | kubect get sc                |
+|                       | kubectl describe sc "nomesc" |
+
+
 
 
 
@@ -2097,9 +2407,6 @@ https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 | Comando            | Descrição    |
 | ------------------ | ------------ |
 | kubeadm token list | Lista Tokens |
-|                    |              |
-|                    |              |
-|                    |              |
 
 ## **Minikube**
 
@@ -2154,7 +2461,6 @@ kubectl get --raw /apis/metrics.k8s.io/
 | kubectl top pod --sort-by cpu               | Lista por consumo de CPU         |
 | kubectl top pod --selector app=metrics-test | Lista pods com selector          |
 | kubectl top node                            | Mostra consumo cpu/ram dos Nodes |
-|                                             |                                  |
 
 
 
@@ -2212,7 +2518,6 @@ roleRef:
 | kubectl create sa "nomedaserviceaccoint" | Criar Service Account    |
 | kubectl get sa                           | Lista as Service Account |
 | kubectl describe sa my-serviceaccount    |                          |
-|                                          |                          |
 
 ##############################################################################################
 
@@ -2398,7 +2703,6 @@ https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/159
 | Remove Worker Node                      | kubectl drain <node name>                     |
 | Remove Worker Nodeignorando Daemon Sets | kubectl drain <node name> --ignore-daemonsets |
 | Inclui o Worker Node no cluster         | kubectl uncordon <node name>                  |
-|                                         |                                               |
 
 
 
@@ -3419,39 +3723,11 @@ Atenção! 1 core de CPU corresponde a 1000m (1000 milicore). Ao especificar 200
 
 
 
-
-
 |                           Comando                            | Descrição                                               |
 | :----------------------------------------------------------: | :------------------------------------------------------ |
 |             kubectl logs sidecar-pod -c sidecar              | Ver logs do container Sidecar dentro do pod sidecar-pod |
-|                                                              |                                                         |
 |  echo "source <(kubectl completion bash)" >> /root/.bashrc   | auto complete                                           |
-|                                                              |                                                         |
 | aws eks --region "*region*" update-kubeconfig --name "*cluster-name*" | Conecta no cluster EKS                                  |
-|                                                              |                                                         |
-|                                                              |                                                         |
-|                                                              |                                                         |
-|                                                              |                                                         |
-|                                                              |                                                         |
-|                                                              |                                                         |
-|                                                              |                                                         |
-|                                                              |                                                         |
-|                                                              |                                                         |
-|                                                              |                                                         |
-|                                                              |                                                         |
-|                                                              |                                                         |
-|                                                              |                                                         |
-|                                                              |                                                         |
-|                                                              |                                                         |
-|                                                              |                                                         |
-|                                                              |                                                         |
-|                                                              |                                                         |
-|                                                              |                                                         |
-|                                                              |                                                         |
-|                                                              |                                                         |
-|                                                              |                                                         |
-|                                                              |                                                         |
-|                                                              |                                                         |
 
 ##############################################################################################
 

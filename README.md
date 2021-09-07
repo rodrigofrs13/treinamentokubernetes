@@ -3437,6 +3437,108 @@ https://devopscube.com/setup-prometheus-monitoring-on-kubernetes/
 
 ##############################################################################################
 
+# **Troubleshooting**
+
+https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1607462106795-devops-wb002%20-%20S11%20Troubleshooting.pdf
+
+## **Cluster**
+
+https://kubernetes.io/docs/tasks/debug-application-cluster/debug-cluster/
+
+https://kubernetes.io/docs/tasks/debug-application-cluster/troubleshooting/
+
+https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1604091432282-devops-wb002%20-%20S11-L02%20Troubleshooting%20Your%20K8s%20Cluster.pdf
+
+### Sequencia de checagem
+
+1. **Kubelet Master**
+
+   Checar se o kubelet está rodando
+
+   ```shell
+   systemctl status kubelet
+   ```
+
+   
+
+2. **Worker Nodes**
+
+   Checar saúde dos Nodes
+
+   ```shell
+    kubectl get nodes
+   ```
+
+   ```shell
+   kubectl describe nodes <<node-name>>
+   ```
+
+   
+
+3. **Services - Nodes**
+
+   Checar se o kubelet está rodando
+
+   ```shell
+   systemctl status kubelet
+   ```
+
+   
+
+4. **Check system pods**
+
+   ```shell
+    kubectl get pods -n kube-system
+   ```
+
+   ```shell
+    kubectl describe pod podname -n kube-system
+   ```
+
+   
+
+## **Logs**
+
+https://kubernetes.io/docs/tasks/debug-application-cluster/debug-cluster/#looking-at-logs
+
+https://kubernetes.io/docs/tasks/debug-application-cluster/debug-running-pod/
+
+https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1604091465421-devops-wb002%20-%20S11-L03%20Checking%20Cluster%20and%20Node%20Logs.pdf
+
+Logs ficam em **/var/log.**
+
+
+
+### **Comandos**
+
+| Comando                                        | Descrição                       |
+| ---------------------------------------------- | ------------------------------- |
+| kubectl logs -n "*namespace*" "*pod-name*"     | Logs do Pod                     |
+| sudo journalctl -u kubelet                     | Checar logs do Kubelet          |
+| kubectl logs  "*pod-name*" -c "container-name" | Logs do container dentro do Pod |
+|                                                |                                 |
+
+
+
+## **Application**
+
+https://kubernetes.io/docs/tasks/debug-application-cluster/determine-reason-pod-failure/
+
+https://kubernetes.io/docs/tasks/debug-application-cluster/get-shell-running-container/
+
+https://kubernetes.io/docs/tasks/debug-application-cluster/debug-application/
+
+https://acloudguru-content-attachment-production.s3-accelerate.amazonaws.com/1604091516501-devops-wb002%20-%20S11-L04%20Troubleshooting%20Your%20Applications.pdf
+
+### **Comandos**
+
+| Comando                                                  | Descrição                         |
+| -------------------------------------------------------- | --------------------------------- |
+| kubectl exec *"pod-name*" -c "*containername*" -- comand | Executar comando dentro container |
+|                                                          |                                   |
+
+##############################################################################################
+
 # **Setup do Kubernetes**
 
 **Links**
